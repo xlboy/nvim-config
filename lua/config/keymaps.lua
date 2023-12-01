@@ -14,6 +14,7 @@ function default()
   set("n", "<S-u>", "20k", {})
   set("n", "<S-d>", "20j", {})
   set("n", "<C-q>", "<CMD>q!<CR>", {})
+  set("n", "<leader>q", "<CMD>q!<CR>", {})
 
   set("v", "y", '"+ygv<esc>', {})
   set("v", "<S-h>", "^", {})
