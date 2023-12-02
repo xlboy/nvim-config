@@ -11,4 +11,15 @@ return {
     opts = {},
     event = "VeryLazy",
   },
+  {
+    "TobinPalmer/rayso.nvim",
+    cmd = "Rayso",
+    opts = {
+      open_cmd = "Arc",
+      options = {
+        theme = "breeze",
+        padding = 16,
+      },
+    },
+  },
 }

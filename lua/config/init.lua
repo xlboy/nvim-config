@@ -1,3 +1,7 @@
 require("config.autocmds")
-require("config.keymaps")
+
+require("utils").on_very_lazy(function()
+  require("config.keymaps")
+end)
+
 require("config.options")

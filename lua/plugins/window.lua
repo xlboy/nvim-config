@@ -10,28 +10,4 @@ return {
       })
     end,
   },
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = { options = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp" } },
-    config = function()
-      require("persistence").setup({
-        options = {
-          "globals",
-        },
-        pre_save = function()
-          vim.api.nvim_exec_autocmds("User", { pattern = "SessionSavePre" })
-        end,
-      })
-    end,
-    keys = {
-      {
-        "<leader>S.",
-        function()
-          require("persistence").load()
-        end,
-        desc = "Restore Session",
-      },
-    },
-  },
 }
