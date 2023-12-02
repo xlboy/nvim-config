@@ -128,13 +128,6 @@ return {
   },
   { "xlboy/swap-ternary.nvim", event = "VeryLazy" },
   {
-    "echasnovski/mini.bracketed",
-    event = "VeryLazy",
-    config = function()
-      require("mini.bracketed").setup()
-    end,
-  },
-  {
     "mizlan/iswap.nvim",
     cmd = { "ISwap", "ISwapWith", "ISwapNode", "ISwapNodeWith" },
     config = function()
