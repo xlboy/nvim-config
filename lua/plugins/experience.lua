@@ -44,14 +44,15 @@ return {
   },
   {
     "Pocco81/true-zen.nvim",
+    lazy = true,
     keys = { { "<leader>tzn", ":TZNarrow<CR>", mode = { "v" } } },
     config = function()
       require("true-zen").setup({})
     end,
   },
   {
-    dir = "~/Desktop/xlboy/function-picker.nvim",
-    event = "VeryLazy",
+    "xlboy/function-picker.nvim",
+    lazy = true,
     dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
     keys = {
       {
@@ -71,7 +72,7 @@ return {
   },
   {
     "AckslD/nvim-FeMaco.lua",
-    event = "VeryLazy",
+    lazy = true,
     config = function()
       require("femaco").setup()
     end,

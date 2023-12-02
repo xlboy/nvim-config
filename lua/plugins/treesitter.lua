@@ -22,6 +22,7 @@ return {
           "typescript",
           "yaml",
           "c",
+          "cpp",
         },
         incremental_selection = {
           enable = true,

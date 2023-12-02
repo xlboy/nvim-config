@@ -1,7 +1,7 @@
 return {
   {
     "xlboy/flash.nvim",
-    event = "VeryLazy",
+    lazy = true,
     ---@type Flash.Config
     opts = {
       label = {
@@ -56,6 +56,7 @@ return {
   },
   {
     "ggandor/flit.nvim",
+    lazy = true,
     keys = function()
       ---@type LazyKeys[]
       local ret = {}

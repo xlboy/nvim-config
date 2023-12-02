@@ -15,6 +15,8 @@ function default()
   set("n", "<S-d>", "20j", {})
   set("n", "<C-q>", "<cmd>qa!<cr>", {})
   set("n", "<leader>q", "<cmd>confirm q<cr>", {})
+  set("n", "<leader>w", "<cmd>w<cr>", {})
+  
   set("n", "|", "<cmd>vsplit<cr>", {})
   set("n", "\\", "<cmd>split<cr>", {})
 

@@ -2,6 +2,7 @@ return {
   { "wellle/targets.vim", event = "VeryLazy" },
   {
     "echasnovski/mini.surround",
+    lazy = true,
     keys = {
       { "gza", desc = "Add surrounding", mode = { "n", "v" } },
       { "gzd", desc = "Delete surrounding" },
@@ -120,7 +121,7 @@ return {
   },
   {
     "Wansmer/treesj",
-    event = "VeryLazy",
+    lazy = true,
     keys = {
       { "<leader>jt", ":TSJToggle<CR>", silent = true },
     },
@@ -131,7 +132,7 @@ return {
   },
   {
     "gsuuon/tshjkl.nvim",
-    event = "VeryLazy",
+    lazy = true,
     opts = {
       select_current_node = false,
       keymaps = { toggle = "<leader>ct" },

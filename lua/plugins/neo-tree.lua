@@ -1,5 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
+  lazy = true,
   branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -7,7 +8,7 @@ return {
     "MunifTanjim/nui.nvim",
   },
   keys = {
-    { "<leader>e", "<cmd>Neotree toggle show<cr>", desc = "Neotree toggle" },
+    { "<leader>e", "<cmd>Neotree toggle focus<cr>", desc = "Neotree toggle" },
     {
       "<leader>o",
       function()
