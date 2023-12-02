@@ -19,7 +19,7 @@ return {
       end
 
       -- Set up keymaps
-      vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show diagnostics of current line" })
+      vim.keymap.set("n", "gl", vim.diagnostic.open_float, { desc = "Show diagnostics of current line" })
       vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Move to previous diagnostic" })
       vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Move to next diagnostic" })
 

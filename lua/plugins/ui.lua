@@ -96,7 +96,9 @@ return {
   {
     "utilyre/sentiment.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+      pairs = { { "(", ")" }, { "[", "]" }, { "{", "}" }, { "<", ">" } },
+    },
     init = function()
       vim.g.loaded_matchparen = 1
     end,
