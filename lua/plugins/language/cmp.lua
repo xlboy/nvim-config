@@ -29,10 +29,12 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<C-i>"] = cmp.mapping.complete(),
         }),
         sources = sources,
         formatting = { format = require("lspkind").cmp_format() },
       })
     end,
+    keys = {},
   },
 }

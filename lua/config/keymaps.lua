@@ -3,8 +3,8 @@ local utils = require("utils")
 local t_extensions = require("telescope").extensions
 utils.set_mappings({
   n = {
-    ["'d"] = { "'d" },
-    ["'c"] = { "'c" },
+    ["'d"] = { '"0d' },
+    ["'c"] = { '"0c' },
     ["<S-w>"] = { "3w" },
     ["<S-b>"] = { "3b" },
     ["<leader>jo"] = { "<CMD>join<CR>" },
@@ -47,8 +47,8 @@ utils.set_mappings({
     ["<S-j>"] = { "8j" },
     ["<S-u>"] = { "20k" },
     ["<S-d>"] = { "20j" },
-    ["'d"] = { "'d" },
-    ["'c"] = { "'c" },
+    ["'d"] = { '"0d' },
+    ["'c"] = { '"0c' },
     ["<S-w>"] = { "3w" },
     ["<S-b>"] = { "3b" },
   },
