@@ -29,4 +29,10 @@ function M.on_very_lazy(fn)
   })
 end
 
+--- 判断当前系统是否为 Windows
+---@return boolean
+function M.is_windows()
+  return vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1
+end
+
 return M

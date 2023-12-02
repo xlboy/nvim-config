@@ -1,5 +1,32 @@
 return {
+  {
+    "xlboy/text-case.nvim",
+    event = "BufRead",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("textcase").setup({})
+      require("telescope").load_extension("textcase")
+
+      vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+      vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
+      vim.api.nvim_set_keymap(
+        "n",
+        "gaa",
+        "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
+        { desc = "Telescope Quick Change" }
+      )
+      vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
+      vim.api.nvim_set_keymap("n", "gam", "<cmd>TextCaseOpenTelescopeQuickOrLSP<CR>", {})
+    end,
+  },
   { "wellle/targets.vim", event = "VeryLazy" },
+  {
+    "echasnovski/mini.pairs",
+    event = "VeryLazy",
+    config = function()
+      require("mini.pairs").setup()
+    end,
+  },
   {
     "echasnovski/mini.surround",
     lazy = true,
@@ -100,7 +127,13 @@ return {
     end,
   },
   { "xlboy/swap-ternary.nvim", event = "VeryLazy" },
-  { "echasnovski/mini.bracketed", event = "VeryLazy" },
+  {
+    "echasnovski/mini.bracketed",
+    event = "VeryLazy",
+    config = function()
+      require("mini.bracketed").setup()
+    end,
+  },
   {
     "mizlan/iswap.nvim",
     cmd = { "ISwap", "ISwapWith", "ISwapNode", "ISwapNodeWith" },
