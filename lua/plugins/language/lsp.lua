@@ -71,7 +71,8 @@ return {
         left_width = 0.2,
       },
       rename = {
-        keys = {
+        in_select = false,
+        keys      = {
           quit = { "q", "<ESC>" },
         },
       },
