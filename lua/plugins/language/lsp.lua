@@ -26,9 +26,6 @@ return {
         end
 
         vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, buf_opts("Go to definiton"))
-        vim.keymap.set("n", "<Leader>cf", function()
-          vim.lsp.buf.format({ async = true })
-        end, buf_opts("Format current file"))
       end
 
       require("mason-lspconfig").setup_handlers({
