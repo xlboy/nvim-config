@@ -41,7 +41,6 @@ function M.empty_map_table()
   return maps
 end
 
-
 --- Table based API for setting keybindings
 ---@param map_table table A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
 ---@param base? table A base set of options to set on every keybinding

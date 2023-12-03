@@ -45,17 +45,6 @@ return {
           vim.lsp.buf.format({ async = true })
         end, buf_opts("Format current file"))
 
-        -- Format on save
-        if client.supports_method("textDocument/formatting") then
-          vim.api.nvim_clear_autocmds({ group = formatting_group, buffer = bufnr })
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            group = formatting_group,
-            buffer = bufnr,
-            callback = function()
-              vim.lsp.buf.format()
-            end,
-          })
-        end
       end
 
       require("mason-lspconfig").setup_handlers({

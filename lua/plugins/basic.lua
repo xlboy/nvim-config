@@ -22,4 +22,5 @@ return {
     lazy = false,
     priority = 100,
   },
+  { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
 }

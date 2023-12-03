@@ -89,7 +89,7 @@ return {
           style = { {} },
         },
         blank = { enable = false },
-        line_num = { enable = false },
+        line_num = { enable = true, use_treesitter = true },
       })
     end,
   },

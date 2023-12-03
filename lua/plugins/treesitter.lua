@@ -33,9 +33,6 @@ return {
             scope_incremental = "<TAB>",
           },
         },
-
-        indent = { enable = true },
-
         textobjects = {
           select = {
             enable = true,
@@ -100,9 +97,5 @@ return {
     "stevearc/aerial.nvim",
     event = "BufRead",
     opts = {},
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
   },
 }

@@ -9,12 +9,7 @@ return {
 
       vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
       vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-      vim.api.nvim_set_keymap(
-        "n",
-        "gaa",
-        "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
-        { desc = "Telescope Quick Change" }
-      )
+      vim.api.nvim_set_keymap("n", "gaa", "<cmd>TextCaseOpenTelescopeQuickChange<CR>", { desc = "Telescope Quick Change" })
       vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
       vim.api.nvim_set_keymap("n", "gam", "<cmd>TextCaseOpenTelescopeQuickOrLSP<CR>", {})
     end,
@@ -144,6 +139,35 @@ return {
         hl_grey_priority = "1000",
       })
     end,
+  },
+  {
+    "nguyenvukhang/nvim-toggler",
+    lazy = true,
+    opts = {
+      inverses = {
+        ["up"] = "down",
+        ["Up"] = "Down",
+        ["left"] = "right",
+        ["Left"] = "Right",
+        ["1"] = "0",
+        ["true"] = "false",
+        ["TRUE"] = "FALSE",
+        ["True"] = "False",
+        ["off"] = "on",
+        ["OFF"] = "ON",
+        ["yes"] = "no",
+        ["Yes"] = "No",
+        ["YES"] = "NO",
+      },
+      remove_default_keybinds = true,
+    },
+    keys = { {
+      "<leader>jr",
+      function()
+        require("nvim-toggler").toggle()
+      end,
+      desc = "Toggle",
+    } },
   },
   {
     "Wansmer/treesj",
