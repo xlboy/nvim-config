@@ -10,6 +10,8 @@ return {
         "~/Desktop/xlboy/__open-source__/*",
         "D:\\project\\cpp\\*",
         "D:\\project\\nvim\\*",
+        "C:\\Users\\Administrator\\.config\\wezterm",
+        "C:\\Users\\Administrator\\AppData\\Local\\nvim"
       },
     },
     dependencies = {

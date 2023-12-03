@@ -1,4 +1,3 @@
-local set = vim.api.nvim_set_keymap
 local utils = require("utils")
 local t_extensions = require("telescope").extensions
 utils.set_mappings({
@@ -38,6 +37,8 @@ utils.set_mappings({
         })
       end,
     },
+    ["{"] = {":BufferLineCyclePrev<CR>"},
+    ["}"] = {":BufferLineCycleNext<CR>"}
   },
   v = {
     ["y"] = { '"+ygv<esc>' },
