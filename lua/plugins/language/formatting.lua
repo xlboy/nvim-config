@@ -14,6 +14,7 @@ return {
   },
   config = function()
     vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*",
       callback = function(args)
@@ -27,8 +28,6 @@ return {
         typescript = { { "prettier" } },
       },
       format_on_save = false,
-
     })
   end,
 }
-
