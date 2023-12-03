@@ -24,8 +24,9 @@ return {
     require("conform").setup({
       formatters_by_ft = {
         lua = { "stylua" },
-        javascript = { { "prettier" } },
-        typescript = { { "prettier" } },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        cpp = { "clang-format" },
       },
       format_on_save = false,
     })

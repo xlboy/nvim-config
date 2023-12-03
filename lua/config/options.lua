@@ -14,3 +14,6 @@ opt.mousescroll = "ver:4,hor:2" -- 鼠标滚轮滚动行数
 
 opt.pumheight = 20 -- 弹出菜单的高度
 opt.pumblend = 8 -- 弹出菜单的透明度
+
+opt.swapfile = false
+
