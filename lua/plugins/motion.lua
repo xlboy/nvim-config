@@ -72,9 +72,19 @@ return {
     },
     dependencies = {
       "ggandor/leap.nvim",
-      dependencies = {
-        "tpope/vim-repeat",
-      },
+      dependencies = { "tpope/vim-repeat" },
     },
   },
+  -- {
+  --   -- "chrisgrieser/nvim-spider",
+  --   dir = "D:\\project\\nvim\\nvim-spider",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require('spider').setup({ skipInsignificantPunctuation = true })
+  --   end,
+  --   keys = {
+  --     { "W", ":lua require('spider').motion('w')<CR>", mode = "n" },
+  --     { "B", ":lua require('spider').motion('b')<CR>", mode = "n" },
+  --   }
+  -- }
 }

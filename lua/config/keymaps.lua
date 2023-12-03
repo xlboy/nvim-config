@@ -17,6 +17,7 @@ utils.set_mappings({
     ["<C-q>"] = { "<cmd>qa!<cr>" },
     ["<leader>q"] = { "<cmd>confirm q<cr>" },
     ["<leader>w"] = { "<cmd>w<cr>" },
+    ["<leader>n"] = { "<cmd>enew<cr>" },
     ["<C-h>"] = { "<cmd>wincmd h<cr>" },
     ["<C-j>"] = { "<cmd>wincmd j<cr>" },
     ["<C-k>"] = { "<cmd>wincmd k<cr>" },
@@ -37,8 +38,8 @@ utils.set_mappings({
         })
       end,
     },
-    ["{"] = {":BufferLineCyclePrev<CR>"},
-    ["}"] = {":BufferLineCycleNext<CR>"}
+    ["{"] = { ":BufferLineCyclePrev<CR>" },
+    ["}"] = { ":BufferLineCycleNext<CR>" }
   },
   v = {
     ["y"] = { '"+ygv<esc>' },
