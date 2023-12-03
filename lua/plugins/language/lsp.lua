@@ -1,4 +1,4 @@
-local formatting_group = vim.api.nvim_create_augroup("LspFormatting", { clear = false })
+local utils = require("utils")
 
 return {
   {
@@ -46,9 +46,16 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
     event = "VeryLazy",
-    opts = {
-      ensure_installed = { "lua_ls", "clangd", "neocmake" },
-    },
+    opts = function()
+      local ensure_installed = { "lua" }
+      if utils.is_win() then
+        table.insert(ensure_installed, "clangd")
+        table.insert(ensure_installed, "neocmake")
+      end
+      return {
+        ensure_installed = {},
+      }
+    end,
   },
   {
     "nvimdev/lspsaga.nvim",

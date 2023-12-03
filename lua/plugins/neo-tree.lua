@@ -26,10 +26,14 @@ return {
       "filesystem",
     }
     opts.source_selector = {
-      -- winbar = false,
       sources = {
         { source = "filesystem" },
       },
+    }
+    opts.filesystem = {
+      follow_current_file = { enabled = true },
+      hijack_netrw_behavior = "open_current",
+      use_libuv_file_watcher = true,
     }
 
     opts.commands = {}
@@ -44,9 +48,7 @@ return {
       vim.cmd.wincmd("p")
     end
 
-    opts.window = {
-      mappings = {}
-    }
+    opts.window = { mappings = {} }
     opts.window.mappings["<C-r>"] = "reveal_in_finder"
     opts.window.mappings["<leader>o"] = "switch_to_editor"
 

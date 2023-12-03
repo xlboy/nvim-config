@@ -45,7 +45,7 @@ end
 ---@param map_table table A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
 ---@param base? table A base set of options to set on every keybinding
 function M.set_mappings(map_table, base)
-  function which_key_register()
+  local function which_key_register()
     if M.which_key_queue then
       local wk_avail, wk = pcall(require, "which-key")
       if wk_avail then
