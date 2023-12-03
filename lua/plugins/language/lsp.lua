@@ -78,9 +78,9 @@ return {
       symbol_in_winbar = {
         enable = false,
       },
-      -- lightbulb = {
-      --   enable = false,
-      -- },
+      lightbulb = {
+        virtual_text = false,
+      },
       finder = {
         left_width = 0.2,
       },
