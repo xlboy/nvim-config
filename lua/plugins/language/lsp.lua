@@ -84,4 +84,12 @@ return {
       { "<leader>l.", ":Lspsaga signature_help<CR>", desc = "Show signature help", mode = "n" },
     },
   },
+  {
+    "antosha417/nvim-lsp-file-operations",
+    event = "BufEnter",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("lsp-file-operations").setup()
+    end,
+  },
 }
