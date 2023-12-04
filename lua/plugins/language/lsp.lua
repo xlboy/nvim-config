@@ -13,11 +13,8 @@ return {
         vim.fn.sign_define(hl, { text = icon, texthl = hl })
       end
 
-      -- Add additional capabilities supported by nvim-cmp
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- Use an on_attach function to only map the following keys
-      -- after the language server attaches to the current buffer
       local on_attach = function(client, bufnr)
         local telescope_builtin = require("telescope.builtin")
 
@@ -38,22 +35,19 @@ return {
       })
     end,
   },
-  {
-    "williamboman/mason.nvim",
-    config = true,
-  },
+  { "williamboman/mason.nvim", config = true },
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
     event = "VeryLazy",
     opts = function()
-      local ensure_installed = { "lua" }
+      local ensure_installed = { "lua_ls", "tsserver" }
       if utils.is_win() then
         table.insert(ensure_installed, "clangd")
         table.insert(ensure_installed, "neocmake")
       end
       return {
-        ensure_installed = {},
+        ensure_installed = ensure_installed,
       }
     end,
   },

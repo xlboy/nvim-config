@@ -3,15 +3,14 @@ return {
     "coffebar/neovim-project",
     opts = {
       projects = {
-        "~/.config/nvim/",
+        "~/.config/*",
         "~/Desktop/lilith/*",
         "~/Desktop/xlboy/*",
         "~/Desktop/xlboy/__open-source__/*",
-        "~/Desktop/xlboy/__open-source__/*",
         "D:\\project\\cpp\\*",
         "D:\\project\\nvim\\*",
-        "C:\\Users\\Administrator\\.config\\wezterm",
-        "C:\\Users\\Administrator\\AppData\\Local\\nvim"
+        "C:\\Users\\Administrator\\.config\\*",
+        "C:\\Users\\Administrator\\AppData\\Local\\nvim",
       },
     },
     dependencies = {

@@ -121,9 +121,10 @@ return {
       })
     end,
   },
-  { "xlboy/swap-ternary.nvim", event = "VeryLazy" },
+  { "xlboy/swap-ternary.nvim", lazy = true },
   {
     "mizlan/iswap.nvim",
+    event = "BufRead",
     cmd = { "ISwap", "ISwapWith", "ISwapNode", "ISwapNodeWith" },
     config = function()
       require("iswap").setup({
@@ -180,15 +181,14 @@ return {
       max_join_length = 999,
     },
   },
-  {
-    "gsuuon/tshjkl.nvim",
-    lazy = true,
-    opts = {
-      select_current_node = false,
-      keymaps = { toggle = "<leader>ct" },
-    },
-    config = true,
-  },
+  -- {
+  --   "gsuuon/tshjkl.nvim",
+  --   lazy = true,
+  --   opts = {
+  --     select_current_node = false,
+  --     keymaps = { toggle = "<leader>ct" },
+  --   },
+  -- },
   {
     "echasnovski/mini.move",
     event = "VeryLazy",
