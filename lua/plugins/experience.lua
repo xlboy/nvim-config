@@ -53,7 +53,7 @@ return {
   {
     "xlboy/function-picker.nvim",
     lazy = true,
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
+    dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
       {
         "<leader>fns",
