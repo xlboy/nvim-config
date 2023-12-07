@@ -1,10 +1,8 @@
 return {
   {
     "elijahmanor/export-to-vscode.nvim",
-    event = "BufReadPost",
-    config = function()
-      vim.keymap.set("n", "<leader>vsc", require("export-to-vscode").launch, {})
-    end,
+    lazy = true,
+    keys = { { "<leader>vsc", ":lua require('export-to-vscode').launch()<CR>", mode = "n" } },
   },
   {
     "folke/todo-comments.nvim",
@@ -25,7 +23,6 @@ return {
   {
     "echasnovski/mini.bufremove",
     lazy = true,
-    opts = {},
     keys = {
       {
         '<leader>cc',
@@ -43,5 +40,5 @@ return {
         desc = 'Delete All Buffer',
       }
     },
-  }
+  },
 }

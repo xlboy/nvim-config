@@ -23,7 +23,7 @@ return {
     },
   },
   {
-    "koenverburg/peepsight.nvim",
+    "xlboy/peepsight.nvim",
     event = "VeryLazy",
     config = function()
       require("peepsight").setup({
@@ -38,6 +38,8 @@ return {
         "arrow_function",
         "function_declaration",
         "generator_function_declaration",
+      }, {
+        highlight = { hl_group = "SpecialKey" }
       })
       require("peepsight").enable()
     end,

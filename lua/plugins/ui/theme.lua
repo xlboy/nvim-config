@@ -4,9 +4,7 @@ return {
     lazy = false,
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      require("tokyonight").setup({
-        -- transparent = true,
-      })
+      require("tokyonight").setup()
       vim.cmd([[colorscheme tokyonight]])
     end,
   },
@@ -23,7 +21,7 @@ return {
       })
       transparent.clear_prefix("BufferLine")
       transparent.clear_prefix("NeoTree")
-    --   transparent.clear_prefix("lualine")
+      --   transparent.clear_prefix("lualine")
     end,
     keys = {
       { "<leader>uT", "<cmd>TransparentToggle<CR>", desc = "Toggle transparency" },

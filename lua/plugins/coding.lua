@@ -9,12 +9,13 @@ return {
 
       vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
       vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-      vim.api.nvim_set_keymap("n", "gaa", "<cmd>TextCaseOpenTelescopeQuickChange<CR>", { desc = "Telescope Quick Change" })
+      vim.api.nvim_set_keymap("n", "gaa", "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
+        { desc = "Telescope Quick Change" })
       vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
       vim.api.nvim_set_keymap("n", "gam", "<cmd>TextCaseOpenTelescopeQuickOrLSP<CR>", {})
     end,
   },
-  { "wellle/targets.vim", event = "VeryLazy" },
+  { "wellle/targets.vim",      event = "VeryLazy" },
   {
     "echasnovski/mini.pairs",
     event = "VeryLazy",
@@ -26,7 +27,7 @@ return {
     "echasnovski/mini.surround",
     lazy = true,
     keys = {
-      { "gza", desc = "Add surrounding", mode = { "n", "v" } },
+      { "gza", desc = "Add surrounding",                     mode = { "n", "v" } },
       { "gzd", desc = "Delete surrounding" },
       { "gzf", desc = "Find right surrounding" },
       { "gzF", desc = "Find left surrounding" },
@@ -181,14 +182,14 @@ return {
       max_join_length = 999,
     },
   },
-  -- {
-  --   "gsuuon/tshjkl.nvim",
-  --   lazy = true,
-  --   opts = {
-  --     select_current_node = false,
-  --     keymaps = { toggle = "<leader>ct" },
-  --   },
-  -- },
+  {
+    "gsuuon/tshjkl.nvim",
+    event = "VeryLazy",
+    opts = {
+      select_current_node = false,
+      keymaps = { toggle = "<leader>ct" },
+    },
+  },
   {
     "echasnovski/mini.move",
     event = "VeryLazy",
