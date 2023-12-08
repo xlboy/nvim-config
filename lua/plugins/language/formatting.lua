@@ -20,6 +20,7 @@ return {
         lua = { "stylua" },
         javascript = { "prettier" },
         typescript = { "prettier" },
+        json = { "prettier" },
         cpp = { "clang-format" },
       },
       format_on_save = false,

@@ -1,5 +1,17 @@
 return {
   {
+    "LintaoAmons/scratch.nvim",
+    event = "VimEnter",
+    keys = {
+      { "<leader>scce", "<cmd>ScratchEditConfig<cr>", desc = "sc - config edit" },
+      { "<leader>scci", "<cmd>ScratchInitConfig<cr>", desc = "sc - config init" },
+      { "<leader>scn",  "<cmd>Scratch<cr>",           desc = "sc - new scratch" },
+      { "<leader>scN",  "<cmd>ScratchWithName<cr>",   desc = "sc - new scratch (named)" },
+      { "<leader>sco",  "<cmd>ScratchOpen<cr>",       desc = "sc - open scratch" },
+      { "<leader>scO",  "<cmd>ScratchOpenFzf<cr>",    desc = "sc - open scratch (fzf)" },
+    },
+  },
+  {
     "coffebar/neovim-project",
     opts = {
       projects = {
