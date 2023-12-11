@@ -66,7 +66,7 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
     event = { "BufReadPost", "BufNewFile" },
     keys = {
-      { "[c", ":lua require('treesitter-context').go_to_context()<CR>", mode = "n" }
+      { "[c", ":lua require('treesitter-context').go_to_context()<CR>", mode = "n" },
     },
   },
 }

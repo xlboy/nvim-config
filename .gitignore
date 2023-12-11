@@ -7,3 +7,4 @@ foo.*
 *.log
 data
 .history
+scratch_config.json

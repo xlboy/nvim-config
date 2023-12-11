@@ -1,5 +1,5 @@
 return {
-  -- { "folke/neodev.nvim", lazy = true, opts = {} },
+  -- { "folke/neodev.nvim", opts = {}, ft = { "lua" } },
   {
     "rafcamlet/nvim-luapad",
     event = "VeryLazy",

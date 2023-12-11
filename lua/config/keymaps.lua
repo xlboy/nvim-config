@@ -24,6 +24,7 @@ utils.set_mappings({
     ["<C-l>"] = { "<cmd>wincmd l<cr>" },
     ["|"] = { "<cmd>vsplit<cr>" },
     ["\\"] = { "<cmd>split<cr>" },
+    ["<leader>un"] = { utils.ui.change_number },
     ["<leader>fpr"] = {
       function()
         t_extensions["neovim-project"].history({
@@ -39,7 +40,7 @@ utils.set_mappings({
       end,
     },
     ["{"] = { ":BufferLineCyclePrev<CR>" },
-    ["}"] = { ":BufferLineCycleNext<CR>" }
+    ["}"] = { ":BufferLineCycleNext<CR>" },
   },
   v = {
     ["y"] = { '"+ygv<esc>' },

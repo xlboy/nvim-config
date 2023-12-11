@@ -14,10 +14,7 @@ return {
     cmd = "Rayso",
     opts = {
       open_cmd = "Arc",
-      options = {
-        theme = "breeze",
-        padding = 16,
-      },
+      options = { theme = "breeze", padding = 16 },
     },
   },
   {
