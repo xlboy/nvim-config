@@ -7,20 +7,6 @@ return {
         enabled = vim.fn.executable("make") == 1,
         build = "make",
       },
-      {
-        "nvim-telescope/telescope-ui-select.nvim",
-        event = "VeryLazy",
-        config = function()
-          require("telescope").load_extension("ui-select")
-          require("telescope").setup({
-            extensions = {
-              ["ui-select"] = {
-                layout_config = { width = 70, height = 15 },
-              },
-            },
-          })
-        end,
-      },
     },
     opts = function()
       local actions = require("telescope.actions")
@@ -54,6 +40,20 @@ return {
     },
   },
   {
+    "nvim-telescope/telescope-ui-select.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("telescope").load_extension("ui-select")
+      require("telescope").setup({
+        extensions = {
+          ["ui-select"] = {
+            layout_config = { width = 70, height = 15 },
+          },
+        },
+      })
+    end,
+  },
+  {
     "xlboy/function-picker.nvim",
     lazy = true,
     dependencies = { "nvim-telescope/telescope.nvim" },
@@ -72,6 +72,50 @@ return {
         mode = { "n" },
       },
     },
+  },
+  {
+    "prochri/telescope-all-recent.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    event = "VeryLazy",
+    config = function()
+      require("telescope-all-recent").setup({
+        database = {
+          folder = vim.fn.stdpath("data"),
+          file = "telescope-all-recent.sqlite3",
+          max_timestamps = 10,
+        },
+        debug = false,
+        scoring = {
+          recency_modifier = { -- also see telescope-frecency for these settings
+            [1] = { age = 240, value = 100 }, -- past 4 hours
+            [2] = { age = 1440, value = 80 }, -- past day
+            [3] = { age = 4320, value = 60 }, -- past 3 days
+            [4] = { age = 10080, value = 40 }, -- past week
+            [5] = { age = 43200, value = 20 }, -- past month
+            [6] = { age = 129600, value = 10 }, -- past 90 days
+          },
+          -- how much the score of a recent item will be improved.
+          boost_factor = 0.0001,
+        },
+        default = {
+          disable = true, -- disable any unkown pickers (recommended)
+          use_cwd = true, -- differentiate scoring for each picker based on cwd
+          sorting = "recent", -- sorting: options: 'recent' and 'frecency'
+        },
+        pickers = { -- allows you to overwrite the default settings for each picker
+          man_pages = { -- enable man_pages picker. Disable cwd and use frecency sorting.
+            disable = false,
+            use_cwd = false,
+            sorting = "frecency",
+          },
+          ["commander#commander"] = {
+            disable = false,
+            use_cwd = false,
+            sorting = "recent",
+          },
+        },
+      })
+    end,
   },
   {
     "xlboy/telescope-recent-files",
@@ -111,29 +155,5 @@ return {
     keys = {
       { "<leader>fsg", "<CMD>Telescope ast_grep<CR>", desc = "Telescope ast_grep" },
     },
-  },
-  {
-    "coffebar/neovim-project",
-    opts = {
-      projects = {
-        "~/.config/*",
-        "~/Desktop/lilith/*",
-        "~/Desktop/xlboy/*",
-        "~/Desktop/xlboy/__open-source__/*",
-        "~/Desktop/xlboy-project/__open-source__/*",
-        "~/Desktop/xlboy-project/*",
-        "D:\\project\\cpp\\*",
-        "D:\\project\\nvim\\*",
-        "C:\\Users\\Administrator\\.config\\*",
-        "C:\\Users\\Administrator\\AppData\\Local\\nvim",
-      },
-    },
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "Shatur/neovim-session-manager", lazy = true },
-    },
-    init = function() require("telescope").load_extension("neovim-project") end,
-    lazy = false,
-    priority = 100,
   },
 }
