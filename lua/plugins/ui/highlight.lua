@@ -42,10 +42,12 @@ return {
   },
   { "itchyny/vim-cursorword", event = "UIEnter" },
   {
-    -- 将不活跃的窗口置灰
-    "miversen33/sunglasses.nvim",
+    "levouh/tint.nvim",
     event = "UIEnter",
-    opts = { filter_percent = 0.5 },
+    opts = {
+      tint = -90,
+      saturation = 0.6,
+    },
   },
   {
     "NvChad/nvim-colorizer.lua",

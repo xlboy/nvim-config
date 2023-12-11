@@ -52,6 +52,7 @@ local options = {
   g = {
     mapleader = " ", -- set leader key
     maplocalleader = ",", -- set default local leader key
+    sqlite_clib_path = "C:\\Program Files (x86)\\sqlite\\sqlite3.dll"
   },
   t = vim.t.bufs and vim.t.bufs or { bufs = vim.api.nvim_list_bufs() }, -- initialize buffers for the current tab
 }
