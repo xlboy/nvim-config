@@ -42,6 +42,7 @@ return {
   },
   { "itchyny/vim-cursorword", event = "UIEnter" },
   {
+    -- 将不活跃的窗口置灰
     "miversen33/sunglasses.nvim",
     event = "UIEnter",
     opts = { filter_percent = 0.5 },
