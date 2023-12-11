@@ -62,11 +62,6 @@ return {
     init = function() vim.g.loaded_matchparen = 1 end,
   },
   {
-    "kevinhwang91/nvim-hlslens",
-    event = "VeryLazy",
-    config = true,
-  },
-  {
     "xlboy/peepsight.nvim",
     event = "VeryLazy",
     config = function()

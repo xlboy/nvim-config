@@ -25,18 +25,15 @@ return {
         "<leader>ssv",
         mode = { "n", "o", "x" },
         function() require("flash").treesitter_search() end,
+        desc = "Flash treesitter_search",
       },
       {
         "<leader>sv",
         mode = { "n", "o", "x" },
         function() require("flash").treesitter() end,
+        desc = "Flash treesitter",
       },
     },
-  },
-  {
-    "chaoren/vim-wordmotion",
-    event = "VeryLazy",
-    init = function() vim.g.wordmotion_prefix = ";" end,
   },
   {
     "ggandor/flit.nvim",
@@ -56,13 +53,18 @@ return {
     },
   },
   {
+    "chaoren/vim-wordmotion",
+    event = "VeryLazy",
+    init = function() vim.g.wordmotion_prefix = ";" end,
+  },
+  {
     "xlboy/nvim-spider",
     -- dir = "~/Desktop/xlboy/__open-source__/nvim-spider",
     event = "VeryLazy",
     config = function() require("spider").setup({ skipInsignificantPunctuation = true }) end,
     keys = {
-      { "W", ":lua require('spider').motion('w')<CR>", mode = "n" },
-      { "B", ":lua require('spider').motion('b')<CR>", mode = "n" },
+      { "W", function() require("spider").motion("w") end, mode = { "n", "x" } },
+      { "B", function() require("spider").motion("b") end, mode = { "n", "x" } },
     },
   },
 }

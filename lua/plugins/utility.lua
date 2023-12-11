@@ -2,7 +2,7 @@ return {
   {
     "elijahmanor/export-to-vscode.nvim",
     lazy = true,
-    keys = { { "<leader>vsc", ":lua require('export-to-vscode').launch()<CR>", mode = "n" } },
+    keys = { { "<leader>vsc", function() require("export-to-vscode").launch() end, mode = "n" } },
   },
   {
     "folke/todo-comments.nvim",
