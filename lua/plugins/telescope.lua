@@ -7,6 +7,20 @@ return {
         enabled = vim.fn.executable("make") == 1,
         build = "make",
       },
+      {
+        "nvim-telescope/telescope-ui-select.nvim",
+        event = "VeryLazy",
+        config = function()
+          require("telescope").load_extension("ui-select")
+          require("telescope").setup({
+            extensions = {
+              ["ui-select"] = {
+                layout_config = { width = 70, height = 15 },
+              },
+            },
+          })
+        end,
+      },
     },
     opts = function()
       local actions = require("telescope.actions")
@@ -40,17 +54,86 @@ return {
     },
   },
   {
-    "nvim-telescope/telescope-ui-select.nvim",
+    "xlboy/function-picker.nvim",
+    lazy = true,
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    keys = {
+      {
+        "<leader>fns",
+        function()
+          require("function-picker").show({
+            deep = {
+              mode = "flat",
+              tree_contour_opts = { indent = 2 },
+              flat_opts = { space_character = " 🌀 " },
+            },
+          })
+        end,
+        mode = { "n" },
+      },
+    },
+  },
+  {
+    "xlboy/telescope-recent-files",
+    event = "VeryLazy",
+    config = function() require("telescope").load_extension("recent_files") end,
+    dependencies = { "kkharji/sqlite.lua" },
+    keys = {
+      {
+        "<leader><leader>",
+        function()
+          local t_extensions = require("telescope").extensions
+          t_extensions.recent_files.pick({
+            only_cwd = true,
+            previewer = false,
+            layout_config = { width = 110, height = 25 },
+          })
+        end,
+        mode = "n",
+      },
+    },
+  },
+  {
+    "Marskey/telescope-sg",
     event = "VeryLazy",
     config = function()
+      require("telescope").load_extension("ast_grep")
       require("telescope").setup({
         extensions = {
-          ["ui-select"] = {
-            layout_config = { width = 70, height = 10 },
+          ast_grep = {
+            command = { "sg", "--json=stream" }, -- must have --json=stream
+            grep_open_files = false, -- search in opened files
+            lang = nil, -- string value, specify language for ast-grep `nil` for default
           },
         },
       })
-      require("telescope").load_extension("ui-select")
     end,
+    keys = {
+      { "<leader>fsg", "<CMD>Telescope ast_grep<CR>", desc = "Telescope ast_grep" },
+    },
+  },
+  {
+    "coffebar/neovim-project",
+    opts = {
+      projects = {
+        "~/.config/*",
+        "~/Desktop/lilith/*",
+        "~/Desktop/xlboy/*",
+        "~/Desktop/xlboy/__open-source__/*",
+        "~/Desktop/xlboy-project/__open-source__/*",
+        "~/Desktop/xlboy-project/*",
+        "D:\\project\\cpp\\*",
+        "D:\\project\\nvim\\*",
+        "C:\\Users\\Administrator\\.config\\*",
+        "C:\\Users\\Administrator\\AppData\\Local\\nvim",
+      },
+    },
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "Shatur/neovim-session-manager", lazy = true },
+    },
+    init = function() require("telescope").load_extension("neovim-project") end,
+    lazy = false,
+    priority = 100,
   },
 }

@@ -6,7 +6,7 @@ return {
       vim.o.mousemoveevent = true
       require("bufferline").setup({
         options = {
-          offsets                = {
+          offsets = {
             {
               filetype = "neo-tree",
               text = "File Explorer",
@@ -15,8 +15,8 @@ return {
             },
           },
           always_show_bufferline = true,
-          show_tab_indicators    = false,
-          diagnostics_indicator  = function(_, _, diagnostics_dict, _)
+          show_tab_indicators = false,
+          diagnostics_indicator = function(_, _, diagnostics_dict, _)
             -- only show warning and error
             local s = " "
             for e, n in pairs(diagnostics_dict) do
@@ -25,15 +25,15 @@ return {
             end
             return s
           end,
-          hover                  = {
+          hover = {
 
             delay = 36,
             reveal = { "close" },
             enabled = true,
           },
-          style_preset           = "slant",
+          style_preset = "slant",
         },
       })
     end,
   },
-};
+}
