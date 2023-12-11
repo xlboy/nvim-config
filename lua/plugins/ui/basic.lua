@@ -29,7 +29,6 @@ return {
     end,
     opts = {},
   },
-  { "itchyny/vim-cursorword", event = "VeryLazy" },
   -- {
   --   "shellRaining/hlchunk.nvim",
   --   enabled = false,
@@ -54,35 +53,4 @@ return {
   --     })
   --   end,
   -- },
-  {
-    "utilyre/sentiment.nvim",
-    event = "VeryLazy",
-    opts = {
-      pairs = { { "(", ")" }, { "[", "]" }, { "{", "}" }, { "<", ">" } },
-    },
-    init = function() vim.g.loaded_matchparen = 1 end,
-  },
-  {
-    "xlboy/peepsight.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("peepsight").setup({
-        -- Lua
-        "function_definition",
-        "local_function_definition_statement",
-        "function_definition_statement",
-
-        -- TypeScript
-        "if_statement",
-        "class_declaration",
-        "method_definition",
-        "arrow_function",
-        "function_declaration",
-        "generator_function_declaration",
-      }, {
-        highlight = { hl_group = "SpecialKey" },
-      })
-      require("peepsight").enable()
-    end,
-  },
 }

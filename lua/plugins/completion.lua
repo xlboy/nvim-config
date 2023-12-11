@@ -12,12 +12,12 @@ return {
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-
-      cmp.setup({
+      local opts = {
+        experimental = {
+          native_menu = false,
+        },
         snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
+          expand = function(args) luasnip.lsp_expand(args.body) end,
         },
         mapping = {
           ["<C-k>"] = cmp.mapping(cmp.mapping.select_prev_item(), { "i", "c" }),
@@ -63,7 +63,32 @@ return {
             ellipsis_char = "...",
           }),
         },
-      })
+      }
+
+      cmp.setup(opts)
     end,
+  },
+  {
+    "gelguy/wilder.nvim",
+    event = "CmdlineEnter",
+    config = function()
+      local wilder = require("wilder")
+      wilder.setup({ modes = { ":", "/", "?" } })
+      wilder.set_option(
+        "renderer",
+        wilder.renderer_mux({
+          [":"] = wilder.popupmenu_renderer({
+            highlighter = wilder.basic_highlighter(),
+          }),
+          ["/"] = wilder.wildmenu_renderer({
+            highlighter = wilder.basic_highlighter(),
+          }),
+        })
+      )
+    end,
+    dependencies = {
+      "romgrk/fzy-lua-native",
+      "lambdalisue/nerdfont.vim",
+    },
   },
 }

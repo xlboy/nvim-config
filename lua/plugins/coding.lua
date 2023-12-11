@@ -9,25 +9,17 @@ return {
 
       vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
       vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-      vim.api.nvim_set_keymap("n", "gaa", "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
-        { desc = "Telescope Quick Change" })
+      vim.api.nvim_set_keymap("n", "gaa", "<cmd>TextCaseOpenTelescopeQuickChange<CR>", { desc = "Telescope Quick Change" })
       vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
       vim.api.nvim_set_keymap("n", "gam", "<cmd>TextCaseOpenTelescopeQuickOrLSP<CR>", {})
     end,
   },
-  { "wellle/targets.vim",      event = "VeryLazy" },
-  {
-    "echasnovski/mini.pairs",
-    event = "VeryLazy",
-    config = function()
-      require("mini.pairs").setup()
-    end,
-  },
+  { "wellle/targets.vim", event = "VeryLazy" },
   {
     "echasnovski/mini.surround",
     lazy = true,
     keys = {
-      { "gza", desc = "Add surrounding",                     mode = { "n", "v" } },
+      { "gza", desc = "Add surrounding", mode = { "n", "v" } },
       { "gzd", desc = "Delete surrounding" },
       { "gzf", desc = "Find right surrounding" },
       { "gzF", desc = "Find left surrounding" },
@@ -53,30 +45,22 @@ return {
     keys = {
       {
         "<leader>s.",
-        function()
-          require("sibling-swap").swap_with_right_with_opp()
-        end,
+        function() require("sibling-swap").swap_with_right_with_opp() end,
         desc = "Swap with right with opp",
       },
       {
         "<leader>s,",
-        function()
-          require("sibling-swap").swap_with_left_with_opp()
-        end,
+        function() require("sibling-swap").swap_with_left_with_opp() end,
         desc = "Swap with left with opp",
       },
       {
         "<C-.>",
-        function()
-          require("sibling-swap").swap_with_right()
-        end,
+        function() require("sibling-swap").swap_with_right() end,
         desc = "Swap with right",
       },
       {
         "<C-,>",
-        function()
-          require("sibling-swap").swap_with_left()
-        end,
+        function() require("sibling-swap").swap_with_left() end,
         desc = "Swap with left",
       },
     },
@@ -165,9 +149,7 @@ return {
     },
     keys = { {
       "<leader>jr",
-      function()
-        require("nvim-toggler").toggle()
-      end,
+      function() require("nvim-toggler").toggle() end,
       desc = "Toggle",
     } },
   },
@@ -193,9 +175,7 @@ return {
   {
     "echasnovski/mini.move",
     event = "VeryLazy",
-    config = function()
-      require("mini.move").setup()
-    end,
+    config = function() require("mini.move").setup() end,
   },
   {
     "echasnovski/mini.ai",
