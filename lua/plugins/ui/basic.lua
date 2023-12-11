@@ -30,29 +30,30 @@ return {
     opts = {},
   },
   { "itchyny/vim-cursorword", event = "VeryLazy" },
-  {
-    "shellRaining/hlchunk.nvim",
-    event = "UIEnter",
-    init = function()
-      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
-
-      require("hlchunk").setup({
-        chunk = {
-          enable = true,
-          use_treesitter = true,
-          style = { { fg = "#73daca" } },
-        },
-        indent = {
-          enable = false,
-          chars = { "·" },
-          use_treesitter = false,
-          style = { {} },
-        },
-        blank = { enable = false },
-        line_num = { enable = true, use_treesitter = true },
-      })
-    end,
-  },
+  -- {
+  --   "shellRaining/hlchunk.nvim",
+  --   enabled = false,
+  --   event = "UIEnter",
+  --   init = function()
+  --     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
+  --
+  --     require("hlchunk").setup({
+  --       chunk = {
+  --         enable = true,
+  --         use_treesitter = true,
+  --         style = { { fg = "#73daca" } },
+  --       },
+  --       indent = {
+  --         enable = false,
+  --         chars = { "·" },
+  --         use_treesitter = false,
+  --         style = { {} },
+  --       },
+  --       blank = { enable = false },
+  --       line_num = { enable = true, use_treesitter = true },
+  --     })
+  --   end,
+  -- },
   {
     "utilyre/sentiment.nvim",
     event = "VeryLazy",
@@ -72,6 +73,7 @@ return {
         "function_definition_statement",
 
         -- TypeScript
+        "if_statement",
         "class_declaration",
         "method_definition",
         "arrow_function",
