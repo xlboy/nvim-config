@@ -24,7 +24,7 @@ utils.set_mappings({
     ["<C-l>"] = { "<cmd>wincmd l<cr>" },
     ["|"] = { "<cmd>vsplit<cr>" },
     ["\\"] = { "<cmd>split<cr>" },
-    ["<leader>un"] = { utils.ui.change_number },
+    ["<leader>un"] = { utils.ui.change_number, desc = "UI - Change number mode" },
     ["<leader>fpr"] = {
       function()
         t_extensions["neovim-project"].history({

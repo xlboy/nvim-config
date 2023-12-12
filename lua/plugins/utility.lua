@@ -38,4 +38,21 @@ return {
       },
     },
   },
+  {
+    "chrishrb/gx.nvim",
+    event = "VeryLazy",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      open_browser_app = "open",
+      handlers = {
+        plugin = true,
+        github = true,
+        package_json = true,
+        search = true,
+      },
+      handler_options = {
+        search_engine = "google",
+      },
+    },
+  },
 }
