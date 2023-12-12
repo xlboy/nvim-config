@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 return {
   {
     "elijahmanor/export-to-vscode.nvim",
@@ -43,7 +45,7 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-      open_browser_app = "open",
+      open_browser_app = utils.is_win() and "powershell.exe start miedge.exe " or "open ",
       handlers = {
         plugin = true,
         github = true,
