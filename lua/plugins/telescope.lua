@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -6,6 +8,11 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         enabled = vim.fn.executable("make") == 1,
         build = "make",
+      },
+      {
+        "nvim-telescope/telescope-smart-history.nvim",
+        event = "VeryLazy",
+        config = function() require("telescope").load_extension("smart_history") end,
       },
     },
     opts = function()
@@ -21,15 +28,21 @@ return {
             height = 0.80,
             preview_cutoff = 120,
           },
+          history = {
+            path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
+            limit = 100,
+          },
         },
         mappings = {
           i = {
-            ["<C-n>"] = actions.cycle_history_next,
-            ["<C-p>"] = actions.cycle_history_prev,
-            ["<C-j>"] = actions.move_selection_next,
-            ["<C-k>"] = actions.move_selection_previous,
+            -- ["<C-n>"] = actions.cycle_history_next,
+            -- ["<C-e>"] = actions.cycle_history_prev,
+            ["<C-]>"] = actions.cycle_history_next,
+            ["<C-[>"] = actions.cycle_history_prev,
           },
-          n = { q = actions.close },
+          n = {
+            q = actions.close,
+          },
         },
       }
     end,
