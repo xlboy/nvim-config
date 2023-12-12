@@ -10,6 +10,16 @@ return {
       { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]] },
       { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]] },
     },
+    init = function()
+      local nvim_hlslens_ns = vim.api.nvim_create_namespace("custom.nvim-hlslens")
+      vim.on_key(function(char)
+        local is_normal = vim.api.nvim_get_mode()["mode"] == "n"
+        if is_normal then
+          local cur_key = vim.fn.keytrans(char)
+          if cur_key == "<Esc>" then vim.cmd([[nohlsearch]]) end
+        end
+      end, nvim_hlslens_ns)
+    end,
     config = true,
   },
   {

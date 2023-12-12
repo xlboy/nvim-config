@@ -60,8 +60,12 @@ return {
   {
     "xlboy/nvim-spider",
     -- dir = "~/Desktop/xlboy/__open-source__/nvim-spider",
+    -- "chrisgrieser/nvim-spider",
     event = "VeryLazy",
-    config = function() require("spider").setup({ skipInsignificantPunctuation = true }) end,
+    opts = {
+      skipInsignificantPunctuation = true,
+      -- subwordMovement = false,
+    },
     keys = {
       { "W", function() require("spider").motion("w") end, mode = { "n", "x" } },
       { "B", function() require("spider").motion("b") end, mode = { "n", "x" } },
