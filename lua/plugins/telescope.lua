@@ -9,11 +9,6 @@ return {
         enabled = vim.fn.executable("make") == 1,
         build = "make",
       },
-      {
-        "nvim-telescope/telescope-smart-history.nvim",
-        event = "VeryLazy",
-        config = function() require("telescope").load_extension("smart_history") end,
-      },
     },
     opts = function()
       local actions = require("telescope.actions")
@@ -28,17 +23,13 @@ return {
             height = 0.80,
             preview_cutoff = 120,
           },
-          history = {
-            path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
-            limit = 100,
-          },
         },
         mappings = {
           i = {
-            -- ["<C-n>"] = actions.cycle_history_next,
-            -- ["<C-e>"] = actions.cycle_history_prev,
-            ["<C-]>"] = actions.cycle_history_next,
-            ["<C-[>"] = actions.cycle_history_prev,
+            ["<C-Down>"] = actions.cycle_history_next,
+            ["<C-Up>"] = actions.cycle_history_prev,
+            -- ["<C-]>"] = actions.cycle_history_next,
+            -- ["<C-[>"] = actions.cycle_history_prev,
           },
           n = {
             q = actions.close,
@@ -48,8 +39,8 @@ return {
     end,
     cmd = "Telescope",
     keys = {
-      { "<leader>/", ":Telescope live_grep<CR>", mode = "n" },
-      { "<leader>ff", ":Telescope find_files<CR>", mode = "n" },
+      { "<leader>/", ":Telescope live_grep<CR>" },
+      { "<leader>ff", ":Telescope find_files<CR>" },
     },
   },
   { "stevearc/dressing.nvim", event = "VeryLazy", opts = {} },

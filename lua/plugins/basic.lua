@@ -24,10 +24,11 @@ return {
         "~/Desktop/xlboy/__open-source__/*",
         "~/Desktop/xlboy-project/__open-source__/*",
         "~/Desktop/xlboy-project/*",
-        "D:\\project\\cpp\\*",
-        "D:\\project\\nvim\\*",
-        "C:\\Users\\Administrator\\.config\\*",
-        "C:\\Users\\Administrator\\AppData\\Local\\nvim",
+        "D:/project/cpp/*",
+        "D:/project/nvim/*",
+        "C:/Users/Administrator/.config/*",
+        "C:/Users/Administrator/AppData/Local/nvim",
+        vim.fn.stdpath("data") .. "/lazy/*"
       },
     },
     dependencies = {
