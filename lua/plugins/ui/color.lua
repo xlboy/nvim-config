@@ -14,14 +14,10 @@ return {
     config = function()
       local transparent = require("transparent")
       transparent.setup({
-        extra_groups = {
-          "NormalFloat",
-          "NvimTreeNormal",
-        },
+        extra_groups = { "MasonNormal", "NvimTreeNormal" },
       })
       transparent.clear_prefix("BufferLine")
       transparent.clear_prefix("NeoTree")
-      --   transparent.clear_prefix("lualine")
     end,
     keys = {
       { "<leader>uT", "<cmd>TransparentToggle<CR>", desc = "Toggle transparency" },

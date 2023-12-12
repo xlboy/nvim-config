@@ -45,8 +45,12 @@ return {
     "levouh/tint.nvim",
     event = "UIEnter",
     opts = {
-      tint = -90,
+      tint = -80,
       saturation = 0.6,
+      window_ignore_function = function(winid)
+        local buf = vim.api.nvim_win_get_buf(winid)
+        return vim.bo[buf].modifiable ~= true
+      end,
     },
   },
   {

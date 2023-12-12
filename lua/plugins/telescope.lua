@@ -39,20 +39,7 @@ return {
       { "<leader>ff", ":Telescope find_files<CR>", mode = "n" },
     },
   },
-  {
-    "nvim-telescope/telescope-ui-select.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("telescope").load_extension("ui-select")
-      require("telescope").setup({
-        extensions = {
-          ["ui-select"] = {
-            layout_config = { width = 70, height = 15 },
-          },
-        },
-      })
-    end,
-  },
+  { "stevearc/dressing.nvim", event = "VeryLazy", opts = {} },
   {
     "xlboy/function-picker.nvim",
     lazy = true,
@@ -69,7 +56,6 @@ return {
             },
           })
         end,
-        mode = { "n" },
       },
     },
   },
