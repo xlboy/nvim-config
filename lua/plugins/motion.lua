@@ -24,13 +24,17 @@ return {
       {
         "<leader>ssv",
         mode = { "n", "o", "x" },
-        function() require("flash").treesitter_search() end,
+        function()
+          require("flash").treesitter_search()
+        end,
         desc = "Flash treesitter_search",
       },
       {
         "<leader>sv",
         mode = { "n", "o", "x" },
-        function() require("flash").treesitter() end,
+        function()
+          require("flash").treesitter()
+        end,
         desc = "Flash treesitter",
       },
     },
@@ -55,7 +59,9 @@ return {
   {
     "chaoren/vim-wordmotion",
     event = "VeryLazy",
-    init = function() vim.g.wordmotion_prefix = ";" end,
+    init = function()
+      vim.g.wordmotion_prefix = ";"
+    end,
   },
   {
     "xlboy/nvim-spider",
@@ -67,8 +73,20 @@ return {
       -- subwordMovement = false,
     },
     keys = {
-      { "W", function() require("spider").motion("w") end, mode = { "n", "x" } },
-      { "B", function() require("spider").motion("b") end, mode = { "n", "x" } },
+      {
+        "W",
+        function()
+          require("spider").motion("w")
+        end,
+        mode = { "n", "x" },
+      },
+      {
+        "B",
+        function()
+          require("spider").motion("b")
+        end,
+        mode = { "n", "x" },
+      },
     },
   },
 }

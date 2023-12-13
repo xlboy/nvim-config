@@ -41,9 +41,7 @@ return {
 
     opts.commands["reveal_in_finder"] = function(state)
       local node = state.tree:get_node()
-      if node then
-        vim.fn.execute("!open -R " .. node.path)
-      end
+      if node then vim.fn.execute("!open -R " .. node.path) end
     end
     opts.commands["switch_to_editor"] = function()
       vim.cmd.wincmd("p")

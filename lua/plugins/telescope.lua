@@ -110,7 +110,9 @@ return {
   {
     "xlboy/telescope-recent-files",
     event = "VeryLazy",
-    config = function() require("telescope").load_extension("recent_files") end,
+    config = function()
+      require("telescope").load_extension("recent_files")
+    end,
     dependencies = { "kkharji/sqlite.lua" },
     keys = {
       {

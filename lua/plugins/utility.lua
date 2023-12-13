@@ -1,4 +1,4 @@
-local utils = require("utils")
+local u = require("utils")
 
 return {
   {
@@ -45,7 +45,7 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-      open_browser_app = utils.is_win() and "powershell.exe start miedge.exe " or "open ",
+      open_browser_app = u.basic.os_pick("powershell.exe start miedge.exe", "open"),
       handlers = {
         plugin = true,
         github = true,

@@ -5,7 +5,9 @@ return {
     opts = {
       pairs = { { "(", ")" }, { "[", "]" }, { "{", "}" }, { "<", ">" } },
     },
-    init = function() vim.g.loaded_matchparen = 1 end,
+    init = function()
+      vim.g.loaded_matchparen = 1
+    end,
   },
   {
     "xlboy/peepsight.nvim",

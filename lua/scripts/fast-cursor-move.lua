@@ -29,9 +29,7 @@ local get_move_step = (function()
     )
     -- calc step
     for idx, count in ipairs(acceleration_table) do
-      if move_count < count then
-        return idx
-      end
+      if move_count < count then return idx end
     end
     return #acceleration_table
   end
@@ -50,20 +48,21 @@ end
 local function move(direction)
   local move_chars = get_move_chars(direction)
 
-  if fn.reg_recording() ~= "" or fn.reg_executing() ~= "" then
-    return move_chars
-  end
+  if fn.reg_recording() ~= "" or fn.reg_executing() ~= "" then return move_chars end
 
-  if vim.v.count > 0 then
-    return move_chars
-  end
+  if vim.v.count > 0 then return move_chars end
 
   local step = get_move_step(direction)
   return step .. move_chars
 end
 
 local function setup()
-  for _, motion in ipairs({ "h", "j", "k", "l", --[[ "w", "b" ]] }) do
+  for _, motion in ipairs({
+    "h",
+    "j",
+    "k",
+    "l", --[[ "w", "b" ]]
+  }) do
     vim.keymap.set({ "n", "v" }, motion, function()
       return move(motion)
     end, { expr = true })

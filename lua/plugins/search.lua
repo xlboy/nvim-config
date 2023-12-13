@@ -50,7 +50,9 @@ return {
     keys = {
       {
         "<leader>sR",
-        function() require("ssr").open() end,
+        function()
+          require("ssr").open()
+        end,
         desc = "[Ssr] Search and replace",
         mode = { "n", "x" },
       },

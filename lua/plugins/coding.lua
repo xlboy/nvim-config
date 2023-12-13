@@ -9,7 +9,12 @@ return {
 
       vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
       vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-      vim.api.nvim_set_keymap("n", "gaa", "<cmd>TextCaseOpenTelescopeQuickChange<CR>", { desc = "Telescope Quick Change" })
+      vim.api.nvim_set_keymap(
+        "n",
+        "gaa",
+        "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
+        { desc = "Telescope Quick Change" }
+      )
       vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
       vim.api.nvim_set_keymap("n", "gam", "<cmd>TextCaseOpenTelescopeQuickOrLSP<CR>", {})
     end,
@@ -45,22 +50,30 @@ return {
     keys = {
       {
         "<leader>s.",
-        function() require("sibling-swap").swap_with_right_with_opp() end,
+        function()
+          require("sibling-swap").swap_with_right_with_opp()
+        end,
         desc = "Swap with right with opp",
       },
       {
         "<leader>s,",
-        function() require("sibling-swap").swap_with_left_with_opp() end,
+        function()
+          require("sibling-swap").swap_with_left_with_opp()
+        end,
         desc = "Swap with left with opp",
       },
       {
         "<C-.>",
-        function() require("sibling-swap").swap_with_right() end,
+        function()
+          require("sibling-swap").swap_with_right()
+        end,
         desc = "Swap with right",
       },
       {
         "<C-,>",
-        function() require("sibling-swap").swap_with_left() end,
+        function()
+          require("sibling-swap").swap_with_left()
+        end,
         desc = "Swap with left",
       },
     },
@@ -149,7 +162,9 @@ return {
     },
     keys = { {
       "<leader>jr",
-      function() require("nvim-toggler").toggle() end,
+      function()
+        require("nvim-toggler").toggle()
+      end,
       desc = "Toggle",
     } },
   },
@@ -175,7 +190,9 @@ return {
   {
     "echasnovski/mini.move",
     event = "VeryLazy",
-    config = function() require("mini.move").setup() end,
+    config = function()
+      require("mini.move").setup()
+    end,
   },
   {
     "echasnovski/mini.ai",
@@ -202,7 +219,7 @@ return {
     config = function(_, opts)
       require("mini.ai").setup(opts)
       -- register all text objects with which-key
-      require("utils").on_load("which-key.nvim", function()
+      require("utils").lazy.on_load("which-key.nvim", function()
         ---@type table<string, string|table>
         local i = {
           [" "] = "Whitespace",

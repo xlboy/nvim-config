@@ -1,4 +1,5 @@
-local utils = require("utils")
+local u = require("utils")
+local constants = require("config.constants")
 
 return {
   {
@@ -16,13 +17,11 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local on_attach = function(client, bufnr)
-        local telescope_builtin = require("telescope.builtin")
-
         local function buf_opts(desc)
           return { noremap = true, silent = true, buffer = bufnr, desc = desc }
         end
 
-        vim.keymap.set("n", "gd", telescope_builtin.lsp_definitions, buf_opts("Go to definiton"))
+        vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, buf_opts("Go to definiton"))
       end
 
       require("mason-lspconfig").setup_handlers({
@@ -42,10 +41,13 @@ return {
     event = "VeryLazy",
     opts = function()
       local ensure_installed = { "lua_ls", "tsserver" }
-      if utils.is_win() then
-        table.insert(ensure_installed, "clangd")
-        table.insert(ensure_installed, "neocmake")
+      if constants.IS_WIN then
+        u.basic.append_arrays(ensure_installed, {
+          "clangd",
+          "neocmake",
+        })
       end
+
       return {
         ensure_installed = ensure_installed,
       }
