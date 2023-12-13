@@ -119,8 +119,8 @@ return {
     "cbochs/portal.nvim",
     event = "VeryLazy",
     keys = {
-      { "<C-o>", "<cmd>Portal jumplist backward<cr>", desc = "Jump Backward" },
-      { "<C-i>", "<cmd>Portal jumplist forward<cr>", desc = "Jump Forward" },
+      -- { "<C-o>", "<cmd>Portal jumplist backward<cr>", desc = "Jump Backward" },
+      -- { "<C-i>", "<cmd>Portal jumplist forward<cr>", desc = "Jump Forward" },
       { "g;", "<cmd>Portal changelist backward<cr>", desc = "Change Backward" },
       { "g,", "<cmd>Portal changelist forward<cr>", desc = "Change Forward" },
     },
