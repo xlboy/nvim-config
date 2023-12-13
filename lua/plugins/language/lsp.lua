@@ -64,6 +64,7 @@ return {
         virtual_text = false,
       },
       finder = {
+        default = "ref",
         left_width = 0.2,
       },
       rename = {

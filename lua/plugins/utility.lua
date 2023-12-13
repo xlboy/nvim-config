@@ -4,7 +4,15 @@ return {
   {
     "elijahmanor/export-to-vscode.nvim",
     lazy = true,
-    keys = { { "<leader>vsc", function() require("export-to-vscode").launch() end, mode = "n" } },
+    keys = {
+      {
+        "<leader>vsc",
+        function()
+          require("export-to-vscode").launch()
+        end,
+        mode = "n",
+      },
+    },
   },
   {
     "folke/todo-comments.nvim",
@@ -25,7 +33,9 @@ return {
     keys = {
       {
         "<leader>cc",
-        function() require("mini.bufremove").delete(0, false) end,
+        function()
+          require("mini.bufremove").delete(0, false)
+        end,
         desc = "Delete Current Buffer",
       },
       {
