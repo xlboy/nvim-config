@@ -14,17 +14,13 @@ return {
       },
     },
   },
-  {
-    "folke/todo-comments.nvim",
-    opts = {},
-    event = "VeryLazy",
-  },
+  { "folke/todo-comments.nvim", opts = {}, event = "VeryLazy" },
   {
     "TobinPalmer/rayso.nvim",
     cmd = "Rayso",
     opts = {
-      open_cmd = "Arc",
-      options = { theme = "breeze", padding = 16 },
+      open_cmd = u.basic.os_pick("miedge.exe", "Arc"),
+      options = { padding = 16, theme = "breeze" },
     },
   },
   {

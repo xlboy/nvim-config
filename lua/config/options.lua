@@ -16,14 +16,9 @@ local options = {
     cmdheight = 0, -- hide command line unless needed
     completeopt = { "menu", "menuone", "noselect" }, -- Options for insert mode completion
     copyindent = true, -- copy the previous indentation on autoindenting
-    cursorline = false, -- highlight the text line of the cursor
+    cursorline = true, -- highlight the text line of the cursor
     expandtab = true, -- enable the use of space in tab
     fileencoding = "utf-8", -- file content encoding for the buffer
-    fillchars = { eob = " " }, -- disable `~` on nonexistent lines
-    foldenable = false, -- enable fold for nvim-ufo
-    foldlevel = 99, -- set high foldlevel for nvim-ufo
-    foldlevelstart = 99, -- start with all code unfolded
-    foldcolumn = "0", -- vim.fn.has("nvim-0.9") == 1 and "1" or nil, -- show foldcolumn in nvim 0.9
     history = 100, -- number of commands to remember in a history table
     ignorecase = true, -- case insensitive searching
     infercase = true, -- infer cases in keyword completion

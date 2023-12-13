@@ -23,24 +23,30 @@ return {
             height = 0.80,
             preview_cutoff = 120,
           },
+          winblend = 10,
         },
         mappings = {
           i = {
             ["<C-Down>"] = actions.cycle_history_next,
             ["<C-Up>"] = actions.cycle_history_prev,
-            -- ["<C-]>"] = actions.cycle_history_next,
-            -- ["<C-[>"] = actions.cycle_history_prev,
           },
-          n = {
-            q = actions.close,
-          },
+          n = { q = actions.close },
         },
       }
     end,
     cmd = "Telescope",
     keys = {
       { "<leader>/", ":Telescope live_grep<CR>" },
-      { "<leader>ff", ":Telescope find_files<CR>" },
+      {
+        "<leader>ff",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.find_files({
+            layout_config = { width = 90, height = 25 },
+            previewer = false,
+          })
+        end,
+      },
     },
   },
   { "stevearc/dressing.nvim", event = "VeryLazy", opts = {} },
@@ -122,7 +128,7 @@ return {
           t_extensions.recent_files.pick({
             only_cwd = true,
             previewer = false,
-            layout_config = { width = 110, height = 25 },
+            layout_config = { width = 90, height = 25 },
           })
         end,
         mode = "n",

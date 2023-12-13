@@ -14,7 +14,9 @@ return {
     config = function()
       local transparent = require("transparent")
       transparent.setup({
-        extra_groups = { "MasonNormal", "NvimTreeNormal" },
+        extra_groups = { "MasonNormal", "NvimTreeNormal", "FoldColumn" },
+        -- 取消光标行的透明
+        exclude_groups = { "CursorLine" },
       })
       transparent.clear_prefix("BufferLine")
       transparent.clear_prefix("NeoTree")

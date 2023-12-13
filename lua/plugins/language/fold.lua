@@ -1,9 +1,32 @@
 return {
   {
     "kevinhwang91/nvim-ufo",
-    -- enabled = false,
     event = { "InsertEnter" },
-    dependencies = { "kevinhwang91/promise-async" },
+    dependencies = {
+      "kevinhwang91/promise-async",
+      {
+        "luukvbaal/statuscol.nvim",
+        init = function()
+          vim.o.foldcolumn = "1"
+          vim.o.foldlevel = 99
+          vim.o.foldlevelstart = 99
+          vim.o.foldenable = true
+          vim.o.foldmethod = "indent"
+          vim.o.fillchars = "eob: ,foldclose:,foldopen:,foldsep: "
+        end,
+        config = function()
+          local builtin = require("statuscol.builtin")
+          require("statuscol").setup({
+            thousands = true,
+            segments = {
+              { text = { "%s" }, click = "v:lua.ScSa" },
+              { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" },
+              { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+            },
+          })
+        end,
+      },
+    },
     opts = {
       preview = {
         mappings = {
