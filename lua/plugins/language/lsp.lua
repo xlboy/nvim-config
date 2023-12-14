@@ -59,6 +59,7 @@ return {
         default = "ref",
         left_width = 0.2,
       },
+      code_action = { extend_gitsigns = true },
       rename = {
         in_select = false,
         keys = {

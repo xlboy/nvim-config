@@ -8,6 +8,7 @@ if vim.fn.has("nvim-0.9") == 1 then
 end
 local options = {
   opt = {
+    fillchars = "eob: ,foldclose:,foldopen:,foldsep: ,diff:╱",
     ruler = false,
     mousescroll = "ver:4,hor:2",
     swapfile = false,

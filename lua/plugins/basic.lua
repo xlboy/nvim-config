@@ -15,8 +15,6 @@ return {
       { "<leader>scO", ":ScratchOpenFzf<cr>", desc = "sc - open scratch (fzf)" },
     },
   },
-  { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
-  { "nacro90/numb.nvim", event = "BufRead" },
   {
     "coffebar/neovim-project",
     opts = function()
@@ -54,11 +52,4 @@ return {
     lazy = false,
     priority = 100,
   },
-  -- {
-  --   "folke/neoconf.nvim",
-  --   priority = 1000, -- make sure to load this before all the other start plugins
-  --   -- event = "VeryLazy",
-  --   opts = {},
-  --   -- config = function() end,
-  -- },
 }

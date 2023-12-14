@@ -160,13 +160,15 @@ return {
       },
       remove_default_keybinds = true,
     },
-    keys = { {
-      "<leader>jr",
-      function()
-        require("nvim-toggler").toggle()
-      end,
-      desc = "Toggle",
-    } },
+    keys = {
+      {
+        "<leader>jr",
+        function()
+          require("nvim-toggler").toggle()
+        end,
+        desc = "Toggle",
+      },
+    },
   },
   {
     "Wansmer/treesj",
@@ -263,4 +265,36 @@ return {
       end)
     end,
   },
+  -- autopairs, autotag --
+  {
+    "windwp/nvim-autopairs",
+    event = "VeryLazy",
+    opts = {
+      fast_wrap = {
+        chars = { "{", "[", "(", '"', "'" },
+        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+        offset = 0,
+        end_key = "$",
+        keys = "qwertyuiopzxcvbnmasdfghjkl",
+        check_comma = true,
+        highlight = "PmenuSel",
+        highlight_grey = "LineNr",
+      },
+    },
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    event = "FileType typescriptreact,javascriptreact,vue,html,xml,astro",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        autotag = {
+          enable = true,
+          enable_close_on_slash = false,
+        },
+      })
+    end,
+  },
+  { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
+  { "nacro90/numb.nvim", event = "BufRead" },
 }

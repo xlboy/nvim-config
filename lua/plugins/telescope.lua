@@ -1,4 +1,6 @@
 local constants = require("config.constants")
+local t_builtin = require("telescope.builtin")
+
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -39,9 +41,17 @@ return {
       {
         "<leader>ff",
         function()
-          local builtin = require("telescope.builtin")
-          builtin.find_files({
+          t_builtin.find_files({
             layout_config = constants.MINI_TS_LAYOUT_WH,
+            previewer = false,
+          })
+        end,
+      },
+      {
+        "<leader>fc",
+        function()
+          t_builtin.current_buffer_fuzzy_find({
+            layout_config = { width = 120, height = 40 },
             previewer = false,
           })
         end,

@@ -12,7 +12,6 @@ return {
           vim.o.foldlevelstart = 99
           vim.o.foldenable = true
           vim.o.foldmethod = "indent"
-          vim.o.fillchars = "eob: ,foldclose:,foldopen:,foldsep: "
         end,
         config = function()
           local builtin = require("statuscol.builtin")
