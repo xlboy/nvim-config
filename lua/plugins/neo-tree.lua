@@ -50,6 +50,8 @@ return {
     opts.window = { mappings = {} }
     opts.window.mappings["<C-r>"] = "reveal_in_finder"
     opts.window.mappings["<leader>o"] = "switch_to_editor"
+    opts.window.mappings["l"] = "open_with_window_picker"
+    opts.window.mappings["h"] = "close_node"
 
     return opts
   end,

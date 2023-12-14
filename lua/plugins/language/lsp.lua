@@ -16,13 +16,7 @@ return {
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local on_attach = function(client, bufnr)
-        local function buf_opts(desc)
-          return { noremap = true, silent = true, buffer = bufnr, desc = desc }
-        end
-
-        vim.keymap.set("n", "gd", require("telescope.builtin").lsp_definitions, buf_opts("Go to definiton"))
-      end
+      local on_attach = function(client, bufnr) end
 
       require("mason-lspconfig").setup_handlers({
         function(server_name)
@@ -48,9 +42,7 @@ return {
         })
       end
 
-      return {
-        ensure_installed = ensure_installed,
-      }
+      return { ensure_installed = ensure_installed }
     end,
   },
   {
@@ -80,6 +72,7 @@ return {
       { "]d", ":Lspsaga diagnostic_jump_next<CR>", desc = "Jump to next diagnostic", mode = "n" },
       { "[d", ":Lspsaga diagnostic_jump_prev<CR>", desc = "Jump to previous diagnostic", mode = "n" },
       { "gh", ":Lspsaga hover_doc<CR>", desc = "Show hover doc", mode = "n" },
+      { "gd", ":Lspsaga goto_definition<CR>", desc = "Show hover doc", mode = "n" },
       { "gkh", ":Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]", mode = "n" },
       { "gr", ":Lspsaga finder<CR>", desc = "Show lsp finder", mode = "n" },
       { "<leader>lr", ":Lspsaga rename<CR>", desc = "Rename symbol", mode = "n" },

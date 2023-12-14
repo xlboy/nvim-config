@@ -19,6 +19,7 @@ return {
       })
       transparent.clear_prefix("BufferLine")
       transparent.clear_prefix("NeoTree")
+      transparent.clear_prefix("neo-tree")
     end,
     keys = {
       { "<leader>uT", "<cmd>TransparentToggle<CR>", desc = "Toggle transparency" },

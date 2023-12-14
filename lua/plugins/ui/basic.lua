@@ -40,11 +40,14 @@ return {
     "shellRaining/hlchunk.nvim",
     event = "UIEnter",
     init = function()
+      -- neo-tree-popup
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
 
       require("hlchunk").setup({
         chunk = {
           enable = true,
+          notify = false,
+          error_sign = false,
           use_treesitter = true,
           style = { { fg = "#0b9a84" } },
         },
