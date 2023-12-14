@@ -52,16 +52,14 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
-      open_browser_app = u.basic.os_pick("powershell.exe start miedge.exe", "open"),
+      open_browser_app = u.basic.os_pick("powershell.exe", "open"),
       handlers = {
         plugin = true,
         github = true,
         package_json = true,
         search = true,
       },
-      handler_options = {
-        search_engine = "google",
-      },
+      handler_options = { search_engine = "google" },
     },
   },
   {
@@ -71,6 +69,7 @@ return {
     opts = {
       ring = { storage = "sqlite", ignore_registers = { "0" } },
       highlight = { on_put = false, on_yank = false, timer = 150 },
+      system_clipboard = { sync_with_ring = false },
     },
     keys = {
       {

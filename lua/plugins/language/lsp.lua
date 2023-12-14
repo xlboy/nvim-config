@@ -35,6 +35,7 @@ return {
     event = "VeryLazy",
     opts = function()
       local ensure_installed = { "lua_ls", "tsserver" }
+
       if constants.IS_WIN then
         u.basic.append_arrays(ensure_installed, {
           "clangd",
@@ -93,7 +94,7 @@ return {
     "ErichDonGubler/lsp_lines.nvim",
     event = "BufEnter",
     init = function()
-      vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+      vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
     end,
     config = true,
     keys = {
