@@ -1,5 +1,4 @@
-local utils = require("utils")
-
+local constants = require("config.constants")
 return {
   {
     "nvim-telescope/telescope.nvim",
@@ -42,7 +41,7 @@ return {
         function()
           local builtin = require("telescope.builtin")
           builtin.find_files({
-            layout_config = { width = 90, height = 25 },
+            layout_config = constants.MINI_TS_LAYOUT_WH,
             previewer = false,
           })
         end,
@@ -128,7 +127,7 @@ return {
           t_extensions.recent_files.pick({
             only_cwd = true,
             previewer = false,
-            layout_config = { width = 90, height = 25 },
+            layout_config = constants.MINI_TS_LAYOUT_WH,
           })
         end,
         mode = "n",
@@ -153,5 +152,17 @@ return {
     keys = {
       { "<leader>fsg", "<CMD>Telescope ast_grep<CR>", desc = "Telescope ast_grep" },
     },
+  },
+  {
+    "piersolenski/telescope-import.nvim",
+    config = function()
+      require("telescope").setup({
+        extensions = {
+          import = { layout_config = constants.MINI_TS_LAYOUT_WH },
+        },
+      })
+      require("telescope").load_extension("import")
+    end,
+    keys = { { "<leader>tsi", ":Telescope import<CR>" } },
   },
 }

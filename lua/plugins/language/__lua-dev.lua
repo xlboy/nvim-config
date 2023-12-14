@@ -22,10 +22,7 @@ return {
     "rafcamlet/nvim-luapad",
     event = "VeryLazy",
     config = function()
-      require("luapad").setup({
-        eval_onchange = false,
-        wipe = false,
-      })
+      require("luapad").setup({ eval_onchange = false, wipe = false })
     end,
   },
 }

@@ -37,30 +37,36 @@ return {
     opts = {},
   },
   {
-    "shellRaining/hlchunk.nvim",
+    "lukas-reineke/indent-blankline.nvim",
     event = "UIEnter",
-    init = function()
-      -- neo-tree-popup
-      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
-
-      require("hlchunk").setup({
-        chunk = {
-          enable = true,
-          notify = false,
-          error_sign = false,
-          use_treesitter = true,
-          style = { { fg = "#0b9a84" } },
+    main = "ibl",
+    config = function()
+      vim.cmd("highlight XlboyIndentScope guifg=#7bdfd0")
+      require("ibl").setup({
+        indent = { char = "│" },
+        scope = {
+          show_start = false,
+          show_end = false,
+          highlight = "XlboyIndentScope",
         },
-        indent = {
-          enable = true,
-          chars = { "│" },
-          use_treesitter = false,
-          style = {
-            { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") },
+        exclude = {
+          buftypes = {
+            "nofile",
+            "terminal",
+          },
+          filetypes = {
+            "help",
+            "startify",
+            "aerial",
+            "alpha",
+            "dashboard",
+            "lazy",
+            "neogitstatus",
+            "NvimTree",
+            "neo-tree",
+            "Trouble",
           },
         },
-        blank = { enable = false },
-        line_num = { enable = false, use_treesitter = true, style = "#73daca" },
       })
     end,
   },

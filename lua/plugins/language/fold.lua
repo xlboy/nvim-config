@@ -29,12 +29,7 @@ return {
     },
     opts = {
       preview = {
-        mappings = {
-          scrollB = "<C-b>",
-          scrollF = "<C-f>",
-          scrollU = "<C-u>",
-          scrollD = "<C-d>",
-        },
+        mappings = { scrollB = "<C-b>", scrollF = "<C-f>", scrollU = "<C-u>", scrollD = "<C-d>" },
       },
       provider_selector = function(_, filetype, buftype)
         local function handleFallbackException(bufnr, err, providerName)
