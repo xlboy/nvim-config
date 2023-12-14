@@ -101,8 +101,7 @@ return {
         "<leader>ldt",
         function()
           local new_virtual_lines = not vim.diagnostic.config().virtual_lines
-          local new_virtual_text = not vim.diagnostic.config().virtual_text
-          vim.diagnostic.config({ virtual_lines = new_virtual_lines, virtual_text = new_virtual_text })
+          vim.diagnostic.config({ virtual_lines = new_virtual_lines, virtual_text = not new_virtual_lines })
         end,
         desc = "[Lsp] Toogle Diagnostic Mode (line/text)",
       },
