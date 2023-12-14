@@ -1,3 +1,4 @@
+local constants = require("config.constants")
 local u = require("utils")
 local constants = require("config.constants")
 
@@ -51,5 +52,23 @@ return {
     end,
     lazy = false,
     priority = 100,
+    keys = {
+      {
+        "<leader>fpa",
+        function()
+          require("telescope").extensions["neovim-project"].discover({
+            layout_config = constants.MINI_TS_LAYOUT_WH,
+          })
+        end,
+      },
+      {
+        "<leader>fpr",
+        function()
+          require("telescope").extensions["neovim-project"].history({
+            layout_config = constants.MINI_TS_LAYOUT_WH,
+          })
+        end,
+      },
+    },
   },
 }

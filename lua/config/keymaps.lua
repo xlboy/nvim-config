@@ -5,7 +5,7 @@ local t_extensions = require("telescope").extensions
 ---@param map_table table A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
 ---@param base? table A base set of options to set on every keybinding
 function set_mappings(map_table, base)
-  local _which_key_queue;
+  local _which_key_queue
   local function which_key_register()
     if _which_key_queue then
       local wk_avail, wk = pcall(require, "which-key")
@@ -70,20 +70,6 @@ set_mappings({
     ["|"] = { "<cmd>vsplit<cr>" },
     ["\\"] = { "<cmd>split<cr>" },
     ["<leader>un"] = { u.ui.change_number, desc = "UI - Change number mode" },
-    ["<leader>fpr"] = {
-      function()
-        t_extensions["neovim-project"].history({
-          layout_config = { width = 110, height = 25 },
-        })
-      end,
-    },
-    ["<leader>fpa"] = {
-      function()
-        t_extensions["neovim-project"].discover({
-          layout_config = { width = 110, height = 25 },
-        })
-      end,
-    },
     ["{"] = { ":BufferLineCyclePrev<CR>" },
     ["}"] = { ":BufferLineCycleNext<CR>" },
   },
