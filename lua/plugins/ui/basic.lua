@@ -50,24 +50,23 @@ return {
           highlight = "XlboyIndentScope",
         },
         exclude = {
-          buftypes = {
-            "nofile",
-            "terminal",
-          },
-          filetypes = {
-            "help",
-            "startify",
-            "aerial",
-            "alpha",
-            "dashboard",
-            "lazy",
-            "neogitstatus",
-            "NvimTree",
-            "neo-tree",
-            "Trouble",
-          },
+          buftypes = { "nofile", "terminal" },
+          filetypes = { "help", "alpha", "dashboard", "lazy", "neogitstatus", "NvimTree", "neo-tree" },
         },
       })
     end,
+  },
+  {
+    "dstein64/nvim-scrollview",
+    event = "BufReadPre",
+    opts = {
+      on_startup = 1,
+      winblend = 60,
+      hide_on_intersect = 1,
+      column = 1,
+      current_only = 1,
+      scrollview_auto_mouse = true,
+      mode = "simple",
+    },
   },
 }
