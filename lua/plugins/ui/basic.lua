@@ -58,6 +58,7 @@ return {
   },
   {
     "dstein64/nvim-scrollview",
+    enabled = false,
     event = "BufReadPre",
     opts = {
       on_startup = 1,

@@ -24,7 +24,7 @@ return {
             height = 0.80,
             preview_cutoff = 120,
           },
-          winblend = 10,
+          winblend = 20,
         },
         mappings = {
           i = {
