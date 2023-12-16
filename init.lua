@@ -13,6 +13,7 @@ require("lazy").setup({
     { import = "plugins" },
     { import = "plugins.language" },
     { import = "plugins.ui" },
+    { import = "plugins.project" },
   },
   defaults = { lazy = false },
   checker = { enabled = true },

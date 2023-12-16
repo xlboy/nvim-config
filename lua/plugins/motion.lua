@@ -126,4 +126,12 @@ return {
     },
     config = true,
   },
+  {
+    "gsuuon/tshjkl.nvim",
+    event = "VeryLazy",
+    opts = {
+      select_current_node = false,
+      keymaps = { toggle = "<leader>ct" },
+    },
+  },
 }

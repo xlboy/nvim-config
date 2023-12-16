@@ -60,7 +60,7 @@ return {
           fields = { "kind", "abbr", "menu" },
           format = require("lspkind").cmp_format({
             mode = "symbol",
-            maxwidth = 20,
+            maxwidth = 35,
             preset = "codicons",
             ellipsis_char = "...",
           }),

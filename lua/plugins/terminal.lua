@@ -3,36 +3,41 @@ local terms = {}
 
 local set_keymap = function(bufnr)
   local maps = {
-    ["<leader>o"] = function()
-      require("terminal").open()
-    end,
-    ["<leader>cc"] = function()
-      uv.kill(terms[bufnr], "sigkill")
-      table.remove(terms, bufnr)
-      vim.api.nvim_buf_delete(bufnr, {
-        force = true,
-      })
-    end,
-    ["<leader>ca"] = function()
-      for buf, pid in pairs(terms) do
-        uv.kill(pid, "sigkill")
-        vim.api.nvim_buf_delete(buf, { force = true })
-      end
-      terms = {}
-    end,
-
-    [{ "<Esc>", "jk", "kj" }] = function()
-      vim.cmd("stopinsert")
-    end,
+    [{ "n" }] = {
+      ["<leader>o"] = function()
+        require("terminal").open()
+      end,
+      ["<leader>cc"] = function()
+        uv.kill(terms[bufnr], "sigkill")
+        table.remove(terms, bufnr)
+        vim.api.nvim_buf_delete(bufnr, {
+          force = true,
+        })
+      end,
+      ["<leader>ca"] = function()
+        for buf, pid in pairs(terms) do
+          uv.kill(pid, "sigkill")
+          vim.api.nvim_buf_delete(buf, { force = true })
+        end
+        terms = {}
+      end,
+    },
+    [{ "t" }] = {
+      [{ "jk", "kj", "<Esc>" }] = function()
+        vim.cmd("stopinsert")
+      end,
+    },
   }
 
-  for _, mode in ipairs({ "t", "n" }) do
-    for key, fn in pairs(maps) do
-      if type(key) == "string" then
-        vim.api.nvim_buf_set_keymap(bufnr, mode, key, "", { callback = fn })
-      else
-        for _, _key in ipairs(key) do
-          vim.api.nvim_buf_set_keymap(bufnr, mode, _key, "", { callback = fn })
+  for modeGroup, values in pairs(maps) do
+    for _, mode in ipairs(modeGroup) do
+      for key, fn in pairs(values) do
+        if type(key) == "string" then
+          vim.api.nvim_buf_set_keymap(bufnr, mode, key, "", { callback = fn })
+        else
+          for _, _key in ipairs(key) do
+            vim.api.nvim_buf_set_keymap(bufnr, mode, _key, "", { callback = fn })
+          end
         end
       end
     end

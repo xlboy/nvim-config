@@ -182,14 +182,6 @@ return {
     },
   },
   {
-    "gsuuon/tshjkl.nvim",
-    event = "VeryLazy",
-    opts = {
-      select_current_node = false,
-      keymaps = { toggle = "<leader>ct" },
-    },
-  },
-  {
     "echasnovski/mini.move",
     event = "VeryLazy",
     config = function()
