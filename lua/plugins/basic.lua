@@ -1,6 +1,5 @@
 local constants = require("config.constants")
 local u = require("utils")
-local constants = require("config.constants")
 
 return {
   {
@@ -60,6 +59,7 @@ return {
             layout_config = constants.MINI_TS_LAYOUT_WH,
           })
         end,
+        desc = "[Project] All record",
       },
       {
         "<leader>fpr",
@@ -68,6 +68,26 @@ return {
             layout_config = constants.MINI_TS_LAYOUT_WH,
           })
         end,
+        desc = "[Project] Recent history",
+      },
+    },
+  },
+  {
+    "imNel/monorepo.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("monorepo").setup()
+    end,
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    keys = {
+      {
+        "<leader>fpm",
+        function()
+          require("telescope").extensions.monorepo.monorepo({
+            layout_config = constants.MINI_TS_LAYOUT_WH,
+          })
+        end,
+        desc = "[Monorepo] change cwd",
       },
     },
   },
