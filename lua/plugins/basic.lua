@@ -17,14 +17,16 @@ return {
   },
   {
     "coffebar/neovim-project",
+    lazy = false,
+    priority = 100,
     opts = function()
-      require('neovim-project')
       local opts = {
         projects = u.basic.os_pick({
           "D:/project/cpp/*",
           "D:/project/nvim/*",
           "C:/Users/Administrator/.config/wezterm",
           "C:/Users/Administrator/AppData/Local/nvim",
+          -- vim.fn.stdpath("data") .. "/lazy/*",
         }, {
           "~/.config/nvim",
           "~/.config/wezterm",
@@ -44,11 +46,8 @@ return {
 
       return opts
     end,
-    dependencies = {
-      { "nvim-lua/plenary.nvim" },
-      { "Shatur/neovim-session-manager", lazy = true },
-    },
-    init = function()
+    dependencies = { { "nvim-lua/plenary.nvim" }, { "Shatur/neovim-session-manager", lazy = true } },
+    init= function()
       require("telescope").load_extension("neovim-project")
     end,
     keys = {
@@ -71,8 +70,6 @@ return {
         desc = "[Project] Recent history",
       },
     },
-    lazy = false,
-    priority = 100,
   },
   {
     "imNel/monorepo.nvim",

@@ -72,6 +72,7 @@ set_mappings({
     ["<leader>un"] = { u.ui.change_number, desc = "UI - Change number mode" },
     ["{"] = { ":BufferLineCyclePrev<CR>" },
     ["}"] = { ":BufferLineCycleNext<CR>" },
+    ["<leader>bp"] = { ":BufferLinePick<CR>" },
     ["<leader>gbl"] = { ":Telescope git_branches<CR>" },
     ["<leader>gfc"] = { ":Telescope git_status<CR>" },
   },

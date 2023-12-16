@@ -26,7 +26,7 @@ return {
       mapping = { ["send_to_qf"] = { map = "<leader>o" } },
     },
     keys = {
-      { "<leader>sr", desc = "[Spectre] prefix (...)" },
+      { "<leader>sr", desc = "[Spectre] ..." },
       {
         "<leader>srf",
         '<esc>:lua require("spectre").open_file_search()<CR>',
