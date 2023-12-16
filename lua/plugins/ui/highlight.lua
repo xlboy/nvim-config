@@ -11,6 +11,7 @@ return {
   },
   {
     "xlboy/peepsight.nvim",
+    enabled = false,
     -- dir = "~/Desktop/xlboy/peepsight.nvim",
     event = "VeryLazy",
     init = function()
@@ -42,7 +43,14 @@ return {
       require("peepsight").enable()
     end,
   },
-  { "itchyny/vim-cursorword", event = "UIEnter" },
+  -- { "itchyny/vim-cursorword", event = "UIEnter" },
+  {
+    "echasnovski/mini.cursorword",
+    event = "UIEnter",
+    config = function()
+      require('mini.cursorword').setup()
+    end,
+  },
   {
     "levouh/tint.nvim",
     event = "UIEnter",
