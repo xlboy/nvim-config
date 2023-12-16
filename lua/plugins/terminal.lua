@@ -1,5 +1,4 @@
--- return {
---   "niuiic/terminal.nvim",
---   event = "VeryLazy",
--- }
-return {}
+return {
+  "niuiic/terminal.nvim",
+  event = "VeryLazy",
+}

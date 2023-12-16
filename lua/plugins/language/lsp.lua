@@ -50,16 +50,9 @@ return {
     "nvimdev/lspsaga.nvim",
     event = "BufEnter",
     opts = {
-      symbol_in_winbar = {
-        enable = false,
-      },
-      lightbulb = {
-        virtual_text = false,
-      },
-      finder = {
-        default = "ref",
-        left_width = 0.2,
-      },
+      symbol_in_winbar = { enable = false },
+      lightbulb = { virtual_text = false },
+      finder = { default = "ref", left_width = 0.3 },
       code_action = { extend_gitsigns = true },
       rename = {
         in_select = false,

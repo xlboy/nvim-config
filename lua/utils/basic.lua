@@ -16,4 +16,14 @@ function M.append_arrays(t1, ...)
   return t1
 end
 
+function M.write_to_clipboard(text)
+  vim.fn.setreg("+", text)
+end
+
+M.fs = {}
+function M.fs.open_dir_in_finder(dir)
+  local cmd = M.os_pick('start "" "' .. dir .. '"', dir)
+  vim.fn.system(cmd)
+end
+
 return M

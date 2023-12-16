@@ -40,7 +40,7 @@ return {
       }, {
         highlight = { hl_group = "SpecialKey" },
       })
-      require("peepsight").enable()
+      -- require("peepsight").enable()
     end,
   },
   -- { "itchyny/vim-cursorword", event = "UIEnter" },

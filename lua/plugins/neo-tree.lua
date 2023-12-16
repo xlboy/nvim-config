@@ -1,3 +1,5 @@
+local u = require("utils")
+
 return {
   "nvim-neo-tree/neo-tree.nvim",
   lazy = true,
@@ -22,9 +24,7 @@ return {
     },
   },
   opts = function(_, opts)
-    opts.sources = {
-      "filesystem",
-    }
+    opts.sources = { "filesystem" }
     opts.source_selector = {
       sources = {
         { source = "filesystem" },
@@ -38,10 +38,10 @@ return {
     }
 
     opts.commands = {}
-
     opts.commands["reveal_in_finder"] = function(state)
       local node = state.tree:get_node()
-      if node then vim.fn.execute("!open -R " .. node.path) end
+      local file_dir = vim.fn.fnamemodify(node.path, ":h")
+      u.basic.fs.open_dir_in_finder(file_dir)
     end
     opts.commands["switch_to_editor"] = function()
       vim.cmd.wincmd("p")
