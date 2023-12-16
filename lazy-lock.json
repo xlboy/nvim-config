@@ -66,7 +66,7 @@
   "portal.nvim": { "branch": "main", "commit": "a108a87639a43f5386dd70bdf512de3806a71f7d" },
   "promise-async": { "branch": "main", "commit": "94f6f03c6c1e2aab551aacdf0c1e597a7269abb6" },
   "rayso.nvim": { "branch": "main", "commit": "debedaa7f0ed754ab16a292a45bbae8dcc3410c5" },
-  "scratch.nvim": { "branch": "main", "commit": "6eeb0438bdf9727387a70efeae94910f9ea44269" },
+  "scratch.nvim": { "branch": "main", "commit": "285eb1922635f4acdcc1e1bf447ce94739820657" },
   "sentiment.nvim": { "branch": "main", "commit": "ecde8d877881bb78fdb90060c0991e76770dbdbc" },
   "sibling-swap.nvim": { "branch": "main", "commit": "a9a0fbb734a8f767cd7cf4c99a78cb27aebe2f88" },
   "sqlite.lua": { "branch": "master", "commit": "b7e28c8463254c46a8e61c52d27d6a2040492fc3" },

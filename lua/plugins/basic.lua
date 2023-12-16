@@ -18,6 +18,7 @@ return {
   {
     "coffebar/neovim-project",
     opts = function()
+      require('neovim-project')
       local opts = {
         projects = u.basic.os_pick({
           "D:/project/cpp/*",
@@ -31,6 +32,7 @@ return {
           "~/Desktop/xlboy/*",
           "~/Desktop/xlboy/__open-source__/*",
         }),
+        last_session_on_startup = false,
       }
 
       if constants.IN_HOME then
@@ -49,8 +51,6 @@ return {
     init = function()
       require("telescope").load_extension("neovim-project")
     end,
-    lazy = false,
-    priority = 100,
     keys = {
       {
         "<leader>fpa",
@@ -71,6 +71,8 @@ return {
         desc = "[Project] Recent history",
       },
     },
+    lazy = false,
+    priority = 100,
   },
   {
     "imNel/monorepo.nvim",
