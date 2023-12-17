@@ -10,6 +10,7 @@ return {
       projects = u.basic.os_pick({
         "D:/project/cpp/*",
         "D:/project/nvim/*",
+        "D:/project/li/*",
         "C:/Users/Administrator/.config/wezterm",
         "C:/Users/Administrator/AppData/Local/nvim",
         -- vim.fn.stdpath("data") .. "/lazy/*",

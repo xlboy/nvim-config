@@ -8,14 +8,13 @@ return {
       "onsails/lspkind-nvim",
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
+      -- { "zbirenbaum/copilot-cmp", config = true },
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local opts = {
-        experimental = {
-          native_menu = false,
-        },
+        experimental = { native_menu = false },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -55,7 +54,12 @@ return {
             end
           end, { "i", "s" }),
         },
-        sources = { { name = "nvim_lsp" }, { name = "path" }, { name = "luasnip" } },
+        sources = {
+          -- { name = "copilot" },
+          { name = "nvim_lsp" },
+          { name = "path" },
+          { name = "luasnip" },
+        },
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = require("lspkind").cmp_format({
@@ -63,6 +67,7 @@ return {
             maxwidth = 35,
             preset = "codicons",
             ellipsis_char = "...",
+            -- symbol_map = { Copilot = "" },
           }),
         },
       }
@@ -88,9 +93,31 @@ return {
         })
       )
     end,
-    dependencies = {
-      "romgrk/fzy-lua-native",
-      "lambdalisue/nerdfont.vim",
-    },
+    dependencies = { "romgrk/fzy-lua-native", "lambdalisue/nerdfont.vim" },
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    ft = { "lua", "cpp" },
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        filetypes = { lua = true, cpp = true, ["*"] = false },
+        panel = { enabled = true },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<C-a>",
+            accept_word = false,
+            accept_line = false,
+            next = "<C-n>",
+            prev = "<C-p>",
+            dismiss = "<C-]>",
+          },
+        },
+      })
+    end,
   },
 }
