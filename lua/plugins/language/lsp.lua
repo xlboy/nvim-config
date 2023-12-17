@@ -20,10 +20,7 @@ return {
 
       require("mason-lspconfig").setup_handlers({
         function(server_name)
-          local opts = {
-            on_attach = on_attach,
-            capabilities = capabilities,
-          }
+          local opts = { on_attach = on_attach, capabilities = capabilities }
 
           if server_name == "clangd" then opts.cmd = { "clangd", "--offset-encoding=utf-16" } end
 

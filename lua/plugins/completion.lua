@@ -99,7 +99,7 @@ return {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
     ft = { "lua", "cpp" },
-    event = "InsertEnter",
+    event = "FileType lua,cpp",
     config = function()
       require("copilot").setup({
         filetypes = { lua = true, cpp = true, ["*"] = false },
