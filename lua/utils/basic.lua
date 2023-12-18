@@ -20,6 +20,28 @@ function M.write_to_clipboard(text)
   vim.fn.setreg("+", text)
 end
 
+function M.get_visible_lines()
+  local start_line = 1
+  local end_line = vim.fn.line("$")
+  local vis_lines = {}
+
+  for i = start_line, end_line do
+    if vim.fn.foldclosed(i) == -1 then table.insert(vis_lines, i) end
+  end
+
+  return vis_lines
+end
+
+-- 如何用 lua 搜索指定行数范围内的字符串
+function M.search_in_range(start_line, end_line, pattern)
+  local vis_lines = M.get_visible_lines()
+  local start_line = start_line or vis_lines[1]
+  local end_line = end_line or vis_lines[#vis_lines]
+  local pattern = pattern or vim.fn.input("Search: ")
+
+  vim.cmd(start_line .. "," .. end_line .. "g/" .. pattern .. "/p")
+end
+
 M.fs = {}
 function M.fs.open_dir_in_finder(dir)
   local cmd = M.os_pick('start "" "' .. dir .. '"', dir)

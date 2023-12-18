@@ -84,22 +84,22 @@ return {
       require("lsp-file-operations").setup()
     end,
   },
-  {
-    "ErichDonGubler/lsp_lines.nvim",
-    event = "BufEnter",
-    init = function()
-      vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
-    end,
-    config = true,
-    keys = {
-      {
-        "<leader>ldt",
-        function()
-          local new_virtual_lines = not vim.diagnostic.config().virtual_lines
-          vim.diagnostic.config({ virtual_lines = new_virtual_lines, virtual_text = not new_virtual_lines })
-        end,
-        desc = "[Lsp] Toogle Diagnostic Mode (line/text)",
-      },
-    },
-  },
+  -- {
+  --   "ErichDonGubler/lsp_lines.nvim",
+  --   event = "BufEnter",
+  --   init = function()
+  --     vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+  --   end,
+  --   config = true,
+  --   keys = {
+  --     {
+  --       "<leader>ldt",
+  --       function()
+  --         local new_virtual_lines = not vim.diagnostic.config().virtual_lines
+  --         vim.diagnostic.config({ virtual_lines = new_virtual_lines, virtual_text = not new_virtual_lines })
+  --       end,
+  --       desc = "[Lsp] Toogle Diagnostic Mode (line/text)",
+  --     },
+  --   },
+  -- },
 }
