@@ -20,6 +20,15 @@ function M.write_to_clipboard(text)
   vim.fn.setreg("+", text)
 end
 
+-- 获取已打开的 buffers
+function M.get_opened_buffers()
+  local buffers = {}
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_get_option(buf, "buflisted") then table.insert(buffers, buf) end
+  end
+  return buffers
+end
+
 function M.get_visible_lines()
   local start_line = 1
   local end_line = vim.fn.line("$")

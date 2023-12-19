@@ -25,26 +25,12 @@ return {
     },
   },
   {
-    "echasnovski/mini.bufremove",
-    lazy = true,
+    "kazhala/close-buffers.nvim",
+    event = "VeryLazy",
     keys = {
-      {
-        "<leader>cc",
-        function()
-          require("mini.bufremove").delete(0, false)
-        end,
-        desc = "Delete Current Buffer",
-      },
-      {
-        "<leader>ca",
-        function()
-          local bufremove = require("mini.bufremove")
-          for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-            bufremove.delete(bufnr, false)
-          end
-        end,
-        desc = "Delete All Buffer",
-      },
+      { "<leader>cc", ":BWipeout! this<CR>", desc = "Delete Current Buffer" },
+      { "<leader>ca", ":BWipeout! all<CR>", desc = "Delete All Buffer" },
+      { "<leader>co", ":BWipeout! other<CR>", desc = "Delete All Buffer" },
     },
   },
   {

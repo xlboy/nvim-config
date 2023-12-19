@@ -45,6 +45,7 @@ local options = {
     virtualedit = "block", -- allow going past end of line in visual block mode
     wrap = false, -- disable wrapping of lines longer than the width of window
     writebackup = false, -- disable making a backup before overwriting a file
+    hidden = true,
   },
   g = {
     mapleader = " ", -- set leader key

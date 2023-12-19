@@ -13,8 +13,8 @@ return {
         "D:/project/li/*",
         "C:/Users/Administrator/.config/wezterm",
         "C:/Users/Administrator/AppData/Local/nvim",
-      }, {
         vim.fn.stdpath("data") .. "/lazy/*",
+      }, {
         "~/.config/nvim",
         "~/.config/wezterm",
         "~/Desktop/lilith/*",
