@@ -4,6 +4,7 @@
     ],
     "diagnostics.disable": [
         "missing-fields",
-        "unused-local"
+        "unused-local",
+        "inject-field"
     ]
 }

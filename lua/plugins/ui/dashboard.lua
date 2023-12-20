@@ -4,62 +4,31 @@ local logo = {}
 return {
   {
     "folke/drop.nvim",
-    lazy = false,
-    opts = { theme = "stars", winblend = 0, max = 150, interval = 80 },
-    config = function(_, opts)
-      require("drop").setup(opts)
-      vim.g.drop_opened = false
-      local callback = function()
-        local opened_bufs = u.basic.get_opened_buffers()
-        if #opened_bufs == 1 then
-          local buf_name = vim.api.nvim_buf_get_name(opened_bufs[1])
-          local is_no_name = #buf_name == 0
-          if is_no_name and vim.g.drop_opened == false then
-            vim.cmd([[hi NormalFroat guifg=#c0caf5]])
-            require("drop").show()
-            vim.g.drop_opened = true
-          end
-        else
-          if vim.g.drop_opened == true then
-            vim.cmd([[hi NormalFroat guifg=#c0caf5 guibg=#1f2335]])
-            require("drop").hide()
-            vim.g.drop_opened = false
-          end
+    event = "VeryLazy",
+    opts = {
+      theme = "stars",
+      winblend = 0,
+      max = u.basic.os_pick(150, 80),
+      interval = u.basic.os_pick(80, 100),
+      screensaver = 1000 * 60 * 10,
+    },
+    init = function()
+      require("keymap-amend")("n", "<Esc>", function(original)
+        if vim.g.drop_opened then
+          require("drop").hide()
+          vim.g.drop_opened = false
         end
-      end
-
-      local has_init = false
-      vim.api.nvim_create_autocmd("User", {
-        pattern = "SessionLoadPost",
-        callback = function()
-          if has_init == false then
-            callback()
-            has_init = true
-            return
-          end
-        end,
-      })
-
-      -- vim.api.nvim_create_autocmd({ "BufEnter", "BufLeave" }, {
-      --   pattern = "*",
-      --   callback = function()
-      --     callback()
-      --   end,
-      -- })
+        original()
+      end)
     end,
     keys = {
-      -- { "<leader>udh", ":lua require('drop').hide()<CR>" },
-      -- { "<leader>uds", ":lua require('drop').show()<CR>" },
       {
         "<leader>udt",
         function()
-          if vim.g.drop_opened == true then
-            require("drop").hide()
-            vim.g.drop_opened = false
-          else
-            require("drop").show()
-            vim.g.drop_opened = true
-          end
+          require("drop")[vim.g.drop_opened and "hide" or "show"]()
+          local theme = { "stars", "leaves", "snow", "xmas", "spring", "summer" }
+          require("drop.config").options.theme = theme[math.random(#theme)]
+          vim.g.drop_opened = not vim.g.drop_opened
         end,
         desc = "[Drop] Toogle",
       },

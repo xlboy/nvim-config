@@ -1,6 +1,37 @@
 local u = require("utils")
 local constants = require("config.constants")
 
+-- return {
+--   "gnikdroy/projections.nvim",
+--   branch = "pre_release",
+--   dependencies = { "prochri/telescope-all-recent.nvim" },
+--   config = function()
+--     require("projections").setup({
+--       workspaces = {
+--         "~/.config",
+--         "~/Desktop/lilith/",
+--         "~/Desktop/xlboy/",
+--         "~/Desktop/xlboy/__open-source__/",
+--         vim.fn.stdpath("data") .. "/lazy/",
+--       },
+--       patterns = { ".git", "package.json", ".clangd", "README.md", "stylua.toml" }, -- Default patterns to use if none were specified. These are NOT regexps.
+--     })
+--     require("telescope").load_extension("projections")
+--   end,
+--   keys = {
+--     {
+--       "<leader>fpa",
+--       function()
+--         require("telescope").extensions.projections.projections({
+--           sorter = nil,
+--           layout_config = constants.MINI_TS_LAYOUT_WH,
+--         })
+--       end,
+--       desc = "[Project] All record",
+--     },
+--   },
+-- }
+
 return {
   "coffebar/neovim-project",
   lazy = false,
@@ -13,7 +44,6 @@ return {
         "D:/project/li/*",
         "C:/Users/Administrator/.config/wezterm",
         "C:/Users/Administrator/AppData/Local/nvim",
-        vim.fn.stdpath("data") .. "/lazy/*",
       }, {
         "~/.config/nvim",
         "~/.config/wezterm",
@@ -23,6 +53,8 @@ return {
       }),
       last_session_on_startup = false,
     }
+
+    u.basic.append_arrays(opts.projects, { vim.fn.stdpath("data") .. "/lazy/*" })
 
     if constants.IN_HOME then
       u.basic.append_arrays(opts.projects, {

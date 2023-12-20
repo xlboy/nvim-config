@@ -14,12 +14,11 @@ return {
     },
     init = function()
       -- 移除按 o 换行时依然自带注释效果（与 VSCode 一致的行为）
-      vim.api.nvim_create_autocmd("FileType",
-        {
-          callback = function()
-            vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
-          end
-        })
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
+        end,
+      })
     end,
     opts = function()
       local commentstring_avail, commentstring = pcall(require, "ts_context_commentstring.integrations.comment_nvim")

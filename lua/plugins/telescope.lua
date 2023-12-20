@@ -113,11 +113,8 @@ return {
             use_cwd = false,
             sorting = "frecency",
           },
-          ["commander#commander"] = {
-            disable = false,
-            use_cwd = false,
-            sorting = "recent",
-          },
+          ["commander#commander"] = { disable = false, use_cwd = false, sorting = "recent" },
+          ["projections#projections"] = { disable = false, use_cwd = false, sorting = "recent" },
         },
       })
     end,
