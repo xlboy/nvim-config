@@ -49,7 +49,7 @@ return {
   },
   {
     "nvimdev/lspsaga.nvim",
-    event = "BufEnter",
+    event = "VeryLazy",
     opts = {
       symbol_in_winbar = { enable = false },
       lightbulb = { virtual_text = false },
@@ -78,7 +78,7 @@ return {
   },
   {
     "antosha417/nvim-lsp-file-operations",
-    event = "BufEnter",
+    event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("lsp-file-operations").setup()

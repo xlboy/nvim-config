@@ -6,8 +6,25 @@ return {
     name = "window-picker",
     event = "VeryLazy",
     config = function()
-      require("window-picker").setup({ hint = "floating-big-letter" })
+      require("window-picker").setup({
+        hint = "floating-big-letter",
+        filter_rules = {
+          filetype = { "NvimTree", "neo-tree", "notify" },
+          bo = { buftype = {} },
+        },
+      })
     end,
+    keys = {
+      {
+        "<leader>wp",
+        function()
+          local picked_w_id = require("window-picker").pick_window()
+          if not picked_w_id then return end
+          vim.api.nvim_set_current_win(picked_w_id)
+        end,
+        desc = "Window pick",
+      },
+    },
   },
   {
     "mrjones2014/smart-splits.nvim",
@@ -24,29 +41,29 @@ return {
       { "<leader>wr", ":lua require('smart-splits').start_resize_mode()<CR>", desc = "[Smart Window] Resize mode" },
     },
   },
-  {
-    "anuvyklack/windows.nvim",
-    event = "VeryLazy",
-    dependencies = { "anuvyklack/middleclass", "anuvyklack/animation.nvim" },
-    opts = {
-      autowidth = { enable = true },
-      ignore = {
-        buftype = { "quickfix" },
-        filetype = { "NvimTree", "neo-tree", "NeogitStatus" },
-      },
-      animation = { enable = false, duration = 100, fps = u.basic.os_pick(144, 60) },
-    },
-    config = function(_, opts)
-      vim.o.winwidth = 30
-      vim.o.winminwidth = 30
-      vim.o.equalalways = false
-      require("windows").setup(opts)
-    end,
-    keys = {
-      { "<leader>wsz", ":WindowsMaximize<CR>", desc = "[Window Auto Size] Maximize" },
-      { "<leader>ws\\", ":WindowsMaximizeVertically<CR>", desc = "[Window Auto Size] Maximize V" },
-      { "<leader>ws|", ":WindowsMaximizeVertically<CR>", desc = "[Window Auto Size] Maximize H" },
-      { "<leader>wsr", ":WindowsEqualize<CR>", desc = "[Window Auto Size] Reset" },
-    },
-  },
+  -- {
+  --   "anuvyklack/windows.nvim",
+  --   event = "VeryLazy",
+  --   dependencies = { "anuvyklack/middleclass", "anuvyklack/animation.nvim" },
+  --   opts = {
+  --     autowidth = { enable = true },
+  --     ignore = {
+  --       buftype = { "quickfix" },
+  --       filetype = { "NvimTree", "neo-tree", "NeogitStatus" },
+  --     },
+  --     animation = { enable = false, duration = 100, fps = u.basic.os_pick(144, 60) },
+  --   },
+  --   config = function(_, opts)
+  --     vim.o.winwidth = 30
+  --     vim.o.winminwidth = 30
+  --     vim.o.equalalways = false
+  --     require("windows").setup(opts)
+  --   end,
+  --   keys = {
+  --     { "<leader>wsz", ":WindowsMaximize<CR>", desc = "[Window Auto Size] Maximize" },
+  --     { "<leader>ws\\", ":WindowsMaximizeVertically<CR>", desc = "[Window Auto Size] Maximize V" },
+  --     { "<leader>ws|", ":WindowsMaximizeVertically<CR>", desc = "[Window Auto Size] Maximize H" },
+  --     { "<leader>wsr", ":WindowsEqualize<CR>", desc = "[Window Auto Size] Reset" },
+  --   },
+  -- },
 }

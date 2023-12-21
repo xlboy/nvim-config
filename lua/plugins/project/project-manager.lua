@@ -54,7 +54,7 @@ return {
       last_session_on_startup = false,
     }
 
-    u.basic.append_arrays(opts.projects, { vim.fn.stdpath("data") .. "/lazy/*" })
+    -- u.basic.append_arrays(opts.projects, { vim.fn.stdpath("data") .. "/lazy/*" })
 
     if constants.IN_HOME then
       u.basic.append_arrays(opts.projects, {
