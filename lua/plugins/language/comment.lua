@@ -25,4 +25,28 @@ return {
       return commentstring_avail and commentstring and { pre_hook = commentstring.create_pre_hook() } or {}
     end,
   },
+  {
+    "Djancyp/better-comments.nvim",
+    enabled = false,
+    config = function()
+      require("better-comment").Setup()
+    end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    opts = {
+      keywords = {
+        region = { color = "hint" },
+        endregion = { color = "hint" },
+      },
+      highlight = {
+        pattern = [[.*<(KEYWORDS)\s*:?]],
+      },
+    },
+    event = "VeryLazy",
+  },
 }
+
+-- #region     *============ types ==================*
+
+-- #endregion  *============ types ==================*

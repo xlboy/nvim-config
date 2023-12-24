@@ -51,7 +51,7 @@ return {
   },
   {
     "AckslD/nvim-FeMaco.lua",
-    lazy = true,
+    ft = { "markdown" },
     config = function()
       require("femaco").setup()
     end,

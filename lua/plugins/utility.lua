@@ -15,7 +15,6 @@ return {
       },
     },
   },
-  { "folke/todo-comments.nvim", opts = {}, event = "VeryLazy" },
   {
     "TobinPalmer/rayso.nvim",
     cmd = "Rayso",
