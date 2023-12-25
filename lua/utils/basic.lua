@@ -53,7 +53,7 @@ end
 
 M.fs = {}
 function M.fs.open_dir_in_finder(dir)
-  local cmd = M.os_pick('start "" "' .. dir .. '"', dir)
+  local cmd = M.os_pick('start "" "' .. dir .. '"', 'open "' .. dir .. '"')
   vim.fn.system(cmd)
 end
 
