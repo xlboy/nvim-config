@@ -28,6 +28,8 @@
   "keymap-amend.nvim": { "branch": "master", "commit": "b8bf9d820878d5497fdd11d6de55dea82872d98e" },
   "lazy.nvim": { "branch": "main", "commit": "96584866b9c5e998cbae300594d0ccfd0c464627" },
   "leap.nvim": { "branch": "main", "commit": "208b0e5ae9f34f7cea4fdf97acb91429c346e250" },
+  "lsp-inlayhints.nvim": { "branch": "anticonceal", "commit": "aa1fee3469f70842fecb0e915fa0d1e5c6784501" },
+  "lsp_signature.nvim": { "branch": "master", "commit": "fed2c8389c148ff1dfdcdca63c2b48d08a50dea0" },
   "lspkind-nvim": { "branch": "master", "commit": "7f26cf5e27e2bd910ce0ea00c514da2bf97423b8" },
   "lspsaga.nvim": { "branch": "main", "commit": "e71cddc9d4c1dd97c026814777b810df988daed2" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },

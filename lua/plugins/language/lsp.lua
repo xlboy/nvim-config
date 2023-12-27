@@ -6,6 +6,9 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "williamboman/mason-lspconfig.nvim" },
     event = "VeryLazy",
+    -- opts = {
+    --   inlay_hints = { enabled = true },
+    -- },
     config = function()
       -- Set correct icons in sign column
       local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
@@ -16,13 +19,47 @@ return {
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local on_attach = function(client, bufnr) end
+      -- local on_attach = function(client, bufnr)
+      --   if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(bufnr, true) end
+      -- end
 
       require("mason-lspconfig").setup_handlers({
         function(server_name)
-          local opts = { on_attach = on_attach, capabilities = capabilities }
+          local opts = {
+            inlay_hints = { enabled = true },
+            on_attach = on_attach,
+            capabilities = capabilities,
+          }
 
           if server_name == "clangd" then opts.cmd = { "clangd", "--offset-encoding=utf-16" } end
+          if server_name == "tsserver" then
+            opts.settings = {
+              typescript = {
+                inlayHints = {
+                  includeInlayParameterNameHints = "all",
+                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                  includeInlayFunctionParameterTypeHints = true,
+                  includeInlayVariableTypeHints = false,
+                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                  includeInlayPropertyDeclarationTypeHints = true,
+                  includeInlayFunctionLikeReturnTypeHints = true,
+                  includeInlayEnumMemberValueHints = true,
+                },
+              },
+              javascript = {
+                inlayHints = {
+                  includeInlayParameterNameHints = "all",
+                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                  includeInlayFunctionParameterTypeHints = true,
+                  includeInlayVariableTypeHints = false,
+                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                  includeInlayPropertyDeclarationTypeHints = true,
+                  includeInlayFunctionLikeReturnTypeHints = true,
+                  includeInlayEnumMemberValueHints = true,
+                },
+              },
+            }
+          end
 
           require("lspconfig")[server_name].setup(opts)
         end,
@@ -84,10 +121,47 @@ return {
       require("lsp-file-operations").setup()
     end,
   },
+  { "stevearc/aerial.nvim", event = "VeryLazy", opts = {} },
   {
+    "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
-    "stevearc/aerial.nvim",
-    opts = {},
+    opts = {
+      floating_window = false,
+      hint_enable = true,
+      transparency = 5,
+      toggle_key = "<C-s>",
+      toggle_key_flip_floatwin_setting = true,
+    },
+  },
+  {
+    enabled = true,
+    "lvimuser/lsp-inlayhints.nvim",
+    branch = "anticonceal",
+    commit = "aa1fee3469f70842fecb0e915fa0d1e5c6784501",
+    init = function()
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
+        callback = function(args)
+          if not (args.data and args.data.client_id) then return end
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client.server_capabilities.inlayHintProvider then
+            local inlayhints = require("lsp-inlayhints")
+            inlayhints.on_attach(client, args.buf)
+            vim.api.nvim_buf_set_keymap(
+              args.buf,
+              "n",
+              "<leader>lit",
+              "<cmd>lua require('lsp-inlayhints').toggle()<CR>",
+              { noremap = true, silent = true }
+            )
+          end
+        end,
+      })
+    end,
+    config = function()
+      require("lsp-inlayhints").setup({ enabled_at_startup = false })
+      vim.cmd([[highlight LspInlayHint guibg=NONE guifg=#5c6370]])
+    end,
   },
   -- {
   --   "ErichDonGubler/lsp_lines.nvim",
