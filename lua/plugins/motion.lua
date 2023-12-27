@@ -41,19 +41,14 @@ return {
   },
   {
     "ggandor/flit.nvim",
-    lazy = true,
-    keys = function()
-      ---@type LazyKeys[]
-      local ret = {}
-      for _, key in ipairs({ "f", "F", "t", "T" }) do
-        ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
-      end
-      return ret
+    event = "VeryLazy",
+    commit = "f4e9af572a62c808c8de214da672f2a115a98c35",
+    config = function()
+      require("flit").setup({ labeled_modes = "nx", multiline = false, opts = {} })
     end,
-    opts = { labeled_modes = "nx", multiline = false, opts = {} },
     dependencies = {
-      "ggandor/leap.nvim",
-      dependencies = { "tpope/vim-repeat" },
+      { "ggandor/leap.nvim", commit = "208b0e5ae9f34f7cea4fdf97acb91429c346e250" },
+      "tpope/vim-repeat",
     },
   },
   {

@@ -38,8 +38,8 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    event = "UIEnter",
     main = "ibl",
+    event = "UIEnter",
     config = function()
       vim.cmd("highlight XlboyIndentScope guifg=#7bdfd0")
       require("ibl").setup({
