@@ -133,36 +133,36 @@ return {
       toggle_key_flip_floatwin_setting = true,
     },
   },
-  {
-    enabled = true,
-    "lvimuser/lsp-inlayhints.nvim",
-    branch = "anticonceal",
-    commit = "aa1fee3469f70842fecb0e915fa0d1e5c6784501",
-    init = function()
-      vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
-        callback = function(args)
-          if not (args.data and args.data.client_id) then return end
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if client.server_capabilities.inlayHintProvider then
-            local inlayhints = require("lsp-inlayhints")
-            inlayhints.on_attach(client, args.buf)
-            vim.api.nvim_buf_set_keymap(
-              args.buf,
-              "n",
-              "<leader>lit",
-              "<cmd>lua require('lsp-inlayhints').toggle()<CR>",
-              { noremap = true, silent = true }
-            )
-          end
-        end,
-      })
-    end,
-    config = function()
-      require("lsp-inlayhints").setup({ enabled_at_startup = false })
-      vim.cmd([[highlight LspInlayHint guibg=NONE guifg=#5c6370]])
-    end,
-  },
+  -- {
+  --   enabled = true,
+  --   "lvimuser/lsp-inlayhints.nvim",
+  --   branch = "anticonceal",
+  --   commit = "aa1fee3469f70842fecb0e915fa0d1e5c6784501",
+  --   init = function()
+  --     vim.api.nvim_create_autocmd("LspAttach", {
+  --       group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
+  --       callback = function(args)
+  --         if not (args.data and args.data.client_id) then return end
+  --         local client = vim.lsp.get_client_by_id(args.data.client_id)
+  --         if client.server_capabilities.inlayHintProvider then
+  --           local inlayhints = require("lsp-inlayhints")
+  --           inlayhints.on_attach(client, args.buf)
+  --           vim.api.nvim_buf_set_keymap(
+  --             args.buf,
+  --             "n",
+  --             "<leader>lit",
+  --             "<cmd>lua require('lsp-inlayhints').toggle()<CR>",
+  --             { noremap = true, silent = true }
+  --           )
+  --         end
+  --       end,
+  --     })
+  --   end,
+  --   config = function()
+  --     require("lsp-inlayhints").setup({ enabled_at_startup = true })
+  --     vim.cmd([[highlight LspInlayHint guibg=NONE guifg=#5c6370]])
+  --   end,
+  -- },
   -- {
   --   "ErichDonGubler/lsp_lines.nvim",
   --   event = "BufEnter",
