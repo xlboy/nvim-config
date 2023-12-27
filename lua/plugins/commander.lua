@@ -84,7 +84,7 @@ local commands = {
   },
   { desc = "Reload Buffer", cmd = ":bufdo e<CR>zz", cat = CAT.BUF },
   { desc = "Reload Window", cmd = ":windo e<CR>zz", cat = CAT.WINDOW },
-  { desc = "Advanced git search", cmd = ":AdvancedGitSearch<CR>", cat = CAT.GIT },
+  { desc = "Advanced Git Search", cmd = ":AdvancedGitSearch<CR>", cat = CAT.GIT },
 }
 
 return {

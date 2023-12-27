@@ -84,6 +84,11 @@ return {
       require("lsp-file-operations").setup()
     end,
   },
+  {
+    event = "VeryLazy",
+    "stevearc/aerial.nvim",
+    opts = {},
+  },
   -- {
   --   "ErichDonGubler/lsp_lines.nvim",
   --   event = "BufEnter",

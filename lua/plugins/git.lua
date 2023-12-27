@@ -1,3 +1,4 @@
+local constants = require("config.constants")
 return {
   {
     "lewis6991/gitsigns.nvim",
@@ -38,6 +39,32 @@ return {
       { "<leader>gdc", ":DiffviewFileHistory %<CR>", desc = "[Git] view file history" },
       { "<leader>gdb", ":DiffviewFileHistory<CR>", desc = "[Git] view branch history" },
       { "<leader>gdq", ":DiffviewClose<CR>", desc = "[Git] Close current diffview" },
+    },
+  },
+  {
+    "aaronhallaert/advanced-git-search.nvim",
+    event = "VeryLazy",
+    config = function()
+      -- optional: setup telescope before loading the extension
+      require("telescope").setup({
+        -- move this to the place where you call the telescope setup function
+        extensions = {
+          advanced_git_search = {
+            diff_plugin = "diffview",
+            telescope_theme = {
+              show_custom_functions = {
+                layout_config = constants.MINI_TS_LAYOUT_WH,
+              },
+            },
+          },
+        },
+      })
+
+      require("telescope").load_extension("advanced_git_search")
+    end,
+    dependencies = {
+      "tpope/vim-rhubarb",
+      "sindrets/diffview.nvim",
     },
   },
 }
