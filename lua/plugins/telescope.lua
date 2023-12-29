@@ -28,6 +28,8 @@ return {
         },
         mappings = {
           i = {
+            ["<C-h>"] = actions.preview_scrolling_left,
+            ["<C-l>"] = actions.preview_scrolling_right, 
             ["<C-Down>"] = actions.cycle_history_next,
             ["<C-Up>"] = actions.cycle_history_prev,
           },
@@ -51,8 +53,8 @@ return {
         "<leader>fc",
         function()
           t_builtin.current_buffer_fuzzy_find({
-            layout_config = { width = 120, height = 40 },
-            previewer = false,
+            -- layout_config = { width = 120, height = 40 },
+            -- previewer = true,
           })
         end,
       },
