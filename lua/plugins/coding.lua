@@ -47,36 +47,6 @@ return {
   {
     "Wansmer/sibling-swap.nvim",
     dependencies = { "nvim-treesitter" },
-    keys = {
-      {
-        "<leader>s.",
-        function()
-          require("sibling-swap").swap_with_right_with_opp()
-        end,
-        desc = "Swap with right with opp",
-      },
-      {
-        "<leader>s,",
-        function()
-          require("sibling-swap").swap_with_left_with_opp()
-        end,
-        desc = "Swap with left with opp",
-      },
-      {
-        "<C-.>",
-        function()
-          require("sibling-swap").swap_with_right()
-        end,
-        desc = "Swap with right",
-      },
-      {
-        "<C-,>",
-        function()
-          require("sibling-swap").swap_with_left()
-        end,
-        desc = "Swap with left",
-      },
-    },
     config = function()
       require("sibling-swap").setup({
         allowed_separators = {
@@ -106,8 +76,8 @@ return {
         highlight_node_at_cursor = false,
         -- keybinding for movements to right or left (and up or down, if `allow_interline_swaps` is true)
         keymaps = {
-          ["<C-.>"] = "swap_with_right",
-          ["<C-,>"] = "swap_with_left",
+          -- ["<C-.>"] = "swap_with_right",
+          -- ["<C-,>"] = "swap_with_left",
           ["<leader>s."] = "swap_with_right_with_opp",
           ["<leader>s,"] = "swap_with_left_with_opp",
         },
@@ -118,6 +88,22 @@ return {
         interline_swaps_witout_separator = false,
       })
     end,
+    keys = {
+      {
+        "<leader>s.",
+        function()
+          require("sibling-swap").swap_with_right_with_opp()
+        end,
+        desc = "Swap with right with opp",
+      },
+      {
+        "<leader>s,",
+        function()
+          require("sibling-swap").swap_with_left_with_opp()
+        end,
+        desc = "Swap with left with opp",
+      },
+    },
   },
   { "xlboy/swap-ternary.nvim", lazy = true },
   {

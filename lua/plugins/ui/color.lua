@@ -22,6 +22,7 @@ return {
       transparent.clear_prefix("neo-tree")
       transparent.clear_prefix("DiagnosticVirtual")
       transparent.clear_prefix("NvimSeparator")
+      transparent.clear_prefix("Trouble")
     end,
     keys = {
       { "<leader>uT", "<cmd>TransparentToggle<CR>", desc = "Toggle transparency" },

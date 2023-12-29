@@ -9,8 +9,7 @@ return {
       require("window-picker").setup({
         hint = "floating-big-letter",
         filter_rules = {
-          filetype = { "NvimTree", "neo-tree", "notify" },
-          bo = { buftype = {} },
+          bo = { filetype = { "NvimTree", "neo-tree", "notify", "fidget", "Trouble" }, buftype = {} },
         },
       })
     end,

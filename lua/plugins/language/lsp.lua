@@ -121,7 +121,7 @@ return {
       require("lsp-file-operations").setup()
     end,
   },
-  { "stevearc/aerial.nvim", event = "VeryLazy", opts = {} },
+  { "stevearc/aerial.nvim", event = "LspAttach", opts = {} },
   {
     "ray-x/lsp_signature.nvim",
     event = "VeryLazy",
@@ -136,8 +136,9 @@ return {
   {
     enabled = true,
     "lvimuser/lsp-inlayhints.nvim",
+    event = "VeryLazy",
     branch = "anticonceal",
-    commit = "aa1fee3469f70842fecb0e915fa0d1e5c6784501",
+    -- commit = "aa1fee3469f70842fecb0e915fa0d1e5c6784501",
     init = function()
       local open = false
       vim.g.switch_inlay_hints = function(buf)
@@ -169,6 +170,60 @@ return {
       vim.cmd([[highlight LspInlayHint guibg=NONE guifg=#5c6370]])
     end,
   },
+
+  {
+    "j-hui/fidget.nvim",
+    event = "VeryLazy",
+    opts = {
+      notification = { window = { winblend = 0 } },
+      integration = {
+        ["nvim-tree"] = {
+          enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+        },
+      },
+    },
+  },
+
+  -- better diagnostics list and others
+  {
+    "folke/trouble.nvim",
+    cmd = { "TroubleToggle", "Trouble" },
+    opts = {
+      use_diagnostic_signs = true,
+      action_keys = {
+        hover = "gh",
+      },
+    },
+    keys = {
+      { "<leader>ldc", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>lda", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      {
+        "[q",
+        function()
+          if require("trouble").is_open() then
+            require("trouble").previous({ skip_groups = true, jump = true })
+          else
+            local ok, err = pcall(vim.cmd.cprev)
+            if not ok then vim.notify(err, vim.log.levels.ERROR) end
+          end
+        end,
+        desc = "Previous trouble/quickfix item",
+      },
+      {
+        "]q",
+        function()
+          if require("trouble").is_open() then
+            require("trouble").next({ skip_groups = true, jump = true })
+          else
+            local ok, err = pcall(vim.cmd.cnext)
+            if not ok then vim.notify(err, vim.log.levels.ERROR) end
+          end
+        end,
+        desc = "Next trouble/quickfix item",
+      },
+    },
+  },
+
   -- {
   --   "ErichDonGubler/lsp_lines.nvim",
   --   event = "BufEnter",
