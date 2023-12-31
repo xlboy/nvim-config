@@ -24,15 +24,6 @@ return {
     },
   },
   {
-    "kazhala/close-buffers.nvim",
-    event = "VeryLazy",
-    keys = {
-      { "<leader>cc", ":BWipeout! this<CR>", desc = "Delete Current Buffer" },
-      { "<leader>ca", ":BWipeout! all<CR>", desc = "Delete All Buffer" },
-      { "<leader>co", ":BWipeout! other<CR>", desc = "Delete All Buffer" },
-    },
-  },
-  {
     "chrishrb/gx.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },

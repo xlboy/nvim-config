@@ -10,7 +10,16 @@ return {
     "MunifTanjim/nui.nvim",
   },
   keys = {
-    { "<leader>e", "<cmd>Neotree toggle focus left<cr>", desc = "Neotree toggle" },
+    {
+      "<leader>e",
+      function()
+        local old_ft = vim.bo.filetype
+        vim.cmd("Neotree toggle focus left")
+        local new_ft = vim.bo.filetype
+        if old_ft == "neo-tree" or old_ft == new_ft then vim.cmd("FocusAutoresize") end
+      end,
+      desc = "Neotree toggle",
+    },
     {
       "<leader>o",
       function()

@@ -1,5 +1,32 @@
 return {
   {
+    "kazhala/close-buffers.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "<leader>cc", ":BDelete! this<CR>", desc = "Delete Current Buffer" },
+      { "<leader>ca", ":BDelete! all<CR>", desc = "Delete All Buffer" },
+      { "<leader>co", ":BDelete! other<CR>", desc = "Delete Other Buffer" },
+      { "<leader>cn", ":BDelete! nameless<CR>", desc = "Delete Nameless Buffer" },
+      {
+        "<leader>cs",
+        function()
+          local suffix = vim.fn.input("Suffix: ")
+          if suffix ~= "" then vim.cmd(":BDelete! regex=.*[.]" .. suffix) end
+        end,
+        desc = "Delete Specify Suffix Buffer",
+      },
+      {
+        "<leader>cg",
+        function()
+          local pattern = vim.fn.input("Glob Pattern: ")
+          if pattern ~= "" then vim.cmd(":BDelete! glob=" .. pattern) end
+        end,
+        desc = "Delete Specify Suffix Buffer",
+      },
+    },
+  },
+  -- ui
+  {
     "akinsho/bufferline.nvim",
     config = function()
       vim.o.mousemoveevent = true

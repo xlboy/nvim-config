@@ -40,29 +40,73 @@ return {
       { "<leader>wr", ":lua require('smart-splits').start_resize_mode()<CR>", desc = "[Smart Window] Resize mode" },
     },
   },
-  -- {
-  --   "anuvyklack/windows.nvim",
-  --   event = "VeryLazy",
-  --   dependencies = { "anuvyklack/middleclass", "anuvyklack/animation.nvim" },
-  --   opts = {
-  --     autowidth = { enable = true },
-  --     ignore = {
-  --       buftype = { "quickfix" },
-  --       filetype = { "NvimTree", "neo-tree", "NeogitStatus" },
-  --     },
-  --     animation = { enable = false, duration = 100, fps = u.basic.os_pick(144, 60) },
-  --   },
-  --   config = function(_, opts)
-  --     vim.o.winwidth = 30
-  --     vim.o.winminwidth = 30
-  --     vim.o.equalalways = false
-  --     require("windows").setup(opts)
-  --   end,
-  --   keys = {
-  --     { "<leader>wsz", ":WindowsMaximize<CR>", desc = "[Window Auto Size] Maximize" },
-  --     { "<leader>ws\\", ":WindowsMaximizeVertically<CR>", desc = "[Window Auto Size] Maximize V" },
-  --     { "<leader>ws|", ":WindowsMaximizeVertically<CR>", desc = "[Window Auto Size] Maximize H" },
-  --     { "<leader>wsr", ":WindowsEqualize<CR>", desc = "[Window Auto Size] Reset" },
-  --   },
-  -- },
+  {
+    "nvim-focus/focus.nvim",
+    version = "*",
+    event = "VeryLazy",
+    keys = {
+      {
+        "<leader>wft",
+        function()
+          vim.cmd("FocusToggle")
+          if vim.g.focus_disable then
+            vim.notify("Focus mode off", vim.log.levels.INFO, { title = "focus.nvim" })
+          else
+            vim.notify("Focus mode on", vim.log.levels.INFO, { title = "focus.nvim" })
+          end
+        end,
+        desc = "[Focus] Toggle window autosize",
+      },
+      { "<leader>wfe", ":FocusEqualise<CR>", desc = "[Focus] Equalise window" },
+      { "<leader>wfm", ":FocusMaximise<CR>", desc = "[Focus] Maximise window" },
+    },
+    opts = {
+      autoresize = { enable = true },
+      ui = {
+        cursorline = false,
+        signcolumn = false,
+      },
+    },
+    config = function(_, opts)
+      require("focus").setup(opts)
+
+      local ignore_filetypes = { "neo-tree", "qf", "Trouble" }
+      local ignore_buftypes = {
+        "nofile",
+        "prompt",
+        "popup",
+        "help",
+        "acwrite",
+        "quifkfix", --[[ "terminal" ]]
+      }
+      local augroup = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
+      vim.api.nvim_create_autocmd("WinEnter", {
+        group = augroup,
+        callback = function(_)
+          if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
+            vim.w.focus_disable = true
+          else
+            vim.w.focus_disable = false
+          end
+        end,
+        desc = "Disable focus autoresize for BufType",
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = augroup,
+        callback = function(_)
+          if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
+            vim.b.focus_disable = true
+          else
+            vim.b.focus_disable = false
+          end
+        end,
+        desc = "Disable focus autoresize for FileType",
+      })
+    end,
+  },
+  {
+    "stevearc/stickybuf.nvim",
+    opts = {},
+  },
 }

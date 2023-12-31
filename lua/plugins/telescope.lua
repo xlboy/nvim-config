@@ -60,7 +60,6 @@ return {
       },
     },
   },
-  { "stevearc/dressing.nvim", event = "VeryLazy", opts = {} },
   {
     "xlboy/function-picker.nvim",
     lazy = true,
