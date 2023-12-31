@@ -21,7 +21,7 @@ return {
         extra_groups = { "MasonNormal", "NvimTreeNormal", "FoldColumn" },
         exclude_groups = { "CursorLine" },
       })
-      local prefix = { "BufferLine", "NeoTree", "neo-tree", "DiagnosticVirtual", "NvimSeparator", "Trouble", "Edgy" }
+      local prefix = { "BufferLine", "NeoTree", "neo-tree", "DiagnosticVirtual", "NvimSeparator", "Trouble", "Edgy", "TabLineFill" }
       for _, v in ipairs(prefix) do
         transparent.clear_prefix(v)
       end

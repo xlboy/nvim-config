@@ -56,4 +56,5 @@ return {
       require("femaco").setup()
     end,
   },
+  { "tiagovla/scope.nvim", config = true },
 }

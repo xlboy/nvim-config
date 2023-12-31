@@ -4,7 +4,7 @@ local t_extensions = require("telescope").extensions
 --- Table based API for setting keybindings
 ---@param map_table table A nested table where the first key is the vim mode, the second key is the key to map, and the value is the function to set the mapping to
 ---@param base? table A base set of options to set on every keybinding
-function set_mappings(map_table, base)
+local function set_mappings(map_table, base)
   local _which_key_queue
   local function which_key_register()
     if _which_key_queue then
@@ -70,10 +70,11 @@ set_mappings({
     ["|"] = { "<cmd>vsplit<cr>" },
     ["\\"] = { "<cmd>split<cr>" },
     ["<leader>un"] = { u.ui.change_number, desc = "UI - Change number mode" },
-    ["{"] = { ":BufferLineCyclePrev<CR>" },
-    ["}"] = { ":BufferLineCycleNext<CR>" },
-    -- ["."] = { "@:" },
-    ["<leader>bp"] = { ":BufferLinePick<CR>" },
+    ["{"] = { ":bprevious<CR>" },
+    ["}"] = { ":bnext<CR>" },
+    ["[t"] = { ":tabprevious<CR>"},
+    ["]t"] = { ":tabnext<CR>"},
+    -- ["<leader>bp"] = { ":BufferLinePick<CR>" },
     ["<leader>gbl"] = { ":Telescope git_branches<CR>" },
     ["<leader>gfc"] = { ":Telescope git_status<CR>" },
   },
