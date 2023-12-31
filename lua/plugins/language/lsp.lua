@@ -125,12 +125,52 @@ return {
   {
     "hedyhli/outline.nvim",
     config = function()
-      -- Example mapping to toggle outline
-      vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
-
       require("outline").setup({
-        -- Your setup opts here (leave empty to use defaults)
+        outline_window = {
+          position = "left",
+          width = 45,
+          relative_width = false,
+        },
+        -- symbols = { filter = { "Function", "Class" } },
       })
+    end,
+    keys = function()
+      local o = require("outline")
+      local function switch_symbol(callback)
+        vim.ui.select({ "Function", "default" }, {
+          prompt = "Target Symbol",
+        }, function(symbol)
+          if not symbol then return end
+
+          local filter = {}
+          if symbol ~= "default" then filter = { symbol } end
+          require("outline.config").setup({
+            symbols = { filter = filter },
+          })
+          callback(symbol)
+        end)
+      end
+
+      return {
+        {
+          "<leader>lss",
+          function()
+            switch_symbol(function()
+              if o.is_open() then o.refresh() end
+            end)
+          end,
+          desc = "[Outline] Toogle",
+        },
+        {
+          "<leader>lst",
+          function()
+            if o.is_open() then return o.focus_toggle() end
+            o.open()
+          end,
+          desc = "[Outline] Toogle",
+        },
+        { "<leader>lsc", ":lua require('outline').close()<CR>", desc = "[Outline] Close" },
+      }
     end,
   },
   {
@@ -188,9 +228,7 @@ return {
     opts = {
       notification = { window = { winblend = 0 } },
       integration = {
-        ["nvim-tree"] = {
-          enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
-        },
+        ["nvim-tree"] = { enable = true },
       },
     },
   },

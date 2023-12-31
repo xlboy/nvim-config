@@ -1,5 +1,6 @@
 return {
   {
+    enabled = true,
     "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000, -- make sure to load this before all the other start plugins
@@ -20,7 +21,7 @@ return {
         extra_groups = { "MasonNormal", "NvimTreeNormal", "FoldColumn" },
         exclude_groups = { "CursorLine" },
       })
-      local prefix = { "BufferLine", "NeoTree", "neo-tree", "DiagnosticVirtual", "NvimSeparator", "Trouble" }
+      local prefix = { "BufferLine", "NeoTree", "neo-tree", "DiagnosticVirtual", "NvimSeparator", "Trouble", "Edgy" }
       for _, v in ipairs(prefix) do
         transparent.clear_prefix(v)
       end

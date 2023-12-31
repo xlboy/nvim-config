@@ -70,7 +70,7 @@ return {
     config = function(_, opts)
       require("focus").setup(opts)
 
-      local ignore_filetypes = { "neo-tree", "qf", "Trouble" }
+      local ignore_filetypes = { "neo-tree", "qf", "Trouble", "Outline" }
       local ignore_buftypes = {
         "nofile",
         "prompt",
