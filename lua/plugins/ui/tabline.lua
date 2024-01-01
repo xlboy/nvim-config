@@ -3,11 +3,12 @@ local config = {
   visible_color = { bg = "#2f3640", fg = "#dff9fb" },
   default_color = { bg = "none", fg = "#B0BEC5" },
   default_surround_char = { left = "", right = "" },
+  min_width = 15,
 }
 
 local utils = {
   get_window_number = function(bufnr, ft_ignores)
-    ft_ignores = ft_ignores or { "neo-tree" }
+    ft_ignores = ft_ignores or { "neo-tree", "Outline", "Trouble" }
     local ignore_count = 0
     for w_index, w_value in ipairs(vim.api.nvim_list_wins()) do
       local cur_win_ft = vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(w_value), "filetype")
@@ -86,30 +87,57 @@ return {
             return { fg = fg }
           end,
         },
-        FileIcon = {
-          -- condition = function(self)
-          --   return not self.is_active
-          -- end,
+        FileNameAndIcon = {
           init = function(self)
             local filename = self.filename
-            local extension = vim.fn.fnamemodify(filename, ":e")
-            self.icon, self.icon_color =
-              require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+            self.display_filename = filename == "" and "[No Name]" or vim.fn.fnamemodify(filename, ":t")
+            local filename_length = string.len(self.display_filename)
+            if filename_length < config.min_width then
+              self.display_left_space = math.floor((config.min_width - filename_length) / 2)
+              self.display_right_space = config.min_width - filename_length - self.display_left_space
+
+              if not self.is_active and self.is_visible then self.display_left_space = self.display_left_space - 2 end
+            end
           end,
-          provider = function(self)
-            return self.icon and (self.icon .. " ")
-          end,
-          hl = function(self)
-            return { fg = self.icon_color }
-          end,
-        },
-        FileName = {
-          provider = function(self)
-            local filename = self.filename
-            filename = filename == "" and "[No Name]" or vim.fn.fnamemodify(filename, ":t")
-            -- return " " .. filename .. " "
-            return filename
-          end,
+          {
+            {
+              name = "LeftSpace",
+              condition = function(self)
+                return self.display_left_space and self.display_left_space > 0
+              end,
+              provider = function(self)
+                return string.rep(" ", self.display_left_space)
+              end,
+            },
+            {
+              init = function(self)
+                local filename = self.filename
+                local extension = vim.fn.fnamemodify(filename, ":e")
+                self.icon, self.icon_color =
+                  require("nvim-web-devicons").get_icon_color(filename, extension, { default = true })
+              end,
+              provider = function(self)
+                return self.icon and (self.icon .. " ")
+              end,
+              hl = function(self)
+                return { fg = self.icon_color }
+              end,
+            },
+            {
+              provider = function(self)
+                return self.display_filename
+              end,
+            },
+            {
+              name = "RightSpace",
+              condition = function(self)
+                return self.display_right_space and self.display_right_space > 0
+              end,
+              provider = function(self)
+                return string.rep(" ", self.display_right_space)
+              end,
+            },
+          },
         },
         FileFlags = {
           {
@@ -157,8 +185,8 @@ return {
       end,
       -- components.buffer.ActiveIcon,
       components.buffer.WindowNumber,
-      components.buffer.FileIcon,
-      components.buffer.FileName,
+      -- components.buffer.FileIcon,
+      components.buffer.FileNameAndIcon,
       components.buffer.FileFlags,
     }
 
