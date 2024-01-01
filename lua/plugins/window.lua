@@ -57,14 +57,12 @@ return {
         desc = "[Focus] Toggle window autosize",
       },
       { "<leader>wfe", ":FocusEqualise<CR>", desc = "[Focus] Equalise window" },
+      { "<leader>wfa", ":FocusAutoresize<CR>", desc = "[Focus] Autoresize window" },
       { "<leader>wfm", ":FocusMaximise<CR>", desc = "[Focus] Maximise window" },
     },
     opts = {
       autoresize = { enable = true },
-      ui = {
-        cursorline = false,
-        signcolumn = false,
-      },
+      ui = { cursorline = false, signcolumn = false },
     },
     config = function(_, opts)
       require("focus").setup(opts)
@@ -82,11 +80,7 @@ return {
       vim.api.nvim_create_autocmd("WinEnter", {
         group = augroup,
         callback = function(_)
-          if vim.tbl_contains(ignore_buftypes, vim.bo.buftype) then
-            vim.w.focus_disable = true
-          else
-            vim.w.focus_disable = false
-          end
+          vim.w.focus_disable = vim.tbl_contains(ignore_buftypes, vim.bo.buftype)
         end,
         desc = "Disable focus autoresize for BufType",
       })
@@ -94,11 +88,7 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         group = augroup,
         callback = function(_)
-          if vim.tbl_contains(ignore_filetypes, vim.bo.filetype) then
-            vim.b.focus_disable = true
-          else
-            vim.b.focus_disable = false
-          end
+          vim.b.focus_disable = vim.tbl_contains(ignore_filetypes, vim.bo.filetype)
         end,
         desc = "Disable focus autoresize for FileType",
       })

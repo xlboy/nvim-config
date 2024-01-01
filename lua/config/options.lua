@@ -33,7 +33,6 @@ local options = {
     pumblend = 10,
     shiftwidth = 2, -- number of space inserted for indentation
     showmode = false, -- disable showing modes in command line
-    showtabline = 2, -- always display tabline
     signcolumn = "yes", -- always show the sign column
     smartcase = true, -- case sensitive searching
     splitbelow = true, -- splitting a new window below the current one
@@ -46,6 +45,7 @@ local options = {
     wrap = false, -- disable wrapping of lines longer than the width of window
     writebackup = false, -- disable making a backup before overwriting a file
     hidden = true,
+    showtabline = 2
   },
   g = {
     mapleader = " ", -- set leader key
