@@ -24,6 +24,7 @@ return {
           "c",
           "cpp",
         },
+        highlight = { enable = true },
         incremental_selection = {
           enable = true,
           keymaps = {

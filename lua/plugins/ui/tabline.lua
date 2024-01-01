@@ -185,7 +185,6 @@ return {
       end,
       -- components.buffer.ActiveIcon,
       components.buffer.WindowNumber,
-      -- components.buffer.FileIcon,
       components.buffer.FileNameAndIcon,
       components.buffer.FileFlags,
     }

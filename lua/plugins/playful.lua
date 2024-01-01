@@ -2,6 +2,7 @@ local u = require("utils")
 
 return {
   {
+    enabled = false,
     "folke/drop.nvim",
     event = "VeryLazy",
     opts = {
@@ -35,10 +36,34 @@ return {
   },
   {
     "eandrju/cellular-automaton.nvim",
-    event = "VeryLazy",
+    lazy = true,
     keys = {
       { "<leader>fmk", ":CellularAutomaton make_it_rain<CR>", desc = "[CellularAutomaton] Make it rain" },
       { "<leader>fml", ":CellularAutomaton game_of_life<CR>", desc = "[CellularAutomaton] game of life" },
+    },
+  },
+  {
+    enabled = false,
+    "tamton-aquib/zone.nvim",
+    opts = { after = 3000000 },
+  },
+  {
+    enabled = false,
+    "ElPiloto/significant.nvim",
+    lazy = true,
+    keys = {
+      {
+        "<leader>fms",
+        function()
+          -- local significant = require("significant")
+          -- local sprites = require("significant.sprites")
+          -- local lnum = 10
+          -- for animation_name, _ in pairs(sprites) do
+          --   significant.start_animated_sign(lnum, animation_name, 100)
+          --   lnum = lnum + 1
+          -- end
+        end,
+      },
     },
   },
 }
