@@ -1,6 +1,12 @@
-local config = {}
+local config = {
+  active_color = { bg = "#17c0eb", fg = "#dff9fb" },
+  visible_color = { bg = "#16a2c5", fg = "#82AAFF" },
+  default_color = { bg = "#1e222a", fg = "#B0BEC5" },
+  default_surround_char = { left = "", right = "" },
+}
 
 return {
+  enabled = true,
   "rebelot/heirline.nvim",
   config = function()
     local h_conditions = require("heirline.conditions")
@@ -8,15 +14,43 @@ return {
 
     local components = {
       buffer = {
+        ActiveOrVisibleIcon = {
+          condition = function(self)
+            return self.is_active or self.is_visible
+          end,
+          provider = function(self)
+            return self.is_active and "● " or "○ "
+          end,
+          hl = function(self)
+            return { bold = self.is_active }
+          end,
+        },
+        surround = {
+          Left = {
+            condition = function(self)
+              return self.is_active or self.is_visible
+            end,
+            provider = function(self)
+              local str = config.default_surround_char.left
+              return config.default_surround_char.left .. (self.is_active and "●" or "○") .. " "
+            end,
+            hl = { bg = "none" },
+          },
+          Right = {
+            condition = function(self)
+              return self.is_active or self.is_visible
+            end,
+            provider = config.default_surround_char.right,
+          },
+        },
         FileName = {
           provider = function(self)
-            -- self.filename will be defined later, just keep looking at the example!
             local filename = self.filename
             filename = filename == "" and "[No Name]" or vim.fn.fnamemodify(filename, ":t")
             return filename
           end,
           hl = function(self)
-            return { bold = self.is_active or self.is_visible, italic = false }
+            return { bold = self.is_active }
           end,
         },
         FileFlags = {
@@ -60,7 +94,7 @@ return {
             end
           end,
         }),
-        { provider = "%999X  %X", hl = "TabLine" },
+        { provider = "%999X 󰅙 %X", hl = "TabLine" },
       },
     }
 
@@ -69,45 +103,37 @@ return {
         self.filename = vim.api.nvim_buf_get_name(self.bufnr)
       end,
       hl = function(self)
-        if self.is_active then
-          return "TabLineSel"
-          -- why not?
-          -- elseif not vim.api.nvim_buf_is_loaded(self.bufnr) then
-          --     return { fg = "gray" }
-        else
-          return "TabLine"
-        end
+        if self.is_active then return config.active_color end
+        if self.is_visible then return config.visible_color end
+        return config.default_color
       end,
-      on_click = {
-        callback = function(_, minwid, _, button)
-          if button == "m" then -- close on mouse middle click
-            vim.schedule(function()
-              vim.api.nvim_buf_delete(minwid, { force = false })
-            end)
-          else
-            vim.api.nvim_win_set_buf(0, minwid)
-          end
-        end,
-        minwid = function(self)
-          return self.bufnr
-        end,
-        name = "heirline_tabline_buffer_callback",
+      {
+        components.buffer.surround.Left,
+        components.buffer.FileName,
+        components.buffer.surround.Right,
       },
-      components.buffer.FileName,
       components.buffer.FileFlags,
     }
 
     -- The final touch!
-    local TablineBufferBlock = h_utils.surround({ " ", "" }, function(self)
-      if self.is_active then
-        return h_utils.get_highlight("TabLineSel").bg
-      else
-        return h_utils.get_highlight("TabLine").bg
-      end
-    end, { TablineFileNameBlock })
+    -- local edge = { { " ", "" }, { " ", " " }, { " ☾", "☽ " } }
+    -- local TablineBufferBlock = h_utils.surround(edge[1], function(self)
+    --   if self.is_active then return h_utils.get_highlight("TabLineSel").bg end
+    --
+    --   -- if self.is_active then
+    --   --   return h_utils.get_highlight("TabLineSel").bg
+    --   -- else
+    --   --   return h_utils.get_highlight("TabLine").bg
+    --   -- end
+    -- end, { TablineFileNameBlock })
 
-    local BufferLine = h_utils.make_buflist(TablineBufferBlock)
+    local BufferLine = h_utils.make_buflist({
+      { provider = " " },
+      TablineFileNameBlock,
+    })
 
-    require("heirline").setup({ tabline = { BufferLine, components.TabPage } })
+    require("heirline").setup({
+      tabline = { BufferLine, components.TabPage },
+    })
   end,
 }
