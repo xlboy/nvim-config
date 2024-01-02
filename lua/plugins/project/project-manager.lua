@@ -6,8 +6,6 @@ local resession = {
     require("resession").save(vim.fn.getcwd(), { dir = "dirsession" })
   end,
   load_cwd = function()
-    -- require("resession").load(vim.fn.getcwd(), { dir = "dirsession" })
-    -- 安全执行
     pcall(function()
       require("resession").load(vim.fn.getcwd(), { dir = "dirsession" })
     end)
@@ -64,7 +62,15 @@ return {
           picker.show({
             type = "flat",
             source = scanner.scan({
-              nvim = { w_dir = "D:/project/nvim", __extra__ = { level = 1 } },
+              nvim = {
+                my_config = {
+                  p_dir = "C:/Users/Administrator/AppData/Local/nvim",
+                  __extra__ = { level = 2 },
+                },
+                wezterm = "C:/Users/Administrator/.config/wezterm",
+                { w_dir = "D:/project/nvim" },
+                __extra__ = { level = 1 },
+              },
               cpp = { w_dir = "D:/project/cpp" },
             }),
           })
