@@ -58,4 +58,12 @@ function M.fs.open_dir_in_finder(dir)
   vim.fn.system(cmd)
 end
 
+M.buffer = {
+  get_bufs = function()
+    return vim.tbl_filter(function(bufnr)
+      return vim.bo[bufnr].buflisted and vim.api.nvim_buf_is_loaded(bufnr)
+    end, vim.api.nvim_list_bufs())
+  end,
+}
+
 return M

@@ -18,8 +18,15 @@ return {
     priority = 100,
     lazy = false,
     init = function()
-      vim.api.nvim_create_autocmd("VimLeavePre", { callback = resession.save_cwd })
-      vim.api.nvim_create_autocmd("VimEnter", { callback = resession.load_cwd })
+      vim.api.nvim_create_autocmd("VimLeavePre", {
+        callback = function()
+          local bufs = u.basic.buffer.get_bufs()
+          local is_no_name = #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == ""
+          if is_no_name then return end
+          resession.save_cwd()
+        end,
+      })
+      -- vim.api.nvim_create_autocmd("VimEnter", { callback = resession.load_cwd })
     end,
     opts = {
       autosave = { enabled = true, interval = 60, notify = false },
