@@ -9,8 +9,11 @@ return {
   },
   {
     "jay-babu/mason-null-ls.nvim",
+    event = "VeryLazy",
     opts = function(_, opts)
-      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "stylua", "luacheck" })
+      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, {
+        "stylua", --[[ "luacheck" ]]
+      })
     end,
   },
   {

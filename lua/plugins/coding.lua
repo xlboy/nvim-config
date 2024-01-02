@@ -243,6 +243,17 @@ return {
       end)
     end,
   },
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    opts = {
+      useDefaultKeymaps = false,
+    },
+    keys = {
+      { "_gc", ":lua require('various-textobjs').multiCommentedLines()<CR>", mode = { "x", "o" } },
+      { "im", ":lua require('various-textobjs').chainMember('inner')<CR>", mode = { "x", "o" } },
+      { "am", ":lua require('various-textobjs').chainMember('outer')<CR>", mode = { "x", "o" } },
+    },
+  },
   -- autopairs, autotag --
   {
     "windwp/nvim-autopairs",
@@ -273,6 +284,8 @@ return {
       })
     end,
   },
+  -- Auto Indent
   { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
+  -- 在 cmd 中输入整数后跳转到对应的行中
   { "nacro90/numb.nvim", event = "BufRead" },
 }

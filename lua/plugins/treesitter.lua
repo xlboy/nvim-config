@@ -7,7 +7,7 @@ return {
     },
     opts = {
       ensure_installed = { "bash", "yaml", "query", "regex" },
-      highlight = { enable = false },
+      highlight = { enable = true },
       incremental_selection = {
         enable = true,
         keymaps = {

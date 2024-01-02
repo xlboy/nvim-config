@@ -67,7 +67,7 @@ return {
   },
   { "williamboman/mason.nvim", config = true },
   { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
-  { "nvimtools/none-ls.nvim" },
+  { "nvimtools/none-ls.nvim", event = "VeryLazy" },
   {
     "nvimdev/lspsaga.nvim",
     event = "VeryLazy",
@@ -105,7 +105,7 @@ return {
       require("lsp-file-operations").setup()
     end,
   },
-  -- { "stevearc/aerial.nvim", event = "LspAttach", opts = {} },
+  -- { "stevearc/aerial.nvim", event = "LspAtach", opts = {} },
   {
     "hedyhli/outline.nvim",
     config = function()
@@ -114,6 +114,10 @@ return {
           position = "left",
           width = 45,
           relative_width = false,
+        },
+        keymaps = {
+          hover_symbol = "gh",
+          toggle_preview = "P",
         },
         -- symbols = { filter = { "Function", "Class" } },
       })

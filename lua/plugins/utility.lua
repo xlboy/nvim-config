@@ -70,7 +70,7 @@ return {
     dependencies = { { "kkharji/sqlite.lua" } },
     opts = {
       ring = { storage = "sqlite", ignore_registers = { "0" } },
-      highlight = { on_put = false, on_yank = false, timer = 150 },
+      highlight = { on_put = true, on_yank = true, timer = 150 },
       system_clipboard = { sync_with_ring = false },
     },
     keys = {

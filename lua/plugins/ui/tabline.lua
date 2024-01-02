@@ -32,9 +32,15 @@ local utils = {
   ---@param shorten boolean
   ---@return string
   get_unique_filename = function(self, filename, shorten)
-    local filenames = vim.tbl_filter(function(filename_other)
-      return filename_other ~= filename
-    end, vim.tbl_map(vim.api.nvim_buf_get_name, self:get_bufs()))
+    filename = vim.fn.expand(filename)
+    local filenames = vim.tbl_filter(
+      function(filename_other)
+        return filename_other ~= filename
+      end,
+      vim.tbl_map(function(id)
+        return vim.fn.expand(vim.api.nvim_buf_get_name(id))
+      end, self:get_bufs())
+    )
 
     if shorten then
       filename = vim.fn.pathshorten(filename)
@@ -65,7 +71,7 @@ local utils = {
     -- Iterate backwards (since filename is reversed) until a "/" is found
     -- in order to show a valid file path
     while index <= #filename do
-      if filename:sub(index, index) == "/" then
+      if filename:sub(index, index) == "/" or filename:sub(index, index) == "\\" then
         index = index - 1
         break
       end
