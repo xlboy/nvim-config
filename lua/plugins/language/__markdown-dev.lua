@@ -1,4 +1,21 @@
+local u = require("utils")
+
 return {
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, {
+        "markdown",
+        "markdown_inline",
+      })
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "marksman" })
+    end,
+  },
   {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },

@@ -10,10 +10,10 @@ return {
       "saadparwaiz1/cmp_luasnip",
       -- { "zbirenbaum/copilot-cmp", config = true },
     },
-    config = function()
+    opts = function(_, opts)
       local cmp = require("cmp")
       local luasnip = require("luasnip")
-      local opts = {
+      opts = vim.tbl_deep_extend("force", opts or {}, {
         experimental = { native_menu = false },
         snippet = {
           expand = function(args)
@@ -70,9 +70,11 @@ return {
             -- symbol_map = { Copilot = "" },
           }),
         },
-      }
-
-      cmp.setup(opts)
+      })
+      return opts
+    end,
+    config = function(_, opts)
+      require("cmp").setup(opts)
     end,
   },
   {

@@ -70,7 +70,7 @@ return {
     event = "VeryLazy",
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     opts = {
-      user_default_options = { names = true },
+      user_default_options = { names = true, tailwind = true },
     },
   },
 }

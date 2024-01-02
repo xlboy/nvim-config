@@ -8,6 +8,7 @@ function M.os_pick(winVal, macVal)
 end
 
 function M.append_arrays(t1, ...)
+  t1 = t1 or {}
   for _, t in ipairs({ ... }) do
     for i = 1, #t do
       table.insert(t1, t[i])

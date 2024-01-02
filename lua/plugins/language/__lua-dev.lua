@@ -2,6 +2,24 @@ local u = require("utils")
 
 return {
   {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "lua", "luap" })
+    end,
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "stylua", "luacheck" })
+    end,
+  },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    opts = function(_, opts)
+      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "lua_ls" })
+    end,
+  },
+  {
     "folke/neodev.nvim",
     ft = { "lua" },
     event = "VeryLazy",

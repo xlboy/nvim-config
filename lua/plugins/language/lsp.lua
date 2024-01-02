@@ -4,7 +4,6 @@ local constants = require("config.constants")
 return {
   {
     "neovim/nvim-lspconfig",
-    dependencies = { "williamboman/mason-lspconfig.nvim" },
     event = "VeryLazy",
     -- opts = {
     --   inlay_hints = { enabled = true },
@@ -67,23 +66,8 @@ return {
     end,
   },
   { "williamboman/mason.nvim", config = true },
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    event = "VeryLazy",
-    opts = function()
-      local ensure_installed = { "lua_ls", "tsserver" }
-
-      if constants.IS_WIN then
-        u.basic.append_arrays(ensure_installed, {
-          "clangd",
-          "neocmake",
-        })
-      end
-
-      return { ensure_installed = ensure_installed }
-    end,
-  },
+  { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
+  { "nvimtools/none-ls.nvim" },
   {
     "nvimdev/lspsaga.nvim",
     event = "VeryLazy",
