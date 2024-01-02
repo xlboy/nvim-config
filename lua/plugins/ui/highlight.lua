@@ -11,7 +11,7 @@ return {
   },
   {
     "echasnovski/mini.cursorword",
-    event = "UIEnter",
+    event = "VeryLazy",
     config = function()
       require("mini.cursorword").setup()
     end,
@@ -21,7 +21,7 @@ return {
   -- instances.
   {
     "RRethy/vim-illuminate",
-    event = "UIEnter",
+    event = "VeryLazy",
     opts = {
       delay = 200,
       large_file_cutoff = 2000,
@@ -55,7 +55,7 @@ return {
 
   {
     "levouh/tint.nvim",
-    event = "UIEnter",
+    event = "VeryLazy",
     opts = {
       tint = -80,
       saturation = 0.6,
@@ -67,7 +67,7 @@ return {
   },
   {
     "NvChad/nvim-colorizer.lua",
-    event = "UIEnter",
+    event = "VeryLazy",
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     opts = {
       user_default_options = { names = true },

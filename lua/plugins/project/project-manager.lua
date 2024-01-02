@@ -33,6 +33,7 @@ local constants = require("config.constants")
 -- }
 
 return {
+  enabled = true,
   "coffebar/neovim-project",
   lazy = false,
   priority = 100,

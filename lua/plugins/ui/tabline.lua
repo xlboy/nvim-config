@@ -24,19 +24,9 @@ local utils = {
   end,
   get_bufs = function()
     return vim.tbl_filter(function(bufnr)
-      return vim.api.nvim_buf_get_option(bufnr, "buflisted")
-    end, vim.api.nvim_list_bufs())
-  end,
-  ---Get the names of all current listed buffers
-  ---@return table
-  get_current_filenames = function()
-    local listed_buffers = vim.tbl_filter(function(bufnr)
       return vim.bo[bufnr].buflisted and vim.api.nvim_buf_is_loaded(bufnr)
     end, vim.api.nvim_list_bufs())
-
-    return vim.tbl_map(vim.api.nvim_buf_get_name, listed_buffers)
   end,
-
   ---Get unique name for the current buffer
   ---@param filename string
   ---@param shorten boolean
@@ -44,7 +34,7 @@ local utils = {
   get_unique_filename = function(self, filename, shorten)
     local filenames = vim.tbl_filter(function(filename_other)
       return filename_other ~= filename
-    end, self:get_current_filenames())
+    end, vim.tbl_map(vim.api.nvim_buf_get_name, self:get_bufs()))
 
     if shorten then
       filename = vim.fn.pathshorten(filename)
