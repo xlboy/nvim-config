@@ -1,4 +1,4 @@
-local constants = require("config.constants")
+local config = require("config.config")
 return {
   {
     "lewis6991/gitsigns.nvim",
@@ -53,7 +53,7 @@ return {
             diff_plugin = "diffview",
             telescope_theme = {
               show_custom_functions = {
-                layout_config = constants.MINI_TS_LAYOUT_WH,
+                layout_config = config.mini_ts_layout_wh,
               },
             },
           },

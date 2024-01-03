@@ -30,7 +30,7 @@ return {
         "Trouble",
         "Edgy",
         "TabLineFill",
-        "Incline",
+        -- "Incline",
       }
       for _, v in ipairs(prefix) do
         transparent.clear_prefix(v)

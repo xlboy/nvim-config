@@ -1,8 +1,8 @@
-local constants = require("config.constants")
+local config = require("config.config")
 local M = {}
 
 function M.os_pick(winVal, macVal)
-  if constants.IS_WIN then return winVal end
+  if config.IS_WIN then return winVal end
 
   return macVal
 end

@@ -1,3 +1,5 @@
+local config = require("config.config")
+
 return {
   {
     "utilyre/sentiment.nvim",
@@ -62,13 +64,15 @@ return {
       saturation = 0.6,
       window_ignore_function = function(winid)
         local buf = vim.api.nvim_win_get_buf(winid)
-        return vim.bo[buf].modifiable ~= true
+        local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+        if filetype == "" then return true end
+        if vim.tbl_contains(config.ft_ignores) then return true end
       end,
     },
   },
   {
     "NvChad/nvim-colorizer.lua",
-    event = "VeryLazy",
+    event = "BufRead",
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     opts = {
       user_default_options = { names = true, tailwind = true },

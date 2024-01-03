@@ -1,4 +1,4 @@
-local constants = require("config.constants")
+local config = require("config.config")
 local u = require("utils")
 
 return {
@@ -10,7 +10,7 @@ return {
       require("window-picker").setup({
         hint = "floating-big-letter",
         filter_rules = {
-          bo = { filetype = constants.FT_IGNORES, buftype = {} },
+          bo = { filetype = config.ft_ignores, buftype = {} },
         },
       })
     end,
@@ -68,7 +68,7 @@ return {
     config = function(_, opts)
       require("focus").setup(opts)
 
-      local ignore_filetypes = constants.FT_IGNORES
+      local ignore_filetypes = config.ft_ignores
       local ignore_buftypes = {
         "nofile",
         "prompt",

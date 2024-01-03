@@ -1,4 +1,4 @@
-local constants = require("config.constants")
+local config = require("config.config")
 local t_builtin = require("telescope.builtin")
 
 return {
@@ -44,7 +44,7 @@ return {
         "<leader>ff",
         function()
           t_builtin.find_files({
-            layout_config = constants.MINI_TS_LAYOUT_WH,
+            layout_config = config.mini_ts_layout_wh,
             previewer = false,
           })
         end,
@@ -135,7 +135,7 @@ return {
           t_extensions.recent_files.pick({
             only_cwd = true,
             previewer = false,
-            layout_config = constants.MINI_TS_LAYOUT_WH,
+            layout_config = config.mini_ts_layout_wh,
           })
         end,
         mode = "n",
@@ -166,7 +166,7 @@ return {
     config = function()
       require("telescope").setup({
         extensions = {
-          import = { layout_config = constants.MINI_TS_LAYOUT_WH },
+          import = { layout_config = config.mini_ts_layout_wh },
         },
       })
       require("telescope").load_extension("import")

@@ -1,10 +1,10 @@
 local u = require("utils")
-local constants = require("config.constants")
+local g_config = require("config.config")
 local config = {
-  active_color = { bg = "#17c0eb", fg = "#ffffff" },
-  visible_color = { bg = "#2f3640", fg = "#afc5c7" },
-  default_color = { bg = "none", fg = "#B0BEC5" },
-  default_surround_char = { left = "", right = "" },
+  active_color = g_config.colors.window.active,
+  visible_color = g_config.colors.window.visible,
+  default_color = g_config.colors.window.default,
+  default_surround_char = g_config.symbols.rounded_corner,
   min_width = 20,
 }
 

@@ -1,5 +1,5 @@
 local u = require("utils")
-local constants = require("config.constants")
+local config = require("config.config")
 
 return {
   {

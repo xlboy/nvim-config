@@ -1,5 +1,5 @@
 local u = require("utils")
-local constants = require("config.constants")
+local config = require("config.config")
 
 local resession = {
   save_cwd = function()
@@ -56,7 +56,7 @@ return {
     },
   },
   {
-    dir = constants.IS_WIN and "D:\\project\\nvim\\workspace-scanner.nvim" or "~/Desktop/xlboy/workspace-scanner.nvim",
+    dir = config.IS_WIN and "D:\\project\\nvim\\workspace-scanner.nvim" or "~/Desktop/xlboy/workspace-scanner.nvim",
     -- "xlboy/workspace-scanner.nvim",
     opts = {
       picker = {
@@ -83,6 +83,7 @@ return {
             nvim = {
               my_config = { p_dir = "C:/Users/Administrator/AppData/Local/nvim", __extra__ = { level = 2 } },
               wezterm = "C:/Users/Administrator/.config/wezterm",
+              lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
               { w_dir = "D:/project/nvim" },
               __extra__ = { level = 1 },
             },
@@ -136,7 +137,7 @@ return {
 
       u.basic.append_arrays(opts.projects, { vim.fn.stdpath("data") .. "/lazy/*" })
 
-      if constants.IN_HOME then
+      if config.IN_HOME then
         u.basic.append_arrays(opts.projects, {
           "~/Desktop/xlboy-project/__open-source__/*",
           "~/Desktop/xlboy-project/*",
@@ -154,7 +155,7 @@ return {
         "<leader>fpa",
         function()
           require("telescope").extensions["neovim-project"].discover({
-            layout_config = constants.MINI_TS_LAYOUT_WH,
+            layout_config = config.MINmini_ts_layout_wh,
           })
         end,
         desc = "[Project] All record",
@@ -163,7 +164,7 @@ return {
         "<leader>fpr",
         function()
           require("telescope").extensions["neovim-project"].history({
-            layout_config = constants.MINI_TS_LAYOUT_WH,
+            layout_config = config.MINmini_ts_layout_wh,
           })
         end,
         desc = "[Project] Recent history",
