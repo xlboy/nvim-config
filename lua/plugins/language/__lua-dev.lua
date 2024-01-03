@@ -2,7 +2,7 @@ local u = require("utils")
 
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
+    "xlboy/nvim-treesitter",
     opts = function(_, opts)
       opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "lua", "luap" })
     end,

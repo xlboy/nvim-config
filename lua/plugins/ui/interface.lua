@@ -24,17 +24,15 @@ return {
         on_open = function(win)
           vim.api.nvim_win_set_config(win, { zindex = 100 })
         end,
-        routes = {
-          {
-            filter = {
-              event = "notify",
-              find = "No information available",
-            },
-            opts = { skip = true },
-          },
-        },
       })
-      vim.notify = require("notify")
+      local banned_messages = { "No information available" }
+      ---@diagnostic disable-next-line: duplicate-set-field
+      vim.notify = function(msg, ...)
+        for _, banned in ipairs(banned_messages) do
+          if msg == banned then return end
+        end
+        require("notify")(msg, ...)
+      end
     end,
   },
   {

@@ -1,3 +1,4 @@
+local constants = require("config.constants")
 local u = require("utils")
 
 return {
@@ -8,9 +9,7 @@ return {
     config = function()
       require("window-picker").setup({
         hint = "floating-big-letter",
-        filter_rules = {
-          bo = { filetype = { "NvimTree", "neo-tree", "notify", "fidget", "Trouble" }, buftype = {} },
-        },
+        filter_rules = { bo = constants.FT_IGNORES },
       })
     end,
     keys = {

@@ -53,6 +53,7 @@ return {
     },
   },
 
+  -- 非 focus 的窗口进行置灰
   {
     "levouh/tint.nvim",
     event = "VeryLazy",

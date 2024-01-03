@@ -3,7 +3,7 @@ local u = require("utils")
 
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
+    "xlboy/nvim-treesitter",
     opts = function(_, opts)
       if constants.IS_WIN then
         opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "c", "cpp", "cmake" })

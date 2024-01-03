@@ -273,7 +273,7 @@ return {
   },
   {
     "windwp/nvim-ts-autotag",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = { "xlboy/nvim-treesitter" },
     event = "FileType typescriptreact,javascriptreact,vue,html,xml,astro",
     config = function()
       require("nvim-treesitter.configs").setup({

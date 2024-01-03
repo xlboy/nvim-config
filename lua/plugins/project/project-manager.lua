@@ -3,14 +3,19 @@ local constants = require("config.constants")
 
 local resession = {
   save_cwd = function()
-    require("resession").save(vim.fn.getcwd(), { dir = "dirsession" })
+    require("resession").save(vim.fn.getcwd(), { dir = "dirsession", notify = false })
   end,
   load_cwd = function()
     pcall(function()
-      require("resession").load(vim.fn.getcwd(), { dir = "dirsession" })
+      require("resession").load(vim.fn.getcwd(), { dir = "dirsession", notify = false })
     end)
   end,
 }
+
+local function tint_refresh()
+  require("tint").disable()
+  require("tint").enable()
+end
 
 return {
   {
@@ -20,7 +25,7 @@ return {
     init = function()
       vim.api.nvim_create_autocmd("VimLeavePre", {
         callback = function()
-          local bufs = u.basic.buffer.get_bufs()
+          local bufs = u.buffer.get_bufs()
           local is_no_name = #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == ""
           if is_no_name then return end
           resession.save_cwd()
@@ -40,21 +45,29 @@ return {
       end,
       extensions = { scope = {} }, -- add scope.nvim extension
     },
-    keys = { { "<leader>S.", resession.load_cwd } },
+    keys = {
+      {
+        "<leader>S.",
+        function()
+          resession.load_cwd()
+          tint_refresh()
+        end,
+      },
+    },
   },
   {
-    dir = constants.IS_WIN and "D:\\project\\nvim\\workspace-scanner.nvim" or nil,
+    dir = constants.IS_WIN and "D:\\project\\nvim\\workspace-scanner.nvim" or "~/Desktop/xlboy/workspace-scanner.nvim",
     -- "xlboy/workspace-scanner.nvim",
     opts = {
       picker = {
+        flat_opts = { separator = " 🌀 " },
         event = {
           on_select = function(entry)
-            -- require("session_manager").save_current_session()
             resession.save_cwd()
             vim.cmd("BDelete! all")
             vim.cmd("cd " .. entry.source.dir)
             resession.load_cwd()
-            -- require("session_manager").load_current_dir_session()
+            tint_refresh()
           end,
         },
       },
@@ -66,20 +79,33 @@ return {
           local scanner = require("workspace-scanner.scanner")
           local picker = require("workspace-scanner.picker")
 
+          local source = u.basic.os_pick({
+            nvim = {
+              my_config = { p_dir = "C:/Users/Administrator/AppData/Local/nvim", __extra__ = { level = 2 } },
+              wezterm = "C:/Users/Administrator/.config/wezterm",
+              { w_dir = "D:/project/nvim" },
+              __extra__ = { level = 1 },
+            },
+            cpp = { w_dir = "D:/project/cpp" },
+          }, {
+            nvim = {
+              my_config = { p_dir = "~/.config/nvim", __extra__ = { level = 1 } },
+              wezterm_config = { p_dir = "~/.config/nvim" },
+              __extra__ = { level = 1 },
+            },
+            li = { w_dir = "~/Desktop/lilith/" },
+            xlboy = {
+              { w_dir = "~/Desktop/xlboy/" },
+              open_source = { w_dir = "~/Desktop/xlboy/__open-source__/" },
+            },
+          })
+
           picker.show({
             type = "flat",
-            source = scanner.scan({
-              nvim = {
-                my_config = {
-                  p_dir = "C:/Users/Administrator/AppData/Local/nvim",
-                  __extra__ = { level = 2 },
-                },
-                wezterm = "C:/Users/Administrator/.config/wezterm",
-                { w_dir = "D:/project/nvim" },
-                __extra__ = { level = 1 },
-              },
-              cpp = { w_dir = "D:/project/cpp" },
-            }),
+            source = scanner.scan(source),
+            telescope_opts = {
+              layout_config = { height = 25, width = 110 },
+            },
           })
         end,
       },
