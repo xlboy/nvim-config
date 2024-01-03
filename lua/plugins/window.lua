@@ -9,7 +9,9 @@ return {
     config = function()
       require("window-picker").setup({
         hint = "floating-big-letter",
-        filter_rules = { bo = constants.FT_IGNORES },
+        filter_rules = {
+          bo = { filetype = constants.FT_IGNORES, buftype = {} },
+        },
       })
     end,
     keys = {
@@ -66,7 +68,7 @@ return {
     config = function(_, opts)
       require("focus").setup(opts)
 
-      local ignore_filetypes = { "neo-tree", "qf", "Trouble", "Outline" }
+      local ignore_filetypes = constants.FT_IGNORES
       local ignore_buftypes = {
         "nofile",
         "prompt",

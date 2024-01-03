@@ -5,5 +5,5 @@ return {
     width = 90,
     height = 25,
   },
-  FT_IGNORES = { "NvimTree", "neo-tree", "notify", "fidget", "Trouble" },
+  FT_IGNORES = { "qf", "Outline", "neo-tree", "notify", "fidget", "Trouble", "incline" },
 }

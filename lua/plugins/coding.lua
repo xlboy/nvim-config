@@ -252,6 +252,8 @@ return {
       { "_gc", ":lua require('various-textobjs').multiCommentedLines()<CR>", mode = { "x", "o" } },
       { "im", ":lua require('various-textobjs').chainMember('inner')<CR>", mode = { "x", "o" } },
       { "am", ":lua require('various-textobjs').chainMember('outer')<CR>", mode = { "x", "o" } },
+      { "ii", ":lua require('various-textobjs').indentation('inner', 'inner')<CR>", mode = { "x", "o" } },
+      { "ir", ":lua require('various-textobjs').restOfIndentation()<CR>", mode = { "x", "o" } },
     },
   },
   -- autopairs, autotag --
@@ -262,7 +264,7 @@ return {
       fast_wrap = {
         chars = { "{", "[", "(", '"', "'" },
         pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-        offset = 0,
+        offset = 0.333,
         end_key = "$",
         keys = "qwertyuiopzxcvbnmasdfghjkl",
         check_comma = true,
