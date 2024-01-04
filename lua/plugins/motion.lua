@@ -1,7 +1,6 @@
 return {
   {
     "xlboy/flash.nvim",
-    lazy = true,
     ---@type Flash.Config
     opts = {
       label = { uppercase = false },
@@ -41,7 +40,7 @@ return {
   },
   {
     "ggandor/flit.nvim",
-    event = "VeryLazy",
+    event = "BufRead",
     commit = "f4e9af572a62c808c8de214da672f2a115a98c35",
     config = function()
       require("flit").setup({ labeled_modes = "nx", multiline = false, opts = {} })
@@ -53,7 +52,7 @@ return {
   },
   {
     "chaoren/vim-wordmotion",
-    event = "VeryLazy",
+    event = "BufRead",
     init = function()
       vim.g.wordmotion_prefix = ";"
     end,
@@ -62,7 +61,7 @@ return {
     "xlboy/nvim-spider",
     -- dir = "~/Desktop/xlboy/__open-source__/nvim-spider",
     -- "chrisgrieser/nvim-spider",
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {
       skipInsignificantPunctuation = true,
       -- subwordMovement = false,
@@ -86,7 +85,14 @@ return {
   },
   {
     "tomasky/bookmarks.nvim",
-    event = "VeryLazy",
+    keys = {
+      { "<leader>mcc", desc = "Bookmark Toggle" },
+      { "<leader>mi", desc = "Bookmark Annotation" },
+      { "<leader>mca", desc = "Bookmark Clean" },
+      { "<leader>mj", desc = "Bookmark Next" },
+      { "<leader>mk", desc = "Bookmark Prev" },
+      { "<leader>ml", desc = "Bookmark List" },
+    },
     config = function()
       require("bookmarks").setup({
         save_file = vim.fn.stdpath("data") .. "bookmarks",
@@ -110,20 +116,21 @@ return {
       require("telescope").load_extension("bookmarks")
     end,
   },
-  {
-    "cbochs/portal.nvim",
-    event = "VeryLazy",
-    keys = {
-      -- { "<C-o>", "<cmd>Portal jumplist backward<cr>", desc = "Jump Backward" },
-      -- { "<C-i>", "<cmd>Portal jumplist forward<cr>", desc = "Jump Forward" },
-      { "g;", "<cmd>Portal changelist backward<cr>", desc = "Change Backward" },
-      { "g,", "<cmd>Portal changelist forward<cr>", desc = "Change Forward" },
-    },
-    config = true,
-  },
+  -- {
+  --   enabled = false,
+  --   "cbochs/portal.nvim",
+  --   event = "VeryLazy",
+  --   keys = {
+  --     -- { "<C-o>", "<cmd>Portal jumplist backward<cr>", desc = "Jump Backward" },
+  --     -- { "<C-i>", "<cmd>Portal jumplist forward<cr>", desc = "Jump Forward" },
+  --     { "g;", "<cmd>Portal changelist backward<cr>", desc = "Change Backward" },
+  --     { "g,", "<cmd>Portal changelist forward<cr>", desc = "Change Forward" },
+  --   },
+  --   config = true,
+  -- },
   {
     "gsuuon/tshjkl.nvim",
-    event = "VeryLazy",
+    keys = { { "<leader>ct", desc = "Toggle tshjkl" } },
     opts = {
       select_current_node = false,
       keymaps = { toggle = "<leader>ct" },

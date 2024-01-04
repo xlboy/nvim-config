@@ -29,7 +29,7 @@ return {
         mappings = {
           i = {
             ["<C-h>"] = actions.preview_scrolling_left,
-            ["<C-l>"] = actions.preview_scrolling_right, 
+            ["<C-l>"] = actions.preview_scrolling_right,
             ["<C-Down>"] = actions.cycle_history_next,
             ["<C-Up>"] = actions.cycle_history_prev,
           },
@@ -52,9 +52,24 @@ return {
       {
         "<leader>fc",
         function()
-          t_builtin.current_buffer_fuzzy_find({
-            -- layout_config = { width = 120, height = 40 },
-            -- previewer = true,
+          t_builtin.current_buffer_fuzzy_find()
+        end,
+      },
+      {
+        "<leader>,",
+        function()
+          t_builtin.buffers({
+            previewer = false,
+            layout_config = { width = 70, height = 25 },
+            path_display = function(opts, path)
+              local tail = require("telescope.utils").path_tail(path)
+              local text = string.format("%s (%s)", tail, vim.fn.fnamemodify(path, ":h"))
+              local cols = { {
+                { 1, #tail },
+                "Constant",
+              } }
+              return text, cols
+            end,
           })
         end,
       },
@@ -81,8 +96,9 @@ return {
   },
   {
     "prochri/telescope-all-recent.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    event = "VeryLazy",
+    dependencies = { "FeiyouG/commander.nvim" },
+    lazy = true,
+    -- event = "VeryLazy",
     config = function()
       require("telescope-all-recent").setup({
         database = {
@@ -115,14 +131,12 @@ return {
             sorting = "frecency",
           },
           ["commander#commander"] = { disable = false, use_cwd = false, sorting = "recent" },
-          ["projections#projections"] = { disable = false, use_cwd = false, sorting = "recent" },
         },
       })
     end,
   },
   {
     "xlboy/telescope-recent-files",
-    event = "VeryLazy",
     config = function()
       require("telescope").load_extension("recent_files")
     end,
@@ -138,13 +152,11 @@ return {
             layout_config = config.mini_ts_layout_wh,
           })
         end,
-        mode = "n",
       },
     },
   },
   {
     "Marskey/telescope-sg",
-    event = "VeryLazy",
     config = function()
       require("telescope").load_extension("ast_grep")
       require("telescope").setup({

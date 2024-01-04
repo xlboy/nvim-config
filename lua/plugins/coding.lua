@@ -1,28 +1,20 @@
 return {
   {
     "xlboy/text-case.nvim",
-    event = "BufRead",
-    dependencies = { "nvim-telescope/telescope.nvim" },
+    keys = {
+      { "ga.", ":TextCaseOpenTelescope<CR>", mode = { "n", "v" } },
+      { "gaa", ":TextCaseOpenTelescopeQuickChange<CR>" },
+      { "gai", ":TextCaseOpenTelescopeLSPChange<CR>" },
+      { "gam", ":TextCaseOpenTelescopeQuickOrLSP<CR>" },
+    },
     config = function()
       require("textcase").setup({})
       require("telescope").load_extension("textcase")
-
-      vim.api.nvim_set_keymap("n", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-      vim.api.nvim_set_keymap("v", "ga.", "<cmd>TextCaseOpenTelescope<CR>", { desc = "Telescope" })
-      vim.api.nvim_set_keymap(
-        "n",
-        "gaa",
-        "<cmd>TextCaseOpenTelescopeQuickChange<CR>",
-        { desc = "Telescope Quick Change" }
-      )
-      vim.api.nvim_set_keymap("n", "gai", "<cmd>TextCaseOpenTelescopeLSPChange<CR>", { desc = "Telescope LSP Change" })
-      vim.api.nvim_set_keymap("n", "gam", "<cmd>TextCaseOpenTelescopeQuickOrLSP<CR>", {})
     end,
   },
-  { "wellle/targets.vim", event = "VeryLazy" },
+  { "wellle/targets.vim", event = "BufRead" },
   {
     "echasnovski/mini.surround",
-    lazy = true,
     keys = {
       { "gza", desc = "Add surrounding", mode = { "n", "v" } },
       { "gzd", desc = "Delete surrounding" },
@@ -105,10 +97,9 @@ return {
       },
     },
   },
-  { "xlboy/swap-ternary.nvim", lazy = true },
+  { "xlboy/swap-ternary.nvim" },
   {
     "mizlan/iswap.nvim",
-    event = "BufRead",
     cmd = { "ISwap", "ISwapWith", "ISwapNode", "ISwapNodeWith" },
     config = function()
       require("iswap").setup({
@@ -127,7 +118,6 @@ return {
   },
   {
     "nguyenvukhang/nvim-toggler",
-    lazy = true,
     opts = {
       inverses = {
         ["up"] = "down",
@@ -158,18 +148,12 @@ return {
   },
   {
     "Wansmer/treesj",
-    lazy = true,
-    keys = {
-      { "<leader>jt", ":TSJToggle<CR>", silent = true },
-    },
-    opts = {
-      use_default_keymaps = false,
-      max_join_length = 999,
-    },
+    keys = { { "<leader>jt", ":TSJToggle<CR>", silent = true } },
+    opts = { use_default_keymaps = false, max_join_length = 999 },
   },
   {
     "echasnovski/mini.move",
-    event = "VeryLazy",
+    event = "BufRead",
     config = function()
       require("mini.move").setup()
     end,
@@ -180,7 +164,7 @@ return {
     --   { "a", mode = { "x", "o" } },
     --   { "i", mode = { "x", "o" } },
     -- },
-    event = "VeryLazy",
+    event = "BufRead",
     opts = function()
       local ai = require("mini.ai")
       return {
@@ -245,26 +229,27 @@ return {
   },
   {
     "chrisgrieser/nvim-various-textobjs",
+    -- TODO: 111
     opts = {
       useDefaultKeymaps = false,
     },
     keys = {
-      { "_gc", ":lua require('various-textobjs').multiCommentedLines()<CR>", mode = { "x", "o" } },
-      { "im", ":lua require('various-textobjs').chainMember('inner')<CR>", mode = { "x", "o" } },
-      { "am", ":lua require('various-textobjs').chainMember('outer')<CR>", mode = { "x", "o" } },
-      { "ii", ":lua require('various-textobjs').indentation('inner', 'inner')<CR>", mode = { "x", "o" } },
-      { "ir", ":lua require('various-textobjs').restOfIndentation()<CR>", mode = { "x", "o" } },
+      { "_gc", "<cmd>lua require('various-textobjs').multiCommentedLines()<CR>", mode = { "x", "o" } },
+      { "im", "<cmd>lua require('various-textobjs').chainMember('inner')<CR>", mode = { "x", "o" } },
+      { "am", "<cmd>lua require('various-textobjs').chainMember('outer')<CR>", mode = { "x", "o" } },
+      { "ii", "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>", mode = { "x", "o" } },
+      { "ir", "<cmd>lua require('various-textobjs').restOfIndentation()<CR>", mode = { "x", "o" } },
     },
   },
   -- autopairs, autotag --
   {
     "windwp/nvim-autopairs",
-    event = "VeryLazy",
+    event = "InsertEnter",
     opts = {
       fast_wrap = {
         chars = { "{", "[", "(", '"', "'" },
         pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-        offset = 0.333,
+        offset = 0,
         end_key = "$",
         keys = "qwertyuiopzxcvbnmasdfghjkl",
         check_comma = true,
@@ -276,7 +261,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     dependencies = { "xlboy/nvim-treesitter" },
-    event = "FileType typescriptreact,javascriptreact,vue,html,xml,astro",
+    event = "InsertEnter",
     config = function()
       require("nvim-treesitter.configs").setup({
         autotag = {
@@ -289,32 +274,32 @@ return {
   -- Auto Indent
   { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
   -- 在 cmd 中输入整数后跳转到对应的行中
-  { "nacro90/numb.nvim", event = "BufRead" },
+  { "nacro90/numb.nvim", event = "CmdlineEnter" },
   -- 加快日志创建速度。创建各种特定于语言的日志语句，例如变量、断言或时间测量的日志
   {
     "chrisgrieser/nvim-chainsaw",
     keys = {
       {
         "<leader>tcm",
-        ":lua require('chainsaw').messageLog()<CR>",
+        "<cmd>lua require('chainsaw').messageLog()<CR>",
         desc = "[Chainsaw] Create Message Log",
         mode = { "n", "v" },
       },
       {
         "<leader>tcv",
-        ":lua require('chainsaw').variableLog()<CR>",
+        "<cmd>lua require('chainsaw').variableLog()<CR>",
         desc = "[Chainsaw] Create Variable Log",
         mode = { "n", "v" },
       },
       {
         "<leader>tco",
-        ":lua require('chainsaw').objectLog()<CR>",
+        "<cmd>lua require('chainsaw').objectLog()<CR>",
         desc = "[Chainsaw] Create Object Log",
         mode = { "n", "v" },
       },
       {
         "<leader>tcr",
-        ":lua require('chainsaw').removeLogs()<CR>",
+        "<cmd>lua require('chainsaw').removeLogs()<CR>",
         desc = "[Chainsaw] Remove All Log",
         mode = { "n", "v" },
       },

@@ -3,7 +3,7 @@ local config = require("config.config")
 return {
   {
     "utilyre/sentiment.nvim",
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {
       pairs = { { "(", ")" }, { "[", "]" }, { "{", "}" }, { "<", ">" } },
     },
@@ -13,7 +13,7 @@ return {
   },
   {
     "echasnovski/mini.cursorword",
-    event = "VeryLazy",
+    event = "BufRead",
     config = function()
       require("mini.cursorword").setup()
     end,
@@ -23,7 +23,7 @@ return {
   -- instances.
   {
     "RRethy/vim-illuminate",
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {
       delay = 200,
       large_file_cutoff = 2000,
@@ -58,7 +58,8 @@ return {
   -- 非 focus 的窗口进行置灰
   {
     "levouh/tint.nvim",
-    event = "VeryLazy",
+    lazy = false,
+    priority = 10, -- make sure to load this before all the other start plugins
     opts = {
       tint = -80,
       saturation = 0.6,
@@ -72,7 +73,7 @@ return {
   },
   {
     "NvChad/nvim-colorizer.lua",
-    event = "BufRead",
+    event = "InsertEnter",
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     opts = {
       user_default_options = { names = true, tailwind = true },

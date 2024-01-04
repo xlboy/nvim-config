@@ -1,7 +1,6 @@
 return {
   {
     "LintaoAmons/scratch.nvim",
-    event = "VeryLazy",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
       { "<leader>scce", ":ScratchEditConfig<cr>", desc = "sc - config edit" },

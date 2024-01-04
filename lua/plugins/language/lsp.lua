@@ -5,9 +5,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
-    -- opts = {
-    --   inlay_hints = { enabled = true },
-    -- },
     config = function()
       -- Set correct icons in sign column
       local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
@@ -65,12 +62,19 @@ return {
       })
     end,
   },
-  { "williamboman/mason.nvim", config = true },
-  { "williamboman/mason-lspconfig.nvim", event = "VeryLazy" },
-  { "nvimtools/none-ls.nvim", event = "VeryLazy" },
+  { "williamboman/mason.nvim", cmd = { "Mason" }, config = true },
+  { "williamboman/mason-lspconfig.nvim", cmd = { "Mason" } },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = {
+      {
+        "jay-babu/mason-null-ls.nvim",
+        cmd = { "NullLsInstall", "NullLsUninstall" },
+      },
+    },
+  },
   {
     "nvimdev/lspsaga.nvim",
-    event = "VeryLazy",
     opts = {
       symbol_in_winbar = { enable = false },
       lightbulb = { virtual_text = false },
@@ -84,22 +88,28 @@ return {
       },
     },
     keys = {
-      { "<leader>la", ":Lspsaga code_action<CR>", desc = "Show code actions", mode = "n" },
+      { "<leader>la", ":Lspsaga code_action<CR>", desc = "Show code actions" },
       { "<leader>la", ":<C-U>Lspsaga range_code_action<CR>", desc = "Show code actions", mode = "v" },
-      { "]d", ":Lspsaga diagnostic_jump_next<CR>", desc = "Jump to next diagnostic", mode = "n" },
-      { "[d", ":Lspsaga diagnostic_jump_prev<CR>", desc = "Jump to previous diagnostic", mode = "n" },
-      { "gh", ":Lspsaga hover_doc<CR>", desc = "Show hover doc", mode = "n" },
-      { "gd", ":Lspsaga goto_definition<CR>", desc = "Show hover doc", mode = "n" },
-      { "gkh", ":Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]", mode = "n" },
-      { "gr", ":Lspsaga finder<CR>", desc = "Show lsp finder", mode = "n" },
-      { "<leader>lr", ":Lspsaga rename<CR>", desc = "Rename symbol", mode = "n" },
-      { "gl", ":Lspsaga show_line_diagnostics<CR>", desc = "Show line diagnostics", mode = "n" },
-      { "<leader>l.", ":Lspsaga signature_help<CR>", desc = "Show signature help", mode = "n" },
+      { "]d", ":Lspsaga diagnostic_jump_next<CR>", desc = "Jump to next diagnostic" },
+      { "[d", ":Lspsaga diagnostic_jump_prev<CR>", desc = "Jump to previous diagnostic" },
+      { "gh", ":Lspsaga hover_doc<CR>", desc = "Show hover doc" },
+      { "gd", ":Lspsaga goto_definition<CR>", desc = "Show hover doc" },
+      { "gkh", ":Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]" },
+      { "gr", ":Lspsaga finder<CR>", desc = "Show lsp finder" },
+      { "<leader>lr", ":Lspsaga rename<CR>", desc = "Rename symbol" },
+      { "gl", ":Lspsaga show_line_diagnostics<CR>", desc = "Show line diagnostics" },
+      { "<leader>l.", ":Lspsaga signature_help<CR>", desc = "Show signature help" },
     },
   },
   {
     "antosha417/nvim-lsp-file-operations",
-    event = "VeryLazy",
+    -- event 使用 User 的延迟30s加载
+    event = "User Startup30s",
+    init = function()
+      vim.defer_fn(function()
+        vim.api.nvim_exec_autocmds("User", { pattern = "Startup30s", modeline = false })
+      end, 30000)
+    end,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("lsp-file-operations").setup()
@@ -157,13 +167,13 @@ return {
           end,
           desc = "[Outline] Toogle",
         },
-        { "<leader>lsc", ":lua require('outline').close()<CR>", desc = "[Outline] Close" },
+        { "<leader>lsc", "<cmd>lua require('outline').close()<CR>", desc = "[Outline] Close" },
       }
     end,
   },
   {
     "ray-x/lsp_signature.nvim",
-    event = "VeryLazy",
+    event = "InsertEnter",
     opts = {
       floating_window = false,
       hint_enable = true,
@@ -173,11 +183,10 @@ return {
     },
   },
   {
-    enabled = true,
     "lvimuser/lsp-inlayhints.nvim",
-    event = "VeryLazy",
     branch = "anticonceal",
     -- commit = "aa1fee3469f70842fecb0e915fa0d1e5c6784501",
+    keys = { "<leader>lit", desc = "[Lsp] Toggle Inlay Hints" },
     init = function()
       local open = false
       vim.g.switch_inlay_hints = function(buf)
@@ -196,7 +205,7 @@ return {
               args.buf,
               "n",
               "<leader>lit",
-              ":lua vim.g.switch_inlay_hints(" .. args.buf .. ")<CR>",
+              "<cmd>lua vim.g.switch_inlay_hints(" .. args.buf .. ")<CR>",
               -- "<cmd>lua require('lsp-inlayhints').toggle()<CR>",
               { noremap = true, silent = true }
             )
@@ -212,7 +221,7 @@ return {
 
   {
     "j-hui/fidget.nvim",
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {
       notification = { window = { winblend = 0 } },
       integration = {

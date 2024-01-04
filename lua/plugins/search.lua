@@ -1,7 +1,7 @@
 return {
   {
     "kevinhwang91/nvim-hlslens",
-    event = "VeryLazy",
+    event = "CmdlineEnter",
     dependencies = { "anuvyklack/keymap-amend.nvim" },
     keys = {
       { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]] },
@@ -21,7 +21,6 @@ return {
   },
   {
     "nvim-pack/nvim-spectre",
-    event = "VeryLazy",
     opts = {
       mapping = { ["send_to_qf"] = { map = "<leader>o" } },
     },
@@ -43,7 +42,6 @@ return {
   },
   {
     "cshuaimin/ssr.nvim",
-    event = "VeryLazy",
     keys = {
       {
         "<leader>sR",

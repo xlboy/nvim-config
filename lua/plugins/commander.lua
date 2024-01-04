@@ -59,7 +59,7 @@ local commands = {
     end,
     cat = CAT.FS,
   },
-  { desc = "Restart lsp server", cmd = ":LspRestart<CR>", cat = CAT.LSP },
+  { desc = "Restart lsp server", cmd = "<cmd>LspRestart<CR>", cat = CAT.LSP },
   {
     desc = "Swap ternary",
     cmd = ':require("swap-ternary").swap()<CR>',
@@ -82,9 +82,9 @@ local commands = {
     end,
     cat = CAT.LSP,
   },
-  { desc = "Reload Buffer", cmd = ":bufdo e<CR>zz", cat = CAT.BUF },
-  { desc = "Reload Window", cmd = ":windo e<CR>zz", cat = CAT.WINDOW },
-  { desc = "Advanced Git Search", cmd = ":AdvancedGitSearch<CR>", cat = CAT.GIT },
+  { desc = "Reload Buffer", cmd = "<cmd>bufdo e<CR>zz", cat = CAT.BUF },
+  { desc = "Reload Window", cmd = "<cmd>windo e<CR>zz", cat = CAT.WINDOW },
+  { desc = "Advanced Git Search", cmd = "<cmd>AdvancedGitSearch<CR>", cat = CAT.GIT },
 }
 
 return {

@@ -9,11 +9,8 @@ return {
   },
   {
     "jay-babu/mason-null-ls.nvim",
-    event = "VeryLazy",
     opts = function(_, opts)
-      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, {
-        "stylua", --[[ "luacheck" ]]
-      })
+      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "stylua" })
     end,
   },
   {
@@ -41,7 +38,7 @@ return {
   },
   {
     "rafcamlet/nvim-luapad",
-    event = "VeryLazy",
+    cmd = { "Luapad" },
     config = function()
       require("luapad").setup({ eval_on_change = false, wipe = false })
     end,

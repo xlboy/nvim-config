@@ -46,14 +46,12 @@ end
 
 return {
   "niuiic/terminal.nvim",
-  event = "VeryLazy",
   config = function()
     require("terminal").setup({
       on_term_opened = function(bufnr, pid)
         vim.api.nvim_set_option_value("filetype", "terminal", { buf = bufnr })
         set_keymap(bufnr)
         terms[bufnr] = pid
-        -- vim.cmd("startinsert")
       end,
     })
   end,

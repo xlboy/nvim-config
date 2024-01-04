@@ -2,7 +2,6 @@ local config = require("config.config")
 
 return {
   "imNel/monorepo.nvim",
-  event = "VeryLazy",
   config = function()
     require("monorepo").setup()
   end,

@@ -64,7 +64,7 @@ return {
         event = {
           on_select = function(entry)
             resession.save_cwd()
-            vim.cmd("BDelete! all")
+            require("close_buffers").delete({ type = "all" })
             vim.cmd("cd " .. entry.source.dir)
             resession.load_cwd()
             tint_refresh()

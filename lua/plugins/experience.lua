@@ -3,7 +3,6 @@ local u = require("utils")
 return {
   {
     "Pocco81/true-zen.nvim",
-    event = "VeryLazy",
     keys = { { "<leader>tzn", ":TZNarrow<CR>", mode = { "v", "n" } } },
     config = function()
       require("true-zen").setup({

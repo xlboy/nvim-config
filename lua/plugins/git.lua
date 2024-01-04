@@ -26,6 +26,7 @@ return {
     },
   },
   {
+    enabled = false,
     "NeogitOrg/neogit",
     event = "VeryLazy",
     dependencies = { "nvim-lua/plenary.nvim" },
@@ -43,7 +44,7 @@ return {
   },
   {
     "aaronhallaert/advanced-git-search.nvim",
-    event = "VeryLazy",
+    cmd = { "AdvancedGitSearch" },
     config = function()
       -- optional: setup telescope before loading the extension
       require("telescope").setup({

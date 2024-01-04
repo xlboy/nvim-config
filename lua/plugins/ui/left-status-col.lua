@@ -1,6 +1,8 @@
 return {
   "luukvbaal/statuscol.nvim",
-  priority = 100,
+  -- lazy = false,
+  -- priority = 100,
+  event = "BufRead",
   init = function()
     vim.o.foldcolumn = "1"
     vim.o.foldlevel = 99

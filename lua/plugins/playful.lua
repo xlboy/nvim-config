@@ -36,7 +36,6 @@ return {
   },
   {
     "eandrju/cellular-automaton.nvim",
-    lazy = true,
     keys = {
       { "<leader>fmk", ":CellularAutomaton make_it_rain<CR>", desc = "[CellularAutomaton] Make it rain" },
       { "<leader>fml", ":CellularAutomaton game_of_life<CR>", desc = "[CellularAutomaton] game of life" },

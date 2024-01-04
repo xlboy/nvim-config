@@ -15,7 +15,7 @@ require("lazy").setup({
     { import = "plugins.ui" },
     { import = "plugins.project" },
   },
-  defaults = { lazy = false },
+  defaults = { lazy = true },
   checker = { enabled = true },
   performance = {
     rtp = {

@@ -4,17 +4,16 @@ local u = require("utils")
 return {
   {
     "kazhala/close-buffers.nvim",
-    event = "VeryLazy",
     keys = {
-      { "<leader>cc", ":BDelete! this<CR>", desc = "Delete Current Buffer" },
-      { "<leader>ca", ":BDelete! all<CR>", desc = "Delete All Buffer" },
-      { "<leader>co", ":BDelete! other<CR>", desc = "Delete Other Buffer" },
-      { "<leader>cn", ":BDelete! nameless<CR>", desc = "Delete Nameless Buffer" },
+      { "<leader>cc", "<cmd>BDelete! this<CR>", desc = "Delete Current Buffer" },
+      { "<leader>ca", "<cmd>BDelete! all<CR>", desc = "Delete All Buffer" },
+      { "<leader>co", "<cmd>BDelete! other<CR>", desc = "Delete Other Buffer" },
+      { "<leader>cn", "<cmd>BDelete! nameless<CR>", desc = "Delete Nameless Buffer" },
       {
         "<leader>cs",
         function()
           local suffix = vim.fn.input("Suffix: ")
-          if suffix ~= "" then vim.cmd(":BDelete! regex=.*[.]" .. suffix) end
+          if suffix ~= "" then vim.cmd("BDelete! regex=.*[.]" .. suffix) end
         end,
         desc = "Delete Specify Suffix Buffer",
       },
@@ -22,7 +21,7 @@ return {
         "<leader>cg",
         function()
           local pattern = vim.fn.input("Glob Pattern: ")
-          if pattern ~= "" then vim.cmd(":BDelete! glob=" .. pattern) end
+          if pattern ~= "" then vim.cmd("BDelete! glob=" .. pattern) end
         end,
         desc = "Delete Specify Suffix Buffer",
       },
@@ -30,14 +29,12 @@ return {
   },
   {
     "elijahmanor/export-to-vscode.nvim",
-    lazy = true,
     keys = {
       {
         "<leader>vsc",
         function()
           require("export-to-vscode").launch()
         end,
-        mode = "n",
       },
     },
   },
@@ -51,7 +48,7 @@ return {
   },
   {
     "chrishrb/gx.nvim",
-    event = "VeryLazy",
+    event = "BufRead",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       open_browser_app = u.basic.os_pick("powershell.exe", "open"),
@@ -66,7 +63,6 @@ return {
   },
   {
     "gbprod/yanky.nvim",
-    event = "VeryLazy",
     dependencies = { { "kkharji/sqlite.lua" } },
     opts = {
       ring = { storage = "sqlite", ignore_registers = { "0" } },
