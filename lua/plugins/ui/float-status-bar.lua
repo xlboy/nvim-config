@@ -71,6 +71,7 @@ local render = {
 
 return {
   "b0o/incline.nvim",
+  event = "BufRead",
   config = function()
     require("incline").setup({
       highlight = {
