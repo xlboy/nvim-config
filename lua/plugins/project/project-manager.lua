@@ -47,7 +47,7 @@ return {
     },
     keys = {
       {
-        "<leader>S.",
+        "<leader>..",
         function()
           resession.load_cwd()
           tint_refresh()
@@ -80,6 +80,7 @@ return {
           local picker = require("workspace-scanner.picker")
 
           local source = u.basic.os_pick({
+            li = { w_dir = "D:/project/li", __extra__ = { level = 3 } },
             nvim = {
               my_config = { p_dir = "C:/Users/Administrator/AppData/Local/nvim", __extra__ = { level = 2 } },
               wezterm = "C:/Users/Administrator/.config/wezterm",

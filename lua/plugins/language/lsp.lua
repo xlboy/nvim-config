@@ -4,7 +4,8 @@ local config = require("config.config")
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "VeryLazy",
+    lazy = false,
+    -- event = "VeryLazy",
     config = function()
       -- Set correct icons in sign column
       local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
@@ -15,9 +16,7 @@ return {
 
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      local on_attach = function(client, bufnr)
-        -- if client.server_capabilities.inlayHintProvider then vim.lsp.inlay_hint.enable(bufnr, true) end
-      end
+      local on_attach = function(client, bufnr) end
 
       require("mason-lspconfig").setup_handlers({
         function(server_name)

@@ -89,7 +89,7 @@ local commands = {
 
 return {
   "FeiyouG/commander.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim" },
+  dependencies = { "nvim-telescope/telescope.nvim", "prochri/telescope-all-recent.nvim" },
   keys = { { "<leader>pp", ":Telescope commander<CR>", mode = { "n", "v" } } },
   config = function()
     require("commander").setup({

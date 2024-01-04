@@ -99,9 +99,6 @@ return {
   },
   {
     "prochri/telescope-all-recent.nvim",
-    dependencies = { "FeiyouG/commander.nvim" },
-    lazy = true,
-    -- event = "VeryLazy",
     config = function()
       require("telescope-all-recent").setup({
         database = {
