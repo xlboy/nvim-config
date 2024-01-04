@@ -4,8 +4,8 @@ local config = require("config.config")
 return {
   {
     "neovim/nvim-lspconfig",
-    lazy = false,
-    -- event = "VeryLazy",
+    -- lazy = false,
+    event = "VeryLazy",
     config = function()
       -- Set correct icons in sign column
       local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
