@@ -103,13 +103,7 @@ return {
   },
   {
     "antosha417/nvim-lsp-file-operations",
-    -- event 使用 User 的延迟30s加载
-    event = "User Startup30s",
-    init = function()
-      vim.defer_fn(function()
-        vim.api.nvim_exec_autocmds("User", { pattern = "Startup30s", modeline = false })
-      end, 30000)
-    end,
+    event = "User Startup30s", -- 启动 30s 后再加载
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("lsp-file-operations").setup()

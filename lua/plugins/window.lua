@@ -3,9 +3,9 @@ local u = require("utils")
 
 return {
   {
+    -- 在 neo-tree 调用时加载，或是通过按键触发时加载
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
-    event = "VeryLazy",
     config = function()
       require("window-picker").setup({
         hint = "floating-big-letter",

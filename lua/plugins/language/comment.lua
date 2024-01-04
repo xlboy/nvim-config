@@ -32,6 +32,7 @@ return {
   },
   {
     "folke/todo-comments.nvim",
+    event = "VeryLazy",
     opts = {
       keywords = {
         region = { color = "hint" },
@@ -41,10 +42,5 @@ return {
         pattern = [[.*<(KEYWORDS)\s*:?]],
       },
     },
-    event = "VeryLazy",
   },
 }
-
--- #region     *============ types ==================*
-
--- #endregion  *============ types ==================*

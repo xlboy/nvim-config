@@ -67,7 +67,7 @@ return {
         local buf = vim.api.nvim_win_get_buf(winid)
         local filetype = vim.api.nvim_buf_get_option(buf, "filetype")
         if filetype == "" then return true end
-        if vim.tbl_contains(config.ft_ignores) then return true end
+        if vim.tbl_contains(config.ft_ignores, filetype) then return true end
       end,
     },
   },

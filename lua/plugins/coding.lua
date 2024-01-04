@@ -70,8 +70,8 @@ return {
         keymaps = {
           -- ["<C-.>"] = "swap_with_right",
           -- ["<C-,>"] = "swap_with_left",
-          ["<leader>s."] = "swap_with_right_with_opp",
-          ["<leader>s,"] = "swap_with_left_with_opp",
+          -- ["<leader>s."] = "swap_with_right_with_opp",
+          -- ["<leader>s,"] = "swap_with_left_with_opp",
         },
         ignore_injected_langs = false,
         -- allow swaps across lines

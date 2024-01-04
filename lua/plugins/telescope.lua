@@ -39,7 +39,7 @@ return {
     end,
     cmd = "Telescope",
     keys = {
-      { "<leader>/", ":Telescope live_grep<CR>" },
+      { "<leader>/", ":Telescope live_grep<CR>", desc = "Telescope live_grep" },
       {
         "<leader>ff",
         function()
@@ -48,12 +48,14 @@ return {
             previewer = false,
           })
         end,
+        desc = "Telescope find files",
       },
       {
         "<leader>fc",
         function()
           t_builtin.current_buffer_fuzzy_find()
         end,
+        desc = "Telescope current buffer fuzzy find",
       },
       {
         "<leader>,",
@@ -72,6 +74,7 @@ return {
             end,
           })
         end,
+        desc = "Telescope buffers",
       },
     },
   },

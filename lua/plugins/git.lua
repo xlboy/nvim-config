@@ -35,7 +35,7 @@ return {
 
   {
     "sindrets/diffview.nvim",
-    event = "VeryLazy",
+    event = "BufRead",
     keys = {
       { "<leader>gdc", ":DiffviewFileHistory %<CR>", desc = "[Git] view file history" },
       { "<leader>gdb", ":DiffviewFileHistory<CR>", desc = "[Git] view branch history" },

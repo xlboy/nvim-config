@@ -37,7 +37,7 @@ return {
   },
   {
     "folke/which-key.nvim",
-    event = "VeryLazy",
+    event = "User Startup30s", -- 启动 30s 后再加载
     init = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 200
