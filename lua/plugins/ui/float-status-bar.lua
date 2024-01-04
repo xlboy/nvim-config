@@ -87,6 +87,9 @@ return {
       },
       ignore = { filetypes = config.ft_ignores },
       render = function(props)
+        local filename = vim.api.nvim_buf_get_name(props.buf)
+        if filename == "" then return end
+
         local content_hl = props.focused and config.colors.window.active or config.colors.window.visible
 
         return {

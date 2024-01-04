@@ -290,4 +290,34 @@ return {
   { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
   -- 在 cmd 中输入整数后跳转到对应的行中
   { "nacro90/numb.nvim", event = "BufRead" },
+  -- 加快日志创建速度。创建各种特定于语言的日志语句，例如变量、断言或时间测量的日志
+  {
+    "chrisgrieser/nvim-chainsaw",
+    keys = {
+      {
+        "<leader>tcm",
+        ":lua require('chainsaw').messageLog()<CR>",
+        desc = "[Chainsaw] Create Message Log",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>tcv",
+        ":lua require('chainsaw').variableLog()<CR>",
+        desc = "[Chainsaw] Create Variable Log",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>tco",
+        ":lua require('chainsaw').objectLog()<CR>",
+        desc = "[Chainsaw] Create Object Log",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>tcr",
+        ":lua require('chainsaw').removeLogs()<CR>",
+        desc = "[Chainsaw] Remove All Log",
+        mode = { "n", "v" },
+      },
+    },
+  },
 }
