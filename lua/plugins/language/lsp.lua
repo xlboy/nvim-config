@@ -4,8 +4,11 @@ local config = require("config.config")
 return {
   {
     "neovim/nvim-lspconfig",
-    -- lazy = false,
     event = "VeryLazy",
+    dependencies = {
+      { "williamboman/mason.nvim", cmd = { "Mason" }, config = true },
+      { "williamboman/mason-lspconfig.nvim", cmd = { "Mason" } },
+    },
     config = function()
       -- Set correct icons in sign column
       local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
@@ -61,15 +64,10 @@ return {
       })
     end,
   },
-  { "williamboman/mason.nvim", cmd = { "Mason" }, config = true },
-  { "williamboman/mason-lspconfig.nvim", cmd = { "Mason" } },
   {
     "nvimtools/none-ls.nvim",
     dependencies = {
-      {
-        "jay-babu/mason-null-ls.nvim",
-        cmd = { "NullLsInstall", "NullLsUninstall" },
-      },
+      { "jay-babu/mason-null-ls.nvim", cmd = { "NullLsInstall", "NullLsUninstall" } },
     },
   },
   {
@@ -102,13 +100,13 @@ return {
   },
   {
     "antosha417/nvim-lsp-file-operations",
+    commit = "8e7223e138590c1bd9d86d3de810e65939d8b12f",
     event = "User Startup30s", -- 启动 30s 后再加载
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("lsp-file-operations").setup()
     end,
   },
-  -- { "stevearc/aerial.nvim", event = "LspAtach", opts = {} },
   {
     "hedyhli/outline.nvim",
     config = function()
@@ -166,6 +164,7 @@ return {
   },
   {
     "ray-x/lsp_signature.nvim",
+    commit = "fed2c8389c148ff1dfdcdca63c2b48d08a50dea0",
     event = "InsertEnter",
     opts = {
       floating_window = false,
@@ -178,7 +177,7 @@ return {
   {
     "lvimuser/lsp-inlayhints.nvim",
     branch = "anticonceal",
-    -- commit = "aa1fee3469f70842fecb0e915fa0d1e5c6784501",
+    commit = "0fb3b5ef16f2d7e85963cb0b1beacf573ade35de",
     keys = { "<leader>lit", desc = "[Lsp] Toggle Inlay Hints" },
     init = function()
       local open = false
@@ -199,7 +198,6 @@ return {
               "n",
               "<leader>lit",
               "<cmd>lua vim.g.switch_inlay_hints(" .. args.buf .. ")<CR>",
-              -- "<cmd>lua require('lsp-inlayhints').toggle()<CR>",
               { noremap = true, silent = true }
             )
           end

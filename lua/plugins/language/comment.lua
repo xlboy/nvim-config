@@ -24,15 +24,8 @@ return {
     end,
   },
   {
-    "Djancyp/better-comments.nvim",
-    enabled = false,
-    config = function()
-      require("better-comment").Setup()
-    end,
-  },
-  {
     "folke/todo-comments.nvim",
-    event = "VeryLazy",
+    event = "BufRead",
     opts = {
       keywords = {
         region = { color = "hint" },

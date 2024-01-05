@@ -52,9 +52,13 @@ function M.search_in_range(start_line, end_line, pattern)
   vim.cmd(start_line .. "," .. end_line .. "g/" .. pattern .. "/p")
 end
 
+function M.feedkeys(keys, mode)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode or "n", true)
+end
+
 M.fs = {}
 function M.fs.open_dir_in_finder(dir)
-  local cmd = M.os_pick('start "" "' .. dir .. '"', 'open "' .. dir .. '"')
+  local cmd = M.os_pick(string.format('start "" "%s"', dir), string.format('open "%s"', dir))
   vim.fn.system(cmd)
 end
 

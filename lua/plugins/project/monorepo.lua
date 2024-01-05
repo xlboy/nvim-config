@@ -2,6 +2,7 @@ local config = require("config.config")
 
 return {
   "imNel/monorepo.nvim",
+  commit = "256a302900d6af6e032f1f2bf4f2407bd4569fe8",
   config = function()
     require("monorepo").setup()
   end,

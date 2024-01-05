@@ -1,6 +1,7 @@
 return {
   {
     "LintaoAmons/scratch.nvim",
+    version = "~0.13.2",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
       { "<leader>scce", ":ScratchEditConfig<cr>", desc = "sc - config edit" },

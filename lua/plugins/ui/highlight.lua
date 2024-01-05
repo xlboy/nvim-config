@@ -76,18 +76,6 @@ return {
     event = "VeryLazy",
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     opts = { user_default_options = { tailwind = true } },
-    init = function()
-      local done = false
-      vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(args)
-          local client = vim.lsp.get_client_by_id(args.data.client_id)
-          if client.name == "tailwindcss" and done == false then
-            vim.cmd("ColorizerToggle")
-            done = true
-          end
-        end,
-      })
-    end,
   },
   {
     "uga-rosa/ccc.nvim",

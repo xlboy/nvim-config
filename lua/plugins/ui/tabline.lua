@@ -9,8 +9,8 @@ local config = {
 }
 
 return {
-  enabled = true,
   "rebelot/heirline.nvim",
+  version = "~1.0.1",
   event = "UIEnter",
   config = function()
     local h_conditions = require("heirline.conditions")

@@ -11,13 +11,13 @@ return {
       { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]] },
       { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]] },
     },
-    init = function()
+    config = function()
+      require("hlslens").setup()
       require("keymap-amend")("n", "<Esc>", function(original)
         if vim.v.hlsearch then vim.cmd("nohlsearch") end
         original()
       end)
     end,
-    config = true,
   },
   {
     "nvim-pack/nvim-spectre",

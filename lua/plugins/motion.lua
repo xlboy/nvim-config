@@ -1,3 +1,4 @@
+local u = require("utils")
 return {
   {
     "xlboy/flash.nvim",
@@ -20,22 +21,8 @@ return {
         end,
         desc = "Flash",
       },
-      {
-        "<leader>ssv",
-        mode = { "n", "o", "x" },
-        function()
-          require("flash").treesitter_search()
-        end,
-        desc = "Flash treesitter_search",
-      },
-      {
-        "<leader>sv",
-        mode = { "n", "o", "x" },
-        function()
-          require("flash").treesitter()
-        end,
-        desc = "Flash treesitter",
-      },
+      { "<leader>ssv", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "Flash treesitter_search" },
+      { "<leader>sv", "<cmd>lua require('flash').treesitter()<CR>", desc = "Flash treesitter" },
     },
   },
   {
@@ -52,56 +39,26 @@ return {
   },
   {
     "chaoren/vim-wordmotion",
-    event = "BufRead",
+    keys = { { ";", desc = "Wordmotion startup!" } },
     init = function()
       vim.g.wordmotion_prefix = ";"
     end,
   },
   {
     "xlboy/nvim-spider",
-    -- dir = "~/Desktop/xlboy/__open-source__/nvim-spider",
-    -- "chrisgrieser/nvim-spider",
     event = "BufRead",
-    opts = {
-      skipInsignificantPunctuation = true,
-      -- subwordMovement = false,
-    },
+    opts = { skipInsignificantPunctuation = true },
     keys = {
-      {
-        "W",
-        function()
-          require("spider").motion("w")
-        end,
-        mode = { "n", "x" },
-      },
-      {
-        "B",
-        function()
-          require("spider").motion("b")
-        end,
-        mode = { "n", "x" },
-      },
+      { "W", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "x" } },
+      { "B", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "x" } },
     },
   },
   {
+    -- TODO: 待换，因为不能基于 cwd 来进行 mark
     "tomasky/bookmarks.nvim",
-    keys = {
-      { "<leader>mcc", desc = "Bookmark Toggle" },
-      { "<leader>mi", desc = "Bookmark Annotation" },
-      { "<leader>mca", desc = "Bookmark Clean" },
-      { "<leader>mj", desc = "Bookmark Next" },
-      { "<leader>mk", desc = "Bookmark Prev" },
-      { "<leader>ml", desc = "Bookmark List" },
-    },
+    event = "User Startup60s",
     config = function()
       require("bookmarks").setup({
-        save_file = vim.fn.stdpath("data") .. "bookmarks",
-        keywords = {
-          ["@t"] = "☑️ ", -- mark annotation startswith @t ,signs this icon as `Todo`
-          ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
-          ["@f"] = "⛏ ", -- mark annotation startswith @f ,signs this icon as `Fix`
-          ["@n"] = " ", -- mark annotation startswith @n ,signs this icon as `Note`
-        },
         on_attach = function(bufnr)
           local bm = require("bookmarks")
           local map = vim.keymap.set
@@ -116,18 +73,6 @@ return {
       require("telescope").load_extension("bookmarks")
     end,
   },
-  -- {
-  --   enabled = false,
-  --   "cbochs/portal.nvim",
-  --   event = "VeryLazy",
-  --   keys = {
-  --     -- { "<C-o>", "<cmd>Portal jumplist backward<cr>", desc = "Jump Backward" },
-  --     -- { "<C-i>", "<cmd>Portal jumplist forward<cr>", desc = "Jump Forward" },
-  --     { "g;", "<cmd>Portal changelist backward<cr>", desc = "Change Backward" },
-  --     { "g,", "<cmd>Portal changelist forward<cr>", desc = "Change Forward" },
-  --   },
-  --   config = true,
-  -- },
   {
     "gsuuon/tshjkl.nvim",
     keys = { { "<leader>ct", desc = "Toggle tshjkl" } },

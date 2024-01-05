@@ -229,16 +229,16 @@ return {
   },
   {
     "chrisgrieser/nvim-various-textobjs",
-    -- TODO: 111
-    opts = {
-      useDefaultKeymaps = false,
-    },
+    opts = { useDefaultKeymaps = false },
     keys = {
       { "_gc", "<cmd>lua require('various-textobjs').multiCommentedLines()<CR>", mode = { "x", "o" } },
       { "im", "<cmd>lua require('various-textobjs').chainMember('inner')<CR>", mode = { "x", "o" } },
       { "am", "<cmd>lua require('various-textobjs').chainMember('outer')<CR>", mode = { "x", "o" } },
       { "ii", "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>", mode = { "x", "o" } },
       { "ir", "<cmd>lua require('various-textobjs').restOfIndentation()<CR>", mode = { "x", "o" } },
+      { "iv", "<cmd>lua require('various-textobjs').value('inner')<CR>", mode = { "x", "o" } },
+      { "ik", "<cmd>lua require('various-textobjs').key('inner')<CR>", mode = { "x", "o" } },
+      { "iu", "<cmd>lua require('various-textobjs').url()<CR>", mode = { "x", "o" } },
     },
   },
   -- autopairs, autotag --

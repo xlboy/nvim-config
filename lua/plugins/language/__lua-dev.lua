@@ -22,7 +22,6 @@ return {
   {
     "folke/neodev.nvim",
     ft = { "lua" },
-    event = "VeryLazy",
     config = function()
       u.lazy.on_load("mason-lspconfig.nvim", function()
         require("neodev").setup()

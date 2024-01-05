@@ -1,6 +1,7 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
+  version = "~3.5.1",
   event = "UIEnter",
   config = function()
     vim.cmd("highlight XlboyIndentScope guifg=#7bdfd0")
