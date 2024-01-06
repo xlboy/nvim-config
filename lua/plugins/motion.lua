@@ -1,7 +1,7 @@
 local u = require("utils")
 return {
   {
-    "xlboy/flash.nvim",
+    "folke/flash.nvim",
     ---@type Flash.Config
     opts = {
       label = { uppercase = false },

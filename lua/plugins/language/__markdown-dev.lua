@@ -25,4 +25,5 @@ return {
     end,
     ft = "markdown",
   },
+  { "AckslD/nvim-FeMaco.lua", main = "femaco", ft = { "markdown" } },
 }

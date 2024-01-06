@@ -194,6 +194,7 @@ return {
     end,
   },
   {
+    enabled = false,
     "echasnovski/mini.ai",
     -- keys = {
     --   { "a", mode = { "x", "o" } },

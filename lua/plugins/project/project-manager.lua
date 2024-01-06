@@ -17,6 +17,14 @@ local function tint_refresh()
   require("tint").enable()
 end
 
+local function is_valid_bufs()
+  local bufs = u.buffer.get_bufs()
+  if #bufs == 0 then return end
+
+  local is_no_name = #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == ""
+  if is_no_name then return end
+end
+
 return {
   {
     "stevearc/resession.nvim",
@@ -25,19 +33,13 @@ return {
     init = function()
       vim.api.nvim_create_autocmd("VimLeavePre", {
         callback = function()
-          local bufs = u.buffer.get_bufs()
-          if #bufs == 0 then return end
-
-          local is_no_name = #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == ""
-          if is_no_name then return end
-
-          resession.save_cwd()
+          if is_valid_bufs() then resession.save_cwd() end
         end,
       })
       -- vim.api.nvim_create_autocmd("VimEnter", { callback = resession.load_cwd })
     end,
     opts = {
-      autosave = { enabled = true, interval = 10, notify = false },
+      autosave = { enabled = false, interval = 10, notify = false },
       buf_filter = function(bufnr)
         local buftype = vim.bo[bufnr].buftype
         if buftype == "help" then return true end
@@ -66,9 +68,7 @@ return {
         flat_opts = { separator = " 🌀 " },
         event = {
           on_select = function(entry)
-            if #u.buffer.get_bufs() == 0 then return end
-
-            resession.save_cwd()
+            if is_valid_bufs() then resession.save_cwd() end
             require("close_buffers").delete({ type = "all" })
             vim.cmd("cd " .. entry.source.dir)
             resession.load_cwd()
