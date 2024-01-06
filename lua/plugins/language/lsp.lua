@@ -6,8 +6,8 @@ return {
     "neovim/nvim-lspconfig",
     event = "VeryLazy",
     dependencies = {
-      { "williamboman/mason.nvim", cmd = { "Mason" }, config = true },
-      { "williamboman/mason-lspconfig.nvim", cmd = { "Mason" } },
+      { "williamboman/mason.nvim", config = true },
+      { "williamboman/mason-lspconfig.nvim" },
     },
     config = function()
       -- Set correct icons in sign column
@@ -72,6 +72,7 @@ return {
   },
   {
     "nvimdev/lspsaga.nvim",
+    commit = "cd83dbf10ecc13c178f332a36935db3e8e42ed93",
     opts = {
       symbol_in_winbar = { enable = false },
       lightbulb = { virtual_text = false },
@@ -127,7 +128,7 @@ return {
       local o = require("outline")
       local function switch_symbol(callback)
         vim.ui.select({ "Function", "default" }, {
-          prompt = "Target Symbol",
+          prompt = "[Outline] Target Symbol",
         }, function(symbol)
           if not symbol then return end
 

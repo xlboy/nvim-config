@@ -100,6 +100,6 @@ return {
       },
     })
 
-    require("commander").add(commands)
+    require("commander").add(commands, {})
   end,
 }

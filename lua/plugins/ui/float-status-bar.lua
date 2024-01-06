@@ -1,5 +1,5 @@
-local config = require("config.config")
 local u = require("utils")
+local config = require("config.config")
 
 local buf_name_maps = {}
 
@@ -74,18 +74,20 @@ return {
   event = "BufRead",
   config = function()
     require("incline").setup({
+      debounce_threshold = { falling = u.basic.os_pick(80, 150), rising = u.basic.os_pick(80, 150) },
       highlight = {
         groups = {
           InclineNormal = { guibg = "None", guifg = config.colors.window.active.fg },
           InclineNormalNC = { guibg = "None", guifg = config.colors.window.visible.fg },
         },
       },
-      debounce_threshold = { falling = 100, rising = 100 },
       window = {
-        margin = { vertical = 2, horizontal = 1 },
+        placement = { horizontal = "center" },
+        margin = { vertical = 3, horizontal = 0 },
         padding = 0,
         winhighlight = { active = {}, inactive = {} },
       },
+      hide = { cursorline = true },
       ignore = { filetypes = config.ft_ignores },
       render = function(props)
         local filename = vim.api.nvim_buf_get_name(props.buf)

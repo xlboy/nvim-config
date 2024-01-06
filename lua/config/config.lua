@@ -25,9 +25,10 @@ return {
     modified = { fg = "#d4920c" },
   },
   symbols = {
-    rounded_corner = {
-      left = "",
-      right = "",
-    },
+    rounded_corner = { left = "", right = "" },
+  },
+  telescope_recent = {
+    pickers = { "commander#commander" },
+    ui_select_prompts = { "[Outline] Target Symbol", "[Chainsaw] Target Log" },
   },
 }

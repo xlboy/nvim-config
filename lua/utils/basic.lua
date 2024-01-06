@@ -52,6 +52,14 @@ function M.search_in_range(start_line, end_line, pattern)
   vim.cmd(start_line .. "," .. end_line .. "g/" .. pattern .. "/p")
 end
 
+function M.gen_record(keys, value)
+  local record = {}
+  for _, key in ipairs(keys) do
+    record[key] = value
+  end
+  return record
+end
+
 function M.feedkeys(keys, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode or "n", true)
 end

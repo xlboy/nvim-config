@@ -278,29 +278,29 @@ return {
   -- 加快日志创建速度。创建各种特定于语言的日志语句，例如变量、断言或时间测量的日志
   {
     "chrisgrieser/nvim-chainsaw",
+    dependencies = { "prochri/telescope-all-recent.nvim" },
+    opts = {
+      logStatements = {
+        messageLog = { nvim_lua = 'print("%s ")' },
+        objectLog = { nvim_lua = 'print("%s %s: " .. vim.inspect(%s))' },
+        variableLog = { nvim_lua = 'print("%s %s: " .. tostring(%s))' },
+      },
+    },
     keys = {
       {
-        "<leader>tcm",
-        "<cmd>lua require('chainsaw').messageLog()<CR>",
-        desc = "[Chainsaw] Create Message Log",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>tcv",
-        "<cmd>lua require('chainsaw').variableLog()<CR>",
-        desc = "[Chainsaw] Create Variable Log",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>tco",
-        "<cmd>lua require('chainsaw').objectLog()<CR>",
-        desc = "[Chainsaw] Create Object Log",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>tcr",
-        "<cmd>lua require('chainsaw').removeLogs()<CR>",
-        desc = "[Chainsaw] Remove All Log",
+        "<leader>tc",
+        function()
+          local log_fn_names = vim.tbl_filter(function(v)
+            return v ~= "setup"
+          end, vim.tbl_keys(require("chainsaw")))
+          vim.ui.select(log_fn_names, {
+            prompt = "[Chainsaw] Target Log",
+          }, function(fn_name)
+            if not fn_name then return end
+            require("chainsaw")[fn_name]()
+          end)
+        end,
+        desc = "[Chainsaw] Create Log",
         mode = { "n", "v" },
       },
     },

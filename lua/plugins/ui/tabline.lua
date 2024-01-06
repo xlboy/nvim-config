@@ -115,6 +115,10 @@ return {
               provider = function(self)
                 return self.display_filename
               end,
+              hl = function(self)
+                local is_modified = vim.api.nvim_buf_get_option(self.bufnr, "modified")
+                return is_modified and { fg = g_config.colors.modified.fg } or nil
+              end,
             },
             {
               name = "RightSpace",
@@ -134,13 +138,13 @@ return {
           },
         },
         FileFlags = {
-          {
-            condition = function(self)
-              return vim.api.nvim_buf_get_option(self.bufnr, "modified")
-            end,
-            provider = " ◌ ",
-            hl = { fg = "#2c2f3b" },
-          },
+          -- {
+          --   condition = function(self)
+          --     return vim.api.nvim_buf_get_option(self.bufnr, "modified")
+          --   end,
+          --   provider = " ◌ ",
+          --   hl = { fg = "#2c2f3b" },
+          -- },
           {
             condition = function(self)
               return not vim.api.nvim_buf_get_option(self.bufnr, "modifiable")

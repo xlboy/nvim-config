@@ -1,3 +1,4 @@
+local u = require("utils")
 local config = require("config.config")
 local t_builtin = require("telescope.builtin")
 
@@ -124,13 +125,12 @@ return {
           use_cwd = true, -- differentiate scoring for each picker based on cwd
           sorting = "recent", -- sorting: options: 'recent' and 'frecency'
         },
-        pickers = { -- allows you to overwrite the default settings for each picker
-          man_pages = { -- enable man_pages picker. Disable cwd and use frecency sorting.
-            disable = false,
-            use_cwd = false,
-            sorting = "frecency",
-          },
-          ["commander#commander"] = { disable = false, use_cwd = false, sorting = "recent" },
+        pickers = u.basic.gen_record(
+          config.telescope_recent.pickers,
+          { disable = false, use_cwd = false, sorting = "recent" }
+        ),
+        vim_ui_select = {
+          prompts = u.basic.gen_record(config.telescope_recent.ui_select_prompts, { use_cwd = false }),
         },
       })
     end,
