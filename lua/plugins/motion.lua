@@ -81,4 +81,14 @@ return {
       keymaps = { toggle = "<leader>ct" },
     },
   },
+  {
+    "xlboy/filestack.nvim",
+    event = "BufRead",
+    opts = {
+      keymaps = {
+        jump = { backward = "<c-o>", forward = "<c-i>" },
+        navigate = { backward = "<c-u>", forward = "<c-y>" },
+      },
+    },
+  },
 }

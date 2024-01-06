@@ -25,18 +25,4 @@ return {
     end,
     ft = "markdown",
   },
-  {
-    "HakonHarnes/img-clip.nvim",
-    ft = "markdown",
-    config = function()
-      require("img-clip").setup()
-      require("commander").add({
-        {
-          desc = "Paste clipboard image",
-          cmd = "<cmd>PasteImage<CR>",
-          cat = "markdown",
-        },
-      }, {})
-    end,
-  },
 }

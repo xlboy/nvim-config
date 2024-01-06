@@ -88,18 +88,20 @@ local commands = {
 }
 
 return {
-  "FeiyouG/commander.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim", "prochri/telescope-all-recent.nvim" },
-  keys = { { "<leader>pp", ":Telescope commander<CR>", mode = { "n", "v" } } },
-  config = function()
-    require("commander").setup({
-      components = { "CAT", "DESC" },
-      integration = {
-        telescope = { enable = true },
-        lazy = { enable = false },
-      },
-    })
+  {
+    "FeiyouG/commander.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "prochri/telescope-all-recent.nvim" },
+    keys = { { "<leader>pp", ":Telescope commander<CR>", mode = { "n", "v" } } },
+    config = function()
+      require("commander").setup({
+        components = { "CAT", "DESC" },
+        integration = {
+          telescope = { enable = true },
+          lazy = { enable = false },
+        },
+      })
 
-    require("commander").add(commands, {})
-  end,
+      require("commander").add(commands, {})
+    end,
+  },
 }
