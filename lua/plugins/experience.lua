@@ -11,10 +11,14 @@ return {
         if not buf_ranges[bufnr] then return original() end
 
         local s_line, e_line = unpack(buf_ranges[bufnr])
-        local content = vim.api.nvim_buf_get_lines(bufnr, s_line - 1, e_line, true)
+        local contents = vim.api.nvim_buf_get_lines(bufnr, s_line - 1, e_line, true)
         local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 
-        u.win.create_float({ relative = "editor" }, content, { filetype = buf_ft })
+        u.win.create_float({
+          win = { config = { relative = "editor" } },
+          contents = contents,
+          buf_options = { filetype = buf_ft },
+        })
         u.basic.feedkeys("/")
       end)
 
