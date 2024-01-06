@@ -72,7 +72,6 @@ return {
   },
   {
     "nvimdev/lspsaga.nvim",
-    commit = "cd83dbf10ecc13c178f332a36935db3e8e42ed93",
     opts = {
       symbol_in_winbar = { enable = false },
       lightbulb = { virtual_text = false },

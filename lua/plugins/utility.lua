@@ -28,13 +28,18 @@ return {
     },
   },
   {
-    "elijahmanor/export-to-vscode.nvim",
+    "xlboy/vscode-opener.nvim",
+    dependencies = { "prochri/telescope-all-recent.nvim" },
     keys = {
       {
         "<leader>vsc",
-        function()
-          require("export-to-vscode").launch()
-        end,
+        "<cmd>lua require('vscode-opener').open_current_buf()<CR>",
+        desc = "Open Current Buffer in VSCode",
+      },
+      {
+        "<leader>vsm",
+        "<cmd>lua require('vscode-opener').open()<CR>",
+        desc = "Open VSCode Opener Menu",
       },
     },
   },

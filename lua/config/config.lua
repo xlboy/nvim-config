@@ -29,6 +29,6 @@ return {
   },
   telescope_recent = {
     pickers = { "commander#commander" },
-    ui_select_prompts = { "[Outline] Target Symbol", "[Chainsaw] Target Log" },
+    ui_select_prompts = { "[Outline] Target Symbol", "[Chainsaw] Target Log", "[VSCode Opener] Select Mode" },
   },
 }
