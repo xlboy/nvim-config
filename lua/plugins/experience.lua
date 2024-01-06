@@ -14,7 +14,7 @@ return {
         local content = vim.api.nvim_buf_get_lines(bufnr, s_line - 1, e_line, true)
         local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = bufnr })
 
-        u.win.create_float({ relative = "win" }, content, { filetype = buf_ft })
+        u.win.create_float({ relative = "editor" }, content, { filetype = buf_ft })
         u.basic.feedkeys("/")
       end)
 
