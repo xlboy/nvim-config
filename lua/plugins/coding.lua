@@ -1,17 +1,52 @@
+local t_extensions = require("telescope").extensions
+
 return {
   {
-    "xlboy/text-case.nvim",
+    "johmsalas/text-case.nvim",
     keys = {
-      { "ga.", ":TextCaseOpenTelescope<CR>", mode = { "n", "v" } },
-      { "gaa", ":TextCaseOpenTelescopeQuickChange<CR>" },
-      { "gai", ":TextCaseOpenTelescopeLSPChange<CR>" },
-      { "gam", ":TextCaseOpenTelescopeQuickOrLSP<CR>" },
+      {
+        "gai",
+        function()
+          local t_opts = {
+            prompt_title = "Text Case - %s",
+            layout_strategy = "cursor",
+            layout_config = { cursor = { width = 40, height = 16 } },
+          }
+
+          local is_visual = vim.api.nvim_get_mode().mode == "v"
+          if is_visual then
+            local state = require("textcase.plugin.plugin").state
+            local utils = require("textcase.shared.utils")
+
+            state.telescope_previous_visual_region =
+              utils.get_visual_region(0, true, nil, utils.get_mode_at_operator("v"))
+            t_opts.prompt_title = string.format(t_opts.prompt_title, "Visual")
+            t_extensions.textcase.visual_mode(t_opts)
+            return
+          end
+
+          vim.lsp.buf_request(
+            0,
+            "textDocument/prepareRename",
+            vim.lsp.util.make_position_params(),
+            function(err, result)
+              local can_rename = result ~= nil
+              local fn_name = can_rename and "normal_mode_lsp_change" or "normal_mode_quick_change"
+              t_opts.prompt_title = string.format(t_opts.prompt_title, can_rename and "LSP" or "Quick")
+              t_extensions.textcase[fn_name](t_opts)
+            end
+          )
+        end,
+        desc = "[Text Case] Smart Open",
+        mode = { "n", "v" },
+      },
     },
     config = function()
-      require("textcase").setup({})
+      require("textcase").setup({ default_keymappings_enabled = false })
       require("telescope").load_extension("textcase")
     end,
   },
+
   { "wellle/targets.vim", event = "BufRead" },
   {
     "echasnovski/mini.surround",
