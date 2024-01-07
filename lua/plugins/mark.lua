@@ -8,24 +8,14 @@ return {
     config = function()
       local harpoon = require("harpoon")
       harpoon:setup({
-        cmd = {
-          add = function(possible_value)
-            -- get the current line idx
-            local idx = vim.fn.line(".")
+        default = {
+          select = function(list_item, list, options)
+            local file_path = string.gsub(list_item.value, "^%s*(.-)%s*$", "%1")
+            if vim.startswith(file_path, ">") then return vim.notify("选错啦…") end
 
-            -- read the current line
-            local cmd = vim.api.nvim_buf_get_lines(0, idx - 1, idx, false)[1]
-            if cmd == nil then return nil end
-
-            return {
-              value = cmd,
-              context = {},
-            }
-          end,
-          select = function(list_item, list, option)
-            -- WOAH, IS THIS HTMX LEVEL XSS ATTACK??
-            -- vim.cmd(list_item.value)
-            print("🪚 value: " .. vim.inspect(list_item.value))
+            local file_pos = list_item.context
+            vim.cmd("buffer " .. file_path)
+            vim.api.nvim_win_set_cursor(0, { file_pos.row, file_pos.col })
           end,
         },
       })
