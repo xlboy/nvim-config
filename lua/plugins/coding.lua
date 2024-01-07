@@ -341,7 +341,7 @@ return {
           end)
         end,
         desc = "[Chainsaw] Create Log",
-        mode = { "n", "v" },
+        mode = { "n", "v", "x" },
       },
     },
   },

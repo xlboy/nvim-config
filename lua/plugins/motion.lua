@@ -76,7 +76,7 @@ return {
   {
     "kwkarlwang/bufjump.nvim",
     event = "BufRead",
-    opts = { forward = "<C-y>", backward = "<C-u>" },
+    opts = { forward = "<C-u>", backward = "<C-y>" },
   },
   {
     "DarkKronicle/recall.nvim",

@@ -1,5 +1,6 @@
 local M = {}
 
+--- @return integer[]
 function M.get_bufs()
   return vim.tbl_filter(function(bufnr)
     return vim.bo[bufnr].buflisted and vim.api.nvim_buf_is_loaded(bufnr)
@@ -75,6 +76,17 @@ function M.get_window_number(bufnr, ft_ignores)
 
     ::continue::
   end
+end
+
+-- 判断指定的 buffer 是否git改动
+function M.is_buffer_git_changed(bufnr)
+  local bufname = vim.api.nvim_buf_get_name(bufnr)
+  if bufname == "" then return false end
+  local git_dir = vim.fn.finddir(".git/..", bufname .. ";")
+  if git_dir == "" then return false end
+  local git_status = vim.fn.systemlist("git status --porcelain --untracked-files=no " .. bufname)
+  if #git_status == 0 then return false end
+  return true
 end
 
 return M

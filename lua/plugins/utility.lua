@@ -4,31 +4,6 @@ local u = require("utils")
 return {
   { "wakatime/vim-wakatime", event = "VeryLazy" },
   {
-    "kazhala/close-buffers.nvim",
-    keys = {
-      { "<leader>cc", "<cmd>BDelete! this<CR>", desc = "Delete Current Buffer" },
-      { "<leader>ca", "<cmd>BDelete! all<CR>", desc = "Delete All Buffer" },
-      { "<leader>co", "<cmd>BDelete! other<CR>", desc = "Delete Other Buffer" },
-      { "<leader>cn", "<cmd>BDelete! nameless<CR>", desc = "Delete Nameless Buffer" },
-      {
-        "<leader>cs",
-        function()
-          local suffix = vim.fn.input("Suffix: ")
-          if suffix ~= "" then vim.cmd("BDelete! regex=.*[.]" .. suffix) end
-        end,
-        desc = "Delete Specify Suffix Buffer",
-      },
-      {
-        "<leader>cg",
-        function()
-          local pattern = vim.fn.input("Glob Pattern: ")
-          if pattern ~= "" then vim.cmd("BDelete! glob=" .. pattern) end
-        end,
-        desc = "Delete Specify Suffix Buffer",
-      },
-    },
-  },
-  {
     "xlboy/vscode-opener.nvim",
     dependencies = { "prochri/telescope-all-recent.nvim" },
     keys = {

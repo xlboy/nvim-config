@@ -8,8 +8,25 @@ return {
     config = function()
       local harpoon = require("harpoon")
       harpoon:setup({
-        default = {
-          -- select = function(list_item, list, options) end,
+        cmd = {
+          add = function(possible_value)
+            -- get the current line idx
+            local idx = vim.fn.line(".")
+
+            -- read the current line
+            local cmd = vim.api.nvim_buf_get_lines(0, idx - 1, idx, false)[1]
+            if cmd == nil then return nil end
+
+            return {
+              value = cmd,
+              context = {},
+            }
+          end,
+          select = function(list_item, list, option)
+            -- WOAH, IS THIS HTMX LEVEL XSS ATTACK??
+            -- vim.cmd(list_item.value)
+            print("🪚 value: " .. vim.inspect(list_item.value))
+          end,
         },
       })
 
