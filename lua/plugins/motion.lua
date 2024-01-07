@@ -42,19 +42,20 @@ return {
     end,
   },
   {
-    "xlboy/nvim-spider",
+    "backdround/neowords.nvim",
     event = "BufRead",
-    opts = { skipInsignificantPunctuation = true },
-    keys = {
-      { "W", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "x" } },
-      { "B", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "x" } },
-    },
+    config = function()
+      local n = require("neowords")
+      local p = n.pattern_presets
+      local bigword = n.get_word_hops(p.any_word, p.number, p.hex_color)
+      local string_group = n.get_word_hops('\\v"[^"]*"', "\\v'[^']*'", "\\v`[^`]*`")
+
+      vim.keymap.set({ "n", "x", "o" }, "W", bigword.forward_start)
+      vim.keymap.set({ "n", "x", "o" }, "B", bigword.backward_start)
+      vim.keymap.set({ "n", "x", "o" }, "e", string_group.forward_start)
+      vim.keymap.set({ "n", "x", "o" }, "E", string_group.backward_start)
+    end,
   },
-  -- {
-  --   "backdround/rabbit-hop.nvim",
-  --   event = "BufRead",
-  --   config = function() end,
-  -- },
   {
     "gsuuon/tshjkl.nvim",
     keys = { { "<leader>ct", desc = "Toggle tshjkl" } },
@@ -78,6 +79,8 @@ return {
     event = "BufRead",
     opts = { forward = "<C-u>", backward = "<C-y>" },
   },
+
+  -- TODO: 好像有bug, 回头自己写一个
   {
     "DarkKronicle/recall.nvim",
     event = "BufRead",

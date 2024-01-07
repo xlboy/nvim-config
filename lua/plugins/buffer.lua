@@ -45,7 +45,7 @@ return {
             local to_delete = vim.tbl_filter(function(buf)
               local is_term = vim.api.nvim_get_option_value("buftype", { buf = buf }) == "terminal"
               if is_term then return false end
-              return u.buffer.is_buffer_git_changed(buf)
+              return u.buffer.is_buffer_git_changed(buf) == false
             end, u.buffer.get_bufs())
 
             for _, buf in ipairs(to_delete) do
@@ -90,5 +90,6 @@ return {
       return keys
     end,
   },
+  -- 让 tab 下的 buffer 独立，另外配合  resession.nvim 来使用
   { "tiagovla/scope.nvim", config = true },
 }

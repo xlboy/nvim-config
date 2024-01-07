@@ -2,7 +2,7 @@ local t_extensions = require("telescope").extensions
 local u = require("utils")
 
 return {
-  { "wakatime/vim-wakatime", event = "VeryLazy" },
+  { "wakatime/vim-wakatime", event = "User Startup60s" },
   {
     "xlboy/vscode-opener.nvim",
     dependencies = { "prochri/telescope-all-recent.nvim" },
