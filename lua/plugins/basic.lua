@@ -4,6 +4,7 @@ return {
     version = "~0.13.2",
     dependencies = { "nvim-telescope/telescope.nvim" },
     keys = {
+      { "<leader>sc", desc = "[Scratch] ..." },
       { "<leader>scce", ":ScratchEditConfig<cr>", desc = "sc - config edit" },
       { "<leader>scci", ":ScratchInitConfig<cr>", desc = "sc - config init" },
       { "<leader>scn", ":Scratch<cr>", desc = "sc - new scratch" },
@@ -13,3 +14,4 @@ return {
     },
   },
 }
+

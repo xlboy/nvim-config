@@ -45,7 +45,12 @@ local options = {
     wrap = false, -- disable wrapping of lines longer than the width of window
     writebackup = false, -- disable making a backup before overwriting a file
     hidden = true,
-    showtabline = 2
+    showtabline = 2,
+    foldcolumn = "1",
+    foldlevel = 99,
+    foldlevelstart = 99,
+    foldenable = true,
+    foldmethod = "indent",
   },
   g = {
     mapleader = " ", -- set leader key

@@ -19,10 +19,12 @@ end
 
 local function is_valid_bufs()
   local bufs = u.buffer.get_bufs()
-  if #bufs == 0 then return end
+  if #bufs == 0 then return false end
 
   local is_no_name = #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == ""
-  if is_no_name then return end
+  if is_no_name then return false end
+
+  return true
 end
 
 return {

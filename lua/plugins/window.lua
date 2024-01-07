@@ -68,14 +68,7 @@ return {
       require("focus").setup(opts)
 
       local ignore_filetypes = config.ft_ignores
-      local ignore_buftypes = {
-        "nofile",
-        "prompt",
-        "popup",
-        "help",
-        "acwrite",
-        "quifkfix", --[[ "terminal" ]]
-      }
+      local ignore_buftypes = { "nofile", "prompt", "popup", "help", "acwrite", "quifkfix" }
       local augroup = vim.api.nvim_create_augroup("FocusDisable", { clear = true })
       vim.api.nvim_create_autocmd("WinEnter", {
         group = augroup,
@@ -94,5 +87,10 @@ return {
       })
     end,
   },
-  -- { "stevearc/stickybuf.nvim", opts = {} },
+  {
+    "carbon-steel/detour.nvim",
+    keys = {
+      { "<leader>wnf", "<cmd>lua require('detour').Detour()<CR>" },
+    },
+  },
 }

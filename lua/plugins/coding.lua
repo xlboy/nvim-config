@@ -72,8 +72,6 @@ return {
     },
   },
   {
-    "Wansmer/sibling-swap.nvim",
-    dependencies = { "nvim-treesitter" },
     config = function()
       require("sibling-swap").setup({
         allowed_separators = {
@@ -102,12 +100,7 @@ return {
         -- `hl_opts` is a `val` from `nvim_set_hl()`
         highlight_node_at_cursor = false,
         -- keybinding for movements to right or left (and up or down, if `allow_interline_swaps` is true)
-        keymaps = {
-          -- ["<C-.>"] = "swap_with_right",
-          -- ["<C-,>"] = "swap_with_left",
-          -- ["<leader>s."] = "swap_with_right_with_opp",
-          -- ["<leader>s,"] = "swap_with_left_with_opp",
-        },
+        keymaps = {},
         ignore_injected_langs = false,
         -- allow swaps across lines
         allow_interline_swaps = true,
@@ -115,6 +108,8 @@ return {
         interline_swaps_witout_separator = false,
       })
     end,
+    "Wansmer/sibling-swap.nvim",
+    dependencies = { "nvim-treesitter" },
     keys = {
       {
         "<leader>s.",
@@ -308,7 +303,16 @@ return {
     end,
   },
   -- Auto Indent
-  { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
+  -- { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
+  {
+    "vidocqh/auto-indent.nvim",
+    event = "BufReadPre",
+    opts = {
+      indentexpr = function(lnum)
+        return require("nvim-treesitter.indent").get_indent(lnum)
+      end,
+    },
+  },
   -- 在 cmd 中输入整数后跳转到对应的行中
   { "nacro90/numb.nvim", event = "CmdlineEnter" },
   -- 加快日志创建速度。创建各种特定于语言的日志语句，例如变量、断言或时间测量的日志
@@ -324,7 +328,7 @@ return {
     },
     keys = {
       {
-        "<leader>tc",
+        "<leader>pc",
         function()
           local log_fn_names = vim.tbl_filter(function(v)
             return v ~= "setup"

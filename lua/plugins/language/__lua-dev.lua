@@ -37,7 +37,7 @@ return {
   },
   {
     "rafcamlet/nvim-luapad",
-    cmd = { "Luapad" },
+    cmd = { "Luapad", "LuaRun" },
     config = function()
       require("luapad").setup({ eval_on_change = false, wipe = false })
     end,

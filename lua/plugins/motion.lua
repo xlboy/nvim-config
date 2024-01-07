@@ -1,4 +1,5 @@
 local u = require("utils")
+
 return {
   {
     "folke/flash.nvim",
@@ -13,12 +14,8 @@ return {
     keys = {
       {
         "s",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump({
-            search = { multi_window = false },
-          })
-        end,
+        mode = { "n", "v", "o" },
+        "<cmd>lua require('flash').jump({ search = { multi_window = false } })<CR>",
         desc = "Flash",
       },
       { "<leader>ssv", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "Flash treesitter_search" },
@@ -39,7 +36,7 @@ return {
   },
   {
     "chaoren/vim-wordmotion",
-    keys = { { ";", desc = "Wordmotion startup!" } },
+    event = "BufRead",
     init = function()
       vim.g.wordmotion_prefix = ";"
     end,
@@ -53,26 +50,11 @@ return {
       { "B", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "x" } },
     },
   },
-  {
-    -- TODO: 待换，因为不能基于 cwd 来进行 mark
-    "tomasky/bookmarks.nvim",
-    event = "User Startup60s",
-    config = function()
-      require("bookmarks").setup({
-        on_attach = function(bufnr)
-          local bm = require("bookmarks")
-          local map = vim.keymap.set
-          map("n", "<leader>mcc", bm.bookmark_toggle) -- add or remove bookmark at current line
-          map("n", "<leader>mi", bm.bookmark_ann) -- add or edit mark annotation at current line
-          map("n", "<leader>mca", bm.bookmark_clean) -- clean all marks in local buffer
-          map("n", "<leader>mj", bm.bookmark_next) -- jump to next mark in local buffer
-          map("n", "<leader>mk", bm.bookmark_prev) -- jump to previous mark in local buffer
-          map("n", "<leader>ml", ":Telescope bookmarks list<CR>") -- show marked file list in quickfix window
-        end,
-      })
-      require("telescope").load_extension("bookmarks")
-    end,
-  },
+  -- {
+  --   "backdround/rabbit-hop.nvim",
+  --   event = "BufRead",
+  --   config = function() end,
+  -- },
   {
     "gsuuon/tshjkl.nvim",
     keys = { { "<leader>ct", desc = "Toggle tshjkl" } },
@@ -81,14 +63,28 @@ return {
       keymaps = { toggle = "<leader>ct" },
     },
   },
+  -- {
+  --   "xlboy/filestack.nvim",
+  --   event = "BufRead",
+  --   opts = {
+  --     keymaps = {
+  --       jump = { backward = "<c-o>", forward = "<c-i>" },
+  --       navigate = { backward = "<c-u>", forward = "<c-y>" },
+  --     },
+  --   },
+  -- },
   {
-    "xlboy/filestack.nvim",
+    "kwkarlwang/bufjump.nvim",
     event = "BufRead",
-    opts = {
-      keymaps = {
-        jump = { backward = "<c-o>", forward = "<c-i>" },
-        navigate = { backward = "<c-u>", forward = "<c-y>" },
-      },
+    opts = { forward = "<C-y>", backward = "<C-u>" },
+  },
+  {
+    "DarkKronicle/recall.nvim",
+    event = "BufRead",
+    keys = {
+      { "<C-i>", "<cmd>lua require('recall').jump_backwards()<CR>", desc = "Recall backwards through history" },
+      { "<C-o>", "<cmd>lua require('recall').jump_forwards()<CR>", desc = "Recall forwards through history" },
     },
+    opts = {},
   },
 }

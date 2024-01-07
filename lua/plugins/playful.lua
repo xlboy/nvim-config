@@ -41,11 +41,7 @@ return {
       { "<leader>fml", ":CellularAutomaton game_of_life<CR>", desc = "[CellularAutomaton] game of life" },
     },
   },
-  {
-    enabled = false,
-    "tamton-aquib/zone.nvim",
-    opts = { after = 3000000 },
-  },
+  { enabled = false, "tamton-aquib/zone.nvim", opts = { after = 3000000 } },
   {
     enabled = false,
     "ElPiloto/significant.nvim",

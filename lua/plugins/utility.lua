@@ -2,6 +2,7 @@ local t_extensions = require("telescope").extensions
 local u = require("utils")
 
 return {
+  { "wakatime/vim-wakatime", event = "VeryLazy" },
   {
     "kazhala/close-buffers.nvim",
     keys = {
@@ -68,7 +69,7 @@ return {
   },
   {
     "gbprod/yanky.nvim",
-    dependencies = { { "kkharji/sqlite.lua" } },
+    dependencies = { "kkharji/sqlite.lua" },
     opts = {
       ring = { storage = "sqlite", ignore_registers = { "0" } },
       highlight = { on_put = true, on_yank = true, timer = 150 },
@@ -82,7 +83,7 @@ return {
         end,
         desc = "Open Yank History",
       },
-      { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
+      { "y", "<Plug>(YankyYank)", mode = { "n", "x", "v" }, desc = "Yank text" },
     },
   },
 }
