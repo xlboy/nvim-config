@@ -2,7 +2,7 @@ return {
   {
     "rcarriga/nvim-notify",
     event = "VeryLazy",
-    keys = {
+    keye = {
       {
         "<leader>udn",
         function()

@@ -7,7 +7,18 @@ return {
     keys = function()
       local force = true
       local close_apis = {
-        ["Current"] = { k = "<leader>cc", cb = "<cmd>BDelete this<CR>" },
+        ["Current"] = {
+          k = "<leader>cc",
+          cb = function()
+            local cur_buf = vim.api.nvim_get_current_buf()
+            if u.buffer.is_modified(cur_buf) then
+              local ok = vim.fn.confirm("Buffer is modified, close anyway?", "&Yes\n&No", 2)
+              if ok == 1 then vim.cmd("BDelete! this") end
+            else
+              vim.cmd("BDelete this")
+            end
+          end,
+        },
         ["All"] = { k = "<leader>ca", cb = "<cmd>BDelete all<CR>" },
         ["Other"] = { k = "<leader>co", cb = "<cmd>BDelete other<CR>" },
         ["Nameless"] = { k = "<leader>cn", cb = "<cmd>BDelete! nameless<CR>" },
@@ -45,7 +56,7 @@ return {
             local to_delete = vim.tbl_filter(function(buf)
               local is_term = vim.api.nvim_get_option_value("buftype", { buf = buf }) == "terminal"
               if is_term then return false end
-              return u.buffer.is_buffer_git_changed(buf) == false
+              return u.buffer.is_git_changed(buf) == false
             end, u.buffer.get_bufs())
 
             for _, buf in ipairs(to_delete) do
