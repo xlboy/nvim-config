@@ -49,11 +49,14 @@ return {
       local p = n.pattern_presets
       local bigword = n.get_word_hops(p.any_word, p.number, p.hex_color)
       local string_group = n.get_word_hops('\\v"[^"]*"', "\\v'[^']*'", "\\v`[^`]*`")
+      local symbol_group = n.get_word_hops("\\v[^[:alnum:]_\"'` ]")
 
       vim.keymap.set({ "n", "x", "o" }, "W", bigword.forward_start)
       vim.keymap.set({ "n", "x", "o" }, "B", bigword.backward_start)
       vim.keymap.set({ "n", "x", "o" }, "e", string_group.forward_start)
       vim.keymap.set({ "n", "x", "o" }, "E", string_group.backward_start)
+      vim.keymap.set({ "n", "x", "o" }, "q", symbol_group.forward_start)
+      vim.keymap.set({ "n", "x", "o" }, "Q", symbol_group.backward_start)
     end,
   },
   {
