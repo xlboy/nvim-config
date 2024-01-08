@@ -72,12 +72,16 @@ set_mappings({
     ["<leader>un"] = { u.ui.change_number, desc = "UI - Change number mode" },
     ["{"] = { "<cmd>bprevious<CR>" },
     ["}"] = { "<cmd>bnext<CR>" },
-    ["[t"] = { "<cmd>tabprevious<CR>"},
-    ["]t"] = { "<cmd>tabnext<CR>"},
-    -- ["<leader>bp"] = { ":BufferLinePick<CR>" },
+    ["[t"] = { "<cmd>tabprevious<CR>" },
+    ["]t"] = { "<cmd>tabnext<CR>" },
     ["<leader>gbl"] = { "<cmd>Telescope git_branches<CR>" },
     ["<leader>gfc"] = { "<cmd>Telescope git_status<CR>" },
-    ["<leader>lazy"] = {"<cmd>Lazy<CR>"},
+    ["<leader>lazy"] = { "<cmd>Lazy<CR>" },
+    ["%"] = {
+      function()
+        vim.api.nvim_win_set_cursor(0, u.node.get_recent_pos())
+      end,
+    },
   },
   v = {
     ["y"] = { '"+ygv<esc>' },

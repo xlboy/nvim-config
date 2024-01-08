@@ -21,7 +21,7 @@ local function is_valid_bufs()
   local bufs = u.buffer.get_bufs()
   if #bufs == 0 then return false end
 
-  local is_no_name = #bufs == 1 and vim.api.nvim_buf_get_name(bufs[1]) == ""
+  local is_no_name = #bufs == 1 and u.buffer.is_noname(bufs[1])
   if is_no_name then return false end
 
   return true
@@ -35,7 +35,10 @@ return {
     init = function()
       vim.api.nvim_create_autocmd("VimLeavePre", {
         callback = function()
-          if is_valid_bufs() then resession.save_cwd() end
+          if is_valid_bufs() then
+            -- u.buffer.delete_non_cwd()
+            resession.save_cwd()
+          end
         end,
       })
       -- vim.api.nvim_create_autocmd("VimEnter", { callback = resession.load_cwd })

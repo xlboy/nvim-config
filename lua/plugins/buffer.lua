@@ -36,20 +36,7 @@ return {
             if pattern ~= "" then vim.cmd("BDelete glob=" .. pattern) end
           end,
         },
-        ["Non CWD"] = {
-          k = "<leader>cd",
-          cb = function()
-            local to_delete = vim.tbl_filter(function(buf)
-              local filename = vim.api.nvim_buf_get_name(buf)
-              local cwd = vim.fn.getcwd()
-              return not vim.startswith(filename, cwd)
-            end, u.buffer.get_bufs())
-
-            for _, buf in ipairs(to_delete) do
-              vim.api.nvim_buf_delete(buf, { force = force })
-            end
-          end,
-        },
+        ["Non CWD"] = { k = "<leader>cd", cb = u.buffer.delete_non_cwd },
         ["Git Unchanged"] = {
           k = "<leader>cu",
           cb = function()
