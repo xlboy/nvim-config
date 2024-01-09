@@ -82,4 +82,6 @@ return {
     cmd = { "CccPick", "CccConvert" },
     opts = { highlighter = { auto_enable = true, lsp = true } },
   },
+  -- 光标动画
+  --[[ { "danilamihailov/beacon.nvim", event = "BufRead" } ]]
 }

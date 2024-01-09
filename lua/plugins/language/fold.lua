@@ -1,7 +1,8 @@
 return {
   {
+    enabled = false,
     "kevinhwang91/nvim-ufo",
-    event = "LspAttach",
+    event = "BufRead",
     dependencies = {
       { "kevinhwang91/promise-async" },
     },
@@ -57,4 +58,12 @@ return {
       end,
     },
   },
+  -- {
+  --   "jghauser/fold-cycle.nvim",
+  --   event = "BufRead",
+  --   keys = {
+  --     { "zO", "<cmd>lua require('fold-cycle').open_all()<CR>" },
+  --     { "zC", "<cmd>lua require('fold-cycle').close_all()<CR>" },
+  --   },
+  -- },
 }
