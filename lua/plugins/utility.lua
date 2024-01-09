@@ -28,6 +28,11 @@ return {
     },
   },
   {
+    "axieax/urlview.nvim",
+    config = true,
+    keys = { { "<leader>tsu", ":UrlView<CR>", desc = "Open Url View" } },
+  },
+  {
     "chrishrb/gx.nvim",
     event = "BufRead",
     dependencies = { "nvim-lua/plenary.nvim" },

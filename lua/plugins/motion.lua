@@ -67,16 +67,6 @@ return {
       keymaps = { toggle = "<leader>ct" },
     },
   },
-  -- {
-  --   "xlboy/filestack.nvim",
-  --   event = "BufRead",
-  --   opts = {
-  --     keymaps = {
-  --       jump = { backward = "<c-o>", forward = "<c-i>" },
-  --       navigate = { backward = "<c-u>", forward = "<c-y>" },
-  --     },
-  --   },
-  -- },
   {
     "kwkarlwang/bufjump.nvim",
     event = "BufRead",
@@ -84,13 +74,13 @@ return {
   },
 
   -- TODO: 好像有bug, 回头自己写一个
-  {
-    "DarkKronicle/recall.nvim",
-    event = "BufRead",
-    keys = {
-      { "<C-i>", "<cmd>lua require('recall').jump_backwards()<CR>", desc = "Recall backwards through history" },
-      { "<C-o>", "<cmd>lua require('recall').jump_forwards()<CR>", desc = "Recall forwards through history" },
-    },
-    opts = {},
-  },
+  -- {
+  --   "DarkKronicle/recall.nvim",
+  --   event = "BufRead",
+  --   keys = {
+  --     { "<C-i>", "<cmd>lua require('recall').jump_backwards()<CR>", desc = "Recall backwards through history" },
+  --     { "<C-o>", "<cmd>lua require('recall').jump_forwards()<CR>", desc = "Recall forwards through history" },
+  --   },
+  --   opts = {},
+  -- },
 }

@@ -29,34 +29,19 @@ return {
     end,
   },
   {
-    "ten3roberts/bookmarks.nvim",
-    branch = "feat-scoped-bookmarks",
+    "xlboy/bookmarks.nvim",
+    -- dir = "D:\\project\\nvim\\bookmarks.nvim",
     event = "User Startup30s",
     keys = {
-      { "<leader>mt", description = "[bookmark] add or remove mark at current line" },
-      { "<leader>mi", description = "[bookmark] add or edit mark annotation at current line" },
-      { "<leader>mc", description = "[bookmark] clean all marks in local buffer" },
-      { "<leader>mj", description = "[bookmark] jump to next mark in local buffer" },
-      { "<leader>mk", description = "[bookmark] jump to previous mark in local buffer" },
-      { "<leader>ml", description = "[bookmark] list all marks in local buffer" },
+      { "<leader>ma", "<cmd>lua require('bookmarks').add_bookmarks()<CR>", desc = "[Bookmarks] Add" },
+      { "<leader>mc", "<cmd>lua require('bookmarks.list').delete_on_virt()<CR>", desc = "[Bookmarks] Delete" },
+      { "<leader>ml", "<cmd>lua require('bookmarks').toggle_bookmarks()<CR>", desc = "[Bookmarks] Show List" },
+      { "<leader>ms", "<cmd>lua require('bookmarks.list').show_desc()<CR>", desc = "[Bookmarks] Show Desc" },
     },
     config = function()
-      require("bookmarks").setup({
-        scoped = true,
-        on_attach = function(bufnr)
-          local bm = require("bookmarks")
-          local map = vim.keymap.set
-          map("n", "<leader>mt", bm.bookmark_toggle) -- add or remove bookmark at current line
-          map("n", "<leader>mi", bm.bookmark_ann) -- add or edit mark annotation at current line
-          map("n", "<leader>mc", bm.bookmark_clean) -- clean all marks in local buffer
-          map("n", "<leader>mj", bm.bookmark_next) -- jump to next mark in local buffer
-          map("n", "<leader>mk", bm.bookmark_prev) -- jump to previous mark in local buffer
-          map("n", "<leader>ml", function()
-            t_extensions.bookmarks.list({ previewer = false })
-          end)
-        end,
-      })
+      require("bookmarks").setup()
       require("telescope").load_extension("bookmarks")
+      vim.cmd("hi! link bookmarks_virt_text_hl BufferAlternateHINT")
     end,
   },
 }

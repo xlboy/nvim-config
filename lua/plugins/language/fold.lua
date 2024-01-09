@@ -1,6 +1,5 @@
 return {
   {
-    enabled = false,
     "kevinhwang91/nvim-ufo",
     event = "BufRead",
     dependencies = {
@@ -58,12 +57,13 @@ return {
       end,
     },
   },
-  -- {
-  --   "jghauser/fold-cycle.nvim",
-  --   event = "BufRead",
-  --   keys = {
-  --     { "zO", "<cmd>lua require('fold-cycle').open_all()<CR>" },
-  --     { "zC", "<cmd>lua require('fold-cycle').close_all()<CR>" },
-  --   },
-  -- },
+  {
+    "jghauser/fold-cycle.nvim",
+    keys = {
+      { "zcc", "<cmd>normal! zc<CR>" },
+      { "zoo", "<cmd>normal! zo<CR>" },
+      { "zcn", "<cmd>lua require('fold-cycle').close_all()<CR>" },
+      { "zon", "<cmd>lua require('fold-cycle').open_all()<CR>" },
+    },
+  },
 }

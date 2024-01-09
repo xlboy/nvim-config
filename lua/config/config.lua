@@ -15,6 +15,8 @@ return {
     "incline",
     "TelescopePrompt",
     "TelescopeResults",
+    "bookmarks",
+    "btags",
   },
   colors = {
     window = {

@@ -183,6 +183,6 @@ return {
       })
       require("telescope").load_extension("import")
     end,
-    keys = { { "<leader>tsi", ":Telescope import<CR>" } },
+    keys = { { "<leader>tsi", ":Telescope import<CR>", desc = "Telescope import" } },
   },
 }
