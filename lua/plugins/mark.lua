@@ -40,7 +40,9 @@ return {
       { "<leader>ms", "<cmd>lua require('bookmarks.list').show_desc()<CR>", desc = "[Bookmarks] Show Desc" },
     },
     config = function()
-      require("bookmarks").setup({ toggle = "<M-\\>" })
+      require("bookmarks").setup({
+        keymap = { toggle = "<M-\\>" },
+      })
       require("telescope").load_extension("bookmarks")
       vim.cmd("hi! link bookmarks_virt_text_hl BufferAlternateHINT")
     end,
