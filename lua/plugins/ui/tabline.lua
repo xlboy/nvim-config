@@ -15,6 +15,7 @@ return {
   config = function()
     local h_conditions = require("heirline.conditions")
     local h_utils = require("heirline.utils")
+    -- local is_pinned = require("hbac.state").is_pinned
 
     local components = {
       buffer = {
@@ -129,22 +130,24 @@ return {
                 local space_size = self.display_right_space
                 -- 减 1 是因为右边的 surround char
                 if self.is_active or self.is_visible then space_size = space_size - 1 end
-                if space_size <= 0 then return "" end
+                -- 右边的 surround char 也会影响范围数（2/3）
+                -- if is_pinned(self.bufnr) then space_size = space_size - (self.is_active and 2 or 3) end
 
+                if space_size <= 0 then return "" end
                 -- if self.is_visible then space_size = space_size - 1 end
                 return string.rep(" ", space_size)
               end,
             },
+            -- {
+            --   name = "PinIcon",
+            --   condition = function(self)
+            --     return is_pinned(self.bufnr)
+            --   end,
+            --   provider = "📌",
+            -- },
           },
         },
         FileFlags = {
-          -- {
-          --   condition = function(self)
-          --     return vim.api.nvim_buf_get_option(self.bufnr, "modified")
-          --   end,
-          --   provider = " ◌ ",
-          --   hl = { fg = "#2c2f3b" },
-          -- },
           {
             condition = function(self)
               return not vim.api.nvim_buf_get_option(self.bufnr, "modifiable")

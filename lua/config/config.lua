@@ -35,6 +35,7 @@ return {
       "[Outline] Target Symbol",
       "[Chainsaw] Target Log",
       "[VSCode Opener] Select Mode",
+      "[UrlView] Select Mode",
       "Buffer Closer",
     },
   },

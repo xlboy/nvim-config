@@ -85,6 +85,17 @@ local commands = {
   { desc = "Reload Buffer", cmd = "<cmd>bufdo e<CR>zz", cat = CAT.BUF },
   { desc = "Reload Window", cmd = "<cmd>windo e<CR>zz", cat = CAT.WINDOW },
   { desc = "Advanced Git Search", cmd = "<cmd>AdvancedGitSearch<CR>", cat = CAT.GIT },
+  {
+    desc = "Open Message Float Window",
+    cmd = function()
+      local messages = vim.split(vim.api.nvim_exec("message", true), "\n")
+      u.win.create_float({
+        win = { config = { relative = "editor" } },
+        contents = messages,
+      })
+    end,
+    cat = CAT.WINDOW,
+  },
 }
 
 return {

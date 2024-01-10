@@ -90,4 +90,11 @@ return {
   },
   -- 让 tab 下的 buffer 独立，另外配合  resession.nvim 来使用
   { "tiagovla/scope.nvim", config = true },
+  -- 自动关闭不用的 buffer
+  -- { "axkirillov/hbac.nvim", opts = { threshold = 6 } },
+  {
+    "chrisgrieser/nvim-early-retirement",
+    opts = { retirementAgeMins = 10 },
+    event = "BufRead",
+  },
 }

@@ -60,10 +60,10 @@ return {
   {
     "jghauser/fold-cycle.nvim",
     keys = {
-      { "zcc", "<cmd>normal! zc<CR>" },
-      { "zoo", "<cmd>normal! zo<CR>" },
-      { "zcn", "<cmd>lua require('fold-cycle').close_all()<CR>" },
-      { "zon", "<cmd>lua require('fold-cycle').open_all()<CR>" },
+      { "zcc", "<cmd>normal! zc<CR>", desc = "[Fold] Close" },
+      { "zoo", "<cmd>normal! zo<CR>", desc = "[Fold] Open" },
+      { "zcn", "<cmd>lua require('fold-cycle').close_all()<CR>", desc = "[Fold] Nested Close" },
+      { "zon", "<cmd>lua require('fold-cycle').open_all()<CR>", desc = "[Fold] Nested Open" },
     },
   },
 }

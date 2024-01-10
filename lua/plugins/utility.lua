@@ -28,9 +28,21 @@ return {
     },
   },
   {
-    "axieax/urlview.nvim",
+    "xlboy/urlview.nvim",
     config = true,
-    keys = { { "<leader>tsu", ":UrlView<CR>", desc = "Open Url View" } },
+    keys = {
+      {
+        "<leader>tsu",
+        function()
+          local menu = { ["Current Buffer"] = "UrlView", ["Lazy"] = "UrlView lazy" }
+          vim.ui.select(vim.tbl_keys(menu), { prompt = "[UrlView] Select Mode" }, function(type)
+            if not type then return end
+            vim.cmd(menu[type])
+          end)
+        end,
+        desc = "[UrlView] Open Menu",
+      },
+    },
   },
   {
     "chrishrb/gx.nvim",
