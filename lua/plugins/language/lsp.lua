@@ -120,7 +120,7 @@ return {
           hover_symbol = "gh",
           toggle_preview = "P",
         },
-        -- symbols = { filter = { "Function", "Class" } },
+        symbols = { filter = { "Function", "Class", "Method" } },
       })
     end,
     keys = function()

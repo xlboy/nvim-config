@@ -17,8 +17,8 @@ return {
     config = function()
       local transparent = require("transparent")
       transparent.setup({
-        extra_groups = { "MasonNormal", "NvimTreeNormal", "FoldColumn" },
-        exclude_groups = { "CursorLine" },
+        -- extra_groups = { "MasonNormal", "NvimTreeNormal", "FoldColumn" },
+        -- exclude_groups = { "CursorLine" },
       })
       local prefix = {
         "BufferLine",

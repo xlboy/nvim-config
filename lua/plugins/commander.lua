@@ -48,7 +48,7 @@ local commands = {
     desc = "Open the current file in finder",
     cmd = function()
       local file_path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":h")
-      u.basic.fs.open_dir_in_finder(file_path)
+      u.fs.open_dir_in_finder(file_path)
     end,
     cat = CAT.FS,
   },

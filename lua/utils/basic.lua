@@ -21,15 +21,6 @@ function M.write_to_clipboard(text)
   vim.fn.setreg("+", text)
 end
 
--- 获取已打开的 buffers
-function M.get_opened_buffers()
-  local buffers = {}
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_get_option(buf, "buflisted") then table.insert(buffers, buf) end
-  end
-  return buffers
-end
-
 function M.get_visible_lines()
   local start_line = 1
   local end_line = vim.fn.line("$")
@@ -42,16 +33,6 @@ function M.get_visible_lines()
   return vis_lines
 end
 
--- 如何用 lua 搜索指定行数范围内的字符串
-function M.search_in_range(start_line, end_line, pattern)
-  local vis_lines = M.get_visible_lines()
-  local start_line = start_line or vis_lines[1]
-  local end_line = end_line or vis_lines[#vis_lines]
-  local pattern = pattern or vim.fn.input("Search: ")
-
-  vim.cmd(start_line .. "," .. end_line .. "g/" .. pattern .. "/p")
-end
-
 function M.gen_record(keys, value)
   local record = {}
   for _, key in ipairs(keys) do
@@ -62,12 +43,6 @@ end
 
 function M.feedkeys(keys, mode)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, true, true), mode or "n", true)
-end
-
-M.fs = {}
-function M.fs.open_dir_in_finder(dir)
-  local cmd = M.os_pick(string.format('start "" "%s"', dir), string.format('open "%s"', dir))
-  vim.fn.system(cmd)
 end
 
 return M

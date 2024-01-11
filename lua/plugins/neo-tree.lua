@@ -50,7 +50,7 @@ return {
     opts.commands["reveal_in_finder"] = function(state)
       local node = state.tree:get_node()
       local file_dir = vim.fn.fnamemodify(node.path, ":h")
-      u.basic.fs.open_dir_in_finder(file_dir)
+      u.fs.open_dir_in_finder(file_dir)
     end
     opts.commands["switch_to_editor"] = function()
       vim.cmd.wincmd("p")

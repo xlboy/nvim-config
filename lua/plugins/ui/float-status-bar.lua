@@ -22,9 +22,13 @@ local render = {
       return content
     end
 
+    local filepath = vim.api.nvim_buf_get_name(0)
+    local filename = vim.fn.fnamemodify(filepath, ":t")
+    local relative_path = vim.fn.fnamemodify(filepath, ":~:." .. vim.fn.getcwd() .. ":.")
+
     local u_filename = u.buffer.get_unique_filename(vim.api.nvim_buf_get_name(props.buf), false)
-    buf_name_maps[props.buf] = u_filename
-    table.insert(content, u_filename)
+    buf_name_maps[props.buf] = relative_path
+    table.insert(content, filename)
     return content
   end,
   file_icon = function(props)
