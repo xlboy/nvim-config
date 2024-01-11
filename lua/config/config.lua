@@ -21,9 +21,9 @@ return {
   colors = {
     window = {
       -- 超喜欢 #0095ff
-      active = { bg = "#17c0eb", fg = "#ffffff", comment = "#0f9cff" },
+      active = { bg = "#17c0eb", fg = "#ffffff", comment = "#0080ff" },
       -- 超喜欢 #5a6eb3
-      visible = { bg = "#2f3640", fg = "#afc5c7", comment = "#3f4c7a" },
+      visible = { bg = "#2f3640", fg = "#afc5c7", comment = "#5a6eb3" },
       default = { bg = "none", fg = "#B0BEC5", comment = "#5a6eb3" },
     },
     modified = { fg = "#d4920c" },
