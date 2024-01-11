@@ -1,8 +1,6 @@
 local u = require("utils")
 local config = require("config.config")
 
-local buf_name_maps = {}
-
 local helpers = {
   get_content_hl = function(props)
     return props.focused and config.colors.window.active or config.colors.window.visible
@@ -12,24 +10,23 @@ local helpers = {
 local render = {
   filename = function(props)
     local content_hl = helpers.get_content_hl(props)
-    local content = { guifg = content_hl.fg, guibg = content_hl.bg }
+    local filename_content = { guifg = content_hl.fg, guibg = content_hl.bg }
 
     local is_modified = vim.api.nvim_get_option_value("modified", { buf = props.buf })
-    if is_modified then content.guifg = config.colors.modified.fg end
+    if is_modified then filename_content.guifg = config.colors.modified.fg end
 
-    if buf_name_maps[props.buf] then
-      table.insert(content, buf_name_maps[props.buf])
-      return content
-    end
-
-    local filepath = vim.api.nvim_buf_get_name(0)
+    local filepath = vim.api.nvim_buf_get_name(props.buf)
     local filename = vim.fn.fnamemodify(filepath, ":t")
     local relative_path = vim.fn.fnamemodify(filepath, ":~:." .. vim.fn.getcwd() .. ":.")
+    local directory_path = vim.fn.fnamemodify(relative_path, ":h")
 
-    local u_filename = u.buffer.get_unique_filename(vim.api.nvim_buf_get_name(props.buf), false)
-    buf_name_maps[props.buf] = relative_path
-    table.insert(content, filename)
-    return content
+    table.insert(filename_content, filename)
+
+    return {
+      filename_content,
+      { " | ", guifg = "grey" },
+      { directory_path, guifg = content_hl.comment },
+    }
   end,
   file_icon = function(props)
     local content_hl = helpers.get_content_hl(props)

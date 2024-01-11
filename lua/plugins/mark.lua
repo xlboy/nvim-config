@@ -42,6 +42,7 @@ return {
     config = function()
       require("bookmarks").setup({
         keymap = { toggle = "<M-\\>" },
+        virt_pattern = { "*.go", "*.lua", "*.sh", "*.php", "*.rs", "*.ts", "*.tsx", "*.js", "*.jsx" }
       })
       require("telescope").load_extension("bookmarks")
       vim.cmd("hi! link bookmarks_virt_text_hl BufferAlternateHINT")

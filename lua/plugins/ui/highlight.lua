@@ -61,7 +61,7 @@ return {
     lazy = false,
     priority = 10, -- make sure to load this before all the other start plugins
     opts = {
-      tint = -80,
+      tint = -90,
       saturation = 0.6,
       window_ignore_function = function(winid)
         local buf = vim.api.nvim_win_get_buf(winid)
