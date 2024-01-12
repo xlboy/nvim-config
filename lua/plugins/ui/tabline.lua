@@ -11,10 +11,10 @@ local config = {
   },
   default_color = {
     fg = g_config.colors.window.default.fg,
-    bg = g_config.colors.window.default.bg
+    bg = g_config.colors.window.default.bg,
   },
   default_surround_char = g_config.symbols.rounded_corner,
-  min_width = 20,
+  min_width = 24,
 }
 
 return {
@@ -71,8 +71,6 @@ return {
           provider = function(self)
             local window_number = u.buffer.get_window_number(self.bufnr, constants.FT_IGNORES)
             return window_number
-            -- return config.number_chars[window_number]
-            -- return window_number .. ". "
           end,
           hl = function(self)
             local fg = self.is_active and config.active_color.fg or config.visible_color.fg
@@ -140,12 +138,19 @@ return {
                 -- 减 1 是因为右边的 surround char
                 if self.is_active or self.is_visible then space_size = space_size - 1 end
                 -- 右边的 surround char 也会影响范围数（2/3）
-                -- if is_pinned(self.bufnr) then space_size = space_size - (self.is_active and 2 or 3) end
+                if not self.in_cwd then space_size = space_size - ((self.is_active or self.is_visible) and 2 or 3) end
 
                 if space_size <= 0 then return "" end
                 -- if self.is_visible then space_size = space_size - 1 end
                 return string.rep(" ", space_size)
               end,
+            },
+            {
+              name = "NonCWD",
+              condition = function(self)
+                return not self.in_cwd and self.filename ~= ""
+              end,
+              provider = "🤏",
             },
             -- {
             --   name = "PinIcon",
@@ -187,6 +192,8 @@ return {
     local FileInfoBlock = {
       init = function(self)
         self.filename = vim.api.nvim_buf_get_name(self.bufnr)
+        -- 将字符串全小写
+        self.in_cwd = string.find(string.lower(self.filename), string.lower(vim.fn.getcwd()))
       end,
       hl = function(self)
         if self.is_active then return config.active_color end

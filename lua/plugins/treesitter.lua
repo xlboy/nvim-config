@@ -13,7 +13,7 @@ return {
         keymaps = {
           init_selection = "<CR>",
           node_incremental = "<CR>",
-          inode_decremental = "<BS>",
+          node_decremental = "<BS>",
           scope_incremental = "<TAB>",
         },
       },

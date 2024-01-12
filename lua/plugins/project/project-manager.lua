@@ -103,8 +103,8 @@ return {
             nvim = {
               my_config = { p_dir = "~/.config/nvim", __extra__ = { level = 1 } },
               wezterm_config = { p_dir = "~/.config/nvim" },
-              __extra__ = { level = 1 },
               lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
+              __extra__ = { level = 1 },
             },
             li = { w_dir = "~/Desktop/lilith/" },
             xlboy = {
