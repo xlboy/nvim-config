@@ -30,8 +30,8 @@ return {
     end,
   },
   {
-    -- "xlboy/bookmarks.nvim",
-    dir = u.basic.os_pick("D:\\project\\nvim\\bookmarks.nvim", "~/Desktop/xlboy/bookmarks.nvim"),
+    "crusj/bookmarks.nvim",
+    -- dir = u.basic.os_pick("D:\\project\\nvim\\bookmarks.nvim", "~/Desktop/xlboy/bookmarks.nvim"),
     event = "User Startup30s",
     keys = {
       { "<leader>ma", "<cmd>lua require('bookmarks').add_bookmarks()<CR>", desc = "[Bookmarks] Add" },
@@ -42,7 +42,8 @@ return {
     config = function()
       require("bookmarks").setup({
         keymap = { toggle = "<M-\\>" },
-        virt_pattern = { "*.go", "*.lua", "*.sh", "*.php", "*.rs", "*.ts", "*.tsx", "*.js", "*.jsx" }
+        virt_pattern = { "*.lua", "*.ts", "*.tsx", "*.js", "*.jsx" },
+        fix_enable = true,
       })
       require("telescope").load_extension("bookmarks")
       vim.cmd("hi! link bookmarks_virt_text_hl BufferAlternateHINT")

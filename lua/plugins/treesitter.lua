@@ -13,11 +13,18 @@ return {
         keymaps = {
           init_selection = "<CR>",
           node_incremental = "<CR>",
-          node_decremental = "<BS>",
+          inode_decremental = "<BS>",
           scope_incremental = "<TAB>",
         },
       },
       textobjects = {
+        select = {
+          enable = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+          },
+        },
         move = {
           enable = true,
           set_jumps = true,

@@ -48,4 +48,10 @@ return {
       opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "prettierd" })
     end,
   },
+  -- {
+  --   "pmizio/typescript-tools.nvim",
+  --   dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+  --   ft = { "javascript", "typescript", "typescriptreact" },
+  --   opts = {},
+  -- },
 }
