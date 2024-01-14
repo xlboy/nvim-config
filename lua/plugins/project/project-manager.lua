@@ -66,11 +66,36 @@ return {
     },
   },
   {
-    dir = config.IS_WIN and "D:\\project\\nvim\\workspace-scanner.nvim" or "~/Desktop/xlboy/workspace-scanner.nvim",
     -- "xlboy/workspace-scanner.nvim",
+    dir = config.IS_WIN and "D:\\project\\nvim\\workspace-scanner.nvim" or "~/Desktop/xlboy/workspace-scanner.nvim",
     opts = {
+      scanner = {
+        source = u.basic.os_pick({
+          li = { w_dir = "D:/project/li", __extra__ = { level = 3 } },
+          nvim = {
+            my_config = { p_dir = "C:/Users/Administrator/AppData/Local/nvim", __extra__ = { level = 2 } },
+            wezterm = "C:/Users/Administrator/.config/wezterm",
+            lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
+            { w_dir = "D:/project/nvim" },
+            __extra__ = { level = 1 },
+          },
+          cpp = { w_dir = "D:/project/cpp" },
+        }, {
+          nvim = {
+            my_config = { p_dir = "~/.config/nvim", __extra__ = { level = 1 } },
+            wezterm_config = { p_dir = "~/.config/nvim" },
+            lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
+            __extra__ = { level = 1 },
+          },
+          li = { w_dir = "~/Desktop/lilith/" },
+          xlboy = {
+            { w_dir = "~/Desktop/xlboy/" },
+            open_source = { w_dir = "~/Desktop/xlboy/__open-source__/" },
+          },
+        }),
+      },
       picker = {
-        flat_opts = { separator = " 🌀 " },
+        -- flat_opts = { separator = " 🌀 " },
         event = {
           on_select = function(entry)
             if is_valid_bufs() then resession.save_cwd() end
@@ -83,44 +108,11 @@ return {
       },
     },
     keys = {
+      { "<leader>fpr", "<cmd>lua require('workspace-scanner').refresh()<cr>", desc = "[workspace-scanner] Refresh" },
       {
         "<leader>fpa",
-        function()
-          local scanner = require("workspace-scanner.scanner")
-          local picker = require("workspace-scanner.picker")
-
-          local source = u.basic.os_pick({
-            li = { w_dir = "D:/project/li", __extra__ = { level = 3 } },
-            nvim = {
-              my_config = { p_dir = "C:/Users/Administrator/AppData/Local/nvim", __extra__ = { level = 2 } },
-              wezterm = "C:/Users/Administrator/.config/wezterm",
-              lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
-              { w_dir = "D:/project/nvim" },
-              __extra__ = { level = 1 },
-            },
-            cpp = { w_dir = "D:/project/cpp" },
-          }, {
-            nvim = {
-              my_config = { p_dir = "~/.config/nvim", __extra__ = { level = 1 } },
-              wezterm_config = { p_dir = "~/.config/nvim" },
-              lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
-              __extra__ = { level = 1 },
-            },
-            li = { w_dir = "~/Desktop/lilith/" },
-            xlboy = {
-              { w_dir = "~/Desktop/xlboy/" },
-              open_source = { w_dir = "~/Desktop/xlboy/__open-source__/" },
-            },
-          })
-
-          picker.show({
-            type = "flat",
-            source = scanner.scan(source),
-            telescope_opts = {
-              layout_config = { height = 25, width = 110 },
-            },
-          })
-        end,
+        "<cmd>lua require('workspace-scanner').show_picker()<cr>",
+        desc = "[workspace-scanner] Show Picker",
       },
     },
   },

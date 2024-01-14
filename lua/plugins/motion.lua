@@ -43,6 +43,7 @@ return {
   },
   {
     "backdround/neowords.nvim",
+    commit = "042d437f2a9eedffde1ab71238c95ed177e45b59",
     event = "BufRead",
     config = function()
       local n = require("neowords")

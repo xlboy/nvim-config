@@ -192,8 +192,9 @@ return {
     local FileInfoBlock = {
       init = function(self)
         self.filename = vim.api.nvim_buf_get_name(self.bufnr)
-        -- 将字符串全小写
-        self.in_cwd = string.find(string.lower(self.filename), string.lower(vim.fn.getcwd()))
+        local normalized_fname = string.lower(vim.fn.expand(self.filename))
+        local normalized_cwd = string.lower(vim.fn.expand(vim.fn.getcwd()))
+        self.in_cwd = vim.startswith(normalized_fname, normalized_cwd)
       end,
       hl = function(self)
         if self.is_active then return config.active_color end
