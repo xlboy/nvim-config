@@ -30,8 +30,8 @@ return {
     end,
   },
   {
-    -- "crusj/bookmarks.nvim",
-    dir = u.basic.os_pick("D:\\project\\nvim\\bookmarks.nvim", "~/Desktop/xlboy/bookmarks.nvim"),
+    "crusj/bookmarks.nvim",
+    -- dir = u.basic.os_pick("D:\\project\\nvim\\bookmarks.nvim", "~/Desktop/xlboy/bookmarks.nvim"),
     event = "User Startup30s",
     keys = {
       { "<leader>ma", "<cmd>lua require('bookmarks').add_bookmarks()<CR>", desc = "[Bookmarks] Add" },
