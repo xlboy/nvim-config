@@ -8,8 +8,13 @@ return {
     dependencies = {
       {
         "nvim-telescope/telescope-fzf-native.nvim",
-        enabled = vim.fn.executable("make") == 1,
         build = "make",
+        enabled = vim.fn.executable("make") == 1,
+        config = function()
+          u.lazy.on_load("telescope.nvim", function()
+            require("telescope").load_extension("fzf")
+          end)
+        end,
       },
     },
     opts = function()
@@ -40,7 +45,6 @@ return {
     end,
     cmd = "Telescope",
     keys = {
-      { "<leader>/", ":Telescope live_grep<CR>", desc = "Telescope live_grep" },
       {
         "<leader>ff",
         function()
@@ -100,6 +104,7 @@ return {
   },
   {
     "prochri/telescope-all-recent.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("telescope-all-recent").setup({
         database = {
@@ -140,7 +145,7 @@ return {
     config = function()
       require("telescope").load_extension("recent_files")
     end,
-    dependencies = { "kkharji/sqlite.lua" },
+    dependencies = { "kkharji/sqlite.lua", "nvim-telescope/telescope.nvim" },
     keys = {
       {
         "<leader><leader>",
@@ -157,6 +162,7 @@ return {
   },
   {
     "Marskey/telescope-sg",
+    dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("telescope").load_extension("ast_grep")
       require("telescope").setup({
@@ -175,6 +181,7 @@ return {
   },
   {
     "piersolenski/telescope-import.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("telescope").setup({
         extensions = {
@@ -184,5 +191,15 @@ return {
       require("telescope").load_extension("import")
     end,
     keys = { { "<leader>tsi", ":Telescope import<CR>", desc = "Telescope import" } },
+  },
+  {
+    "nvim-telescope/telescope-live-grep-args.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("telescope").load_extension("live_grep_args")
+    end,
+    keys = {
+      { "<leader>/", "<cmd>Telescope live_grep_args<CR>", desc = "Telescope live_grep_args" },
+    },
   },
 }
