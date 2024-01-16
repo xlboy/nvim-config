@@ -72,7 +72,7 @@ local render = {
 
 return {
   "b0o/incline.nvim",
-  event = "BufRead",
+  event = "User BufRead",
   config = function()
     require("incline").setup({
       debounce_threshold = { falling = u.basic.os_pick(80, 150), rising = u.basic.os_pick(80, 150) },

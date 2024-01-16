@@ -1,7 +1,7 @@
 return {
   {
     "xlboy/nvim-treesitter",
-    event = "VeryLazy",
+    event = "User BufRead",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },

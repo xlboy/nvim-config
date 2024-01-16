@@ -3,7 +3,7 @@ local config = require("config.config")
 return {
   {
     "utilyre/sentiment.nvim",
-    event = "BufRead",
+    event = "User BufRead",
     opts = {
       pairs = { { "(", ")" }, { "[", "]" }, { "{", "}" }, { "<", ">" } },
     },
@@ -13,7 +13,7 @@ return {
   },
   {
     "echasnovski/mini.cursorword",
-    event = "BufRead",
+    event = "User BufRead",
     config = function()
       require("mini.cursorword").setup()
     end,
@@ -23,7 +23,7 @@ return {
   -- instances.
   {
     "RRethy/vim-illuminate",
-    event = "BufRead",
+    event = "User BufRead",
     opts = {
       delay = 200,
       large_file_cutoff = 2000,
@@ -73,7 +73,7 @@ return {
   },
   {
     "NvChad/nvim-colorizer.lua",
-    event = "VeryLazy",
+    event = "User BufRead",
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     opts = { user_default_options = { tailwind = true } },
   },

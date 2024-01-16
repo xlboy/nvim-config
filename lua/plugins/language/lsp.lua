@@ -4,7 +4,7 @@ local config = require("config.config")
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "VeryLazy",
+    event = "User BufRead",
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       { "williamboman/mason-lspconfig.nvim" },
@@ -89,7 +89,15 @@ return {
       { "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", desc = "Show code actions", mode = "v" },
       { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Jump to next diagnostic" },
       { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Jump to previous diagnostic" },
-      { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Show hover doc" },
+      -- { "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" },
+      -- { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Show hover doc" },
+      {
+        "gh",
+        function()
+          require("lspsaga.hover"):render_hover_doc()
+        end,
+        desc = "Show hover doc",
+      },
       { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Show hover doc" },
       { "gkh", "<cmd>Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]" },
       { "gr", "<cmd>Lspsaga finder<CR>", desc = "Show lsp finder" },
@@ -165,7 +173,7 @@ return {
   {
     "ray-x/lsp_signature.nvim",
     commit = "fed2c8389c148ff1dfdcdca63c2b48d08a50dea0",
-    event = "InsertEnter",
+    event = "User BufInsertEnter",
     opts = {
       floating_window = false,
       hint_enable = true,
@@ -212,7 +220,7 @@ return {
 
   {
     "j-hui/fidget.nvim",
-    event = "BufRead",
+    event = "User BufRead",
     opts = {
       notification = { window = { winblend = 0 } },
       integration = {

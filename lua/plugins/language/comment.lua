@@ -25,7 +25,7 @@ return {
   },
   {
     "folke/todo-comments.nvim",
-    event = "BufRead",
+    event = "User BufRead",
     opts = {
       keywords = {
         region = { color = "hint" },

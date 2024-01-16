@@ -1,7 +1,6 @@
 return {
   {
     "rcarriga/nvim-notify",
-    event = "VeryLazy",
     keys = {
       {
         "<leader>udn",
@@ -11,27 +10,32 @@ return {
         desc = "Dismiss all Notifications",
       },
     },
-    config = function()
-      require("notify").setup({
-        -- background_colour = "#000000",
-        timeout = 3000,
-        max_height = function()
-          return math.floor(vim.o.lines * 0.75)
-        end,
-        max_width = function()
-          return math.floor(vim.o.columns * 0.75)
-        end,
-        on_open = function(win)
-          vim.api.nvim_win_set_config(win, { zindex = 100 })
-        end,
-      })
-      local banned_messages = { "No information available" }
+    init = function()
+      local done = false
+      local banned_messages = { "No information available", "[LSP] No client with id 1" }
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.notify = function(msg, ...)
+        local notify = require("notify")
+        if done == false then
+          done = true
+          notify.setup({
+            -- background_colour = "#000000",
+            timeout = 3000,
+            max_height = function()
+              return math.floor(vim.o.lines * 0.75)
+            end,
+            max_width = function()
+              return math.floor(vim.o.columns * 0.75)
+            end,
+            on_open = function(win)
+              vim.api.nvim_win_set_config(win, { zindex = 100 })
+            end,
+          })
+        end
         for _, banned in ipairs(banned_messages) do
           if msg == banned then return end
         end
-        require("notify")(msg, ...)
+        notify(msg, ...)
       end
     end,
   },

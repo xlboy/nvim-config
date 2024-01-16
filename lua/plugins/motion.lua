@@ -24,7 +24,7 @@ return {
   },
   {
     "ggandor/flit.nvim",
-    event = "BufRead",
+    event = "User BufRead",
     commit = "f4e9af572a62c808c8de214da672f2a115a98c35",
     config = function()
       require("flit").setup({ labeled_modes = "nx", multiline = false, opts = {} })
@@ -36,7 +36,7 @@ return {
   },
   {
     "chaoren/vim-wordmotion",
-    event = "BufRead",
+    event = "User BufRead",
     init = function()
       vim.g.wordmotion_prefix = ";"
     end,
@@ -44,7 +44,7 @@ return {
   {
     "backdround/neowords.nvim",
     commit = "042d437f2a9eedffde1ab71238c95ed177e45b59",
-    event = "BufRead",
+    event = "User BufRead",
     config = function()
       local n = require("neowords")
       local p = n.pattern_presets
@@ -70,14 +70,14 @@ return {
   },
   {
     "kwkarlwang/bufjump.nvim",
-    event = "BufRead",
+    event = "User BufRead",
     opts = { forward = "<C-u>", backward = "<C-y>" },
   },
 
   -- TODO: 好像有bug, 回头自己写一个
   -- {
   --   "DarkKronicle/recall.nvim",
-  --   event = "BufRead",
+  --   event = "User BufRead",
   --   keys = {
   --     { "<C-i>", "<cmd>lua require('recall').jump_backwards()<CR>", desc = "Recall backwards through history" },
   --     { "<C-o>", "<cmd>lua require('recall').jump_forwards()<CR>", desc = "Recall forwards through history" },

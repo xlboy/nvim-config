@@ -2,7 +2,7 @@ local config = require("config.config")
 return {
   {
     "lewis6991/gitsigns.nvim",
-    event = "VeryLazy",
+    event = "User BufRead",
     opts = function(_, opt)
       opt.current_line_blame = true
       opt.current_line_blame_opts = {
@@ -35,7 +35,7 @@ return {
 
   {
     "sindrets/diffview.nvim",
-    event = "BufRead",
+    event = "User BufRead",
     keys = {
       { "<leader>gdc", ":DiffviewFileHistory %<CR>", desc = "[Git] view file history" },
       { "<leader>gdb", ":DiffviewFileHistory<CR>", desc = "[Git] view branch history" },

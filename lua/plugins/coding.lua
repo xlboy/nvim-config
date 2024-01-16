@@ -47,7 +47,7 @@ return {
     end,
   },
 
-  { "wellle/targets.vim", event = "BufRead" },
+  { "wellle/targets.vim", event = "User BufRead" },
   {
     "echasnovski/mini.surround",
     keys = {
@@ -180,7 +180,7 @@ return {
   },
   {
     "echasnovski/mini.move",
-    event = "BufRead",
+    event = "User BufRead",
     config = function()
       require("mini.move").setup()
     end,
@@ -202,7 +202,7 @@ return {
   -- autopairs, autotag --
   {
     "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    event = "User BufInsertEnter",
     opts = {
       fast_wrap = {
         chars = { "{", "[", "(", '"', "'" },
@@ -219,7 +219,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     dependencies = { "xlboy/nvim-treesitter" },
-    event = "InsertEnter",
+    event = "User BufInsertEnter",
     config = function()
       require("nvim-treesitter.configs").setup({
         autotag = {
@@ -230,7 +230,7 @@ return {
     end,
   },
   -- Auto Indent
-  -- { "NMAC427/guess-indent.nvim", event = "BufRead", config = true },
+  -- { "NMAC427/guess-indent.nvim", event = "User BufRead", config = true },
   {
     "vidocqh/auto-indent.nvim",
     event = "BufReadPre",

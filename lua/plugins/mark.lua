@@ -5,10 +5,8 @@ return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
-    event = "BufRead",
     config = function()
-      local harpoon = require("harpoon")
-      harpoon:setup({
+      require("harpoon"):setup({
         default = {
           select = function(list_item, list, options)
             local file_path = string.gsub(list_item.value, "^%s*(.-)%s*$", "%1")
@@ -20,19 +18,23 @@ return {
           end,
         },
       })
-
-      vim.keymap.set("n", ",a", function()
-        harpoon:list():append()
-      end)
-      vim.keymap.set("n", ",,", function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end)
     end,
+    keys = {
+      { ",a", "<cmd>lua require('harpoon'):list():append()<CR>", desc = "[Harpoon] Append" },
+      {
+        ",,",
+        function()
+          local h = require("harpoon")
+          h.ui:toggle_quick_menu(h:list())
+        end,
+        desc = "[Harpoon] Toggle",
+      },
+    },
   },
   {
     "crusj/bookmarks.nvim",
     -- dir = u.basic.os_pick("D:\\project\\nvim\\bookmarks.nvim", "~/Desktop/xlboy/bookmarks.nvim"),
-    event = "User Startup30s",
+    -- event = "User Startup30s",
     keys = {
       { "<leader>ma", "<cmd>lua require('bookmarks').add_bookmarks()<CR>", desc = "[Bookmarks] Add" },
       { "<leader>mc", "<cmd>lua require('bookmarks.list').delete_on_virt()<CR>", desc = "[Bookmarks] Delete" },

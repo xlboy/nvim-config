@@ -95,6 +95,6 @@ return {
   {
     "chrisgrieser/nvim-early-retirement",
     opts = { retirementAgeMins = 10 },
-    event = "BufRead",
+    event = "User BufRead",
   },
 }

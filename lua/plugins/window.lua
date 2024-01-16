@@ -87,6 +87,7 @@ return {
       })
     end,
   },
+  -- 弹出一个浮动窗口
   {
     "carbon-steel/detour.nvim",
     keys = {

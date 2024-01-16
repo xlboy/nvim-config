@@ -46,7 +46,7 @@ return {
   },
   {
     "chrishrb/gx.nvim",
-    event = "BufRead",
+    event = "User BufRead",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
       open_browser_app = u.basic.os_pick("powershell.exe", "open"),
