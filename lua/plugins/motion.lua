@@ -73,6 +73,12 @@ return {
     event = "User BufRead",
     opts = { forward = "<C-u>", backward = "<C-y>" },
   },
+  {
+    "xlboy/node-edge-toggler.nvim",
+    keys = {
+      { "%", "<cmd>lua require('node-edge-toggler').toggle()<CR>", desc = "Node start/end toggle" },
+    },
+  },
 
   -- TODO: 好像有bug, 回头自己写一个
   -- {

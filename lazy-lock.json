@@ -50,6 +50,7 @@
   "neodev.nvim": { "branch": "main", "commit": "66b58c47dc393700c3523067d9d12879a1a528dd" },
   "neowords.nvim": { "branch": "main", "commit": "042d437f2a9eedffde1ab71238c95ed177e45b59" },
   "nerdfont.vim": { "branch": "master", "commit": "fa7b0173c0dd9a97c2f041d279a84fdf2612fda9" },
+  "node-edge-toggler.nvim": { "branch": "master", "commit": "368345f95e9dccb914f8a77078533409c09ed378" },
   "none-ls.nvim": { "branch": "main", "commit": "cf81e765460f722a381e5f3f5e3cbdce88398517" },
   "nui.nvim": { "branch": "main", "commit": "35da9ca1de0fc4dda96c2e214d93d363c145f418" },
   "numb.nvim": { "branch": "master", "commit": "3f7d4a74bd456e747a1278ea1672b26116e0824d" },

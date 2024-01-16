@@ -77,11 +77,6 @@ set_mappings({
     ["<leader>gbl"] = { "<cmd>Telescope git_branches<CR>" },
     ["<leader>gfc"] = { "<cmd>Telescope git_status<CR>" },
     ["<leader>lazy"] = { "<cmd>Lazy<CR>" },
-    ["%"] = {
-      function()
-        vim.api.nvim_win_set_cursor(0, u.node.get_recent_pos())
-      end,
-    },
   },
   v = {
     ["y"] = { '"+ygv<esc>' },
