@@ -25,34 +25,29 @@ return {
             ["if"] = "@function.inner",
           },
         },
-        move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]k"] = { query = "@block.outer", desc = "Next block start" },
-            ["]f"] = { query = "@function.outer", desc = "Next function start" },
-            ["]a"] = { query = "@parameter.inner", desc = "Next argument start" },
-            ["]r"] = { query = "@return.inner", desc = "Next return start" },
-          },
-          goto_next_end = {
-            ["]K"] = { query = "@block.outer", desc = "Next block end" },
-            ["]F"] = { query = "@function.outer", desc = "Next function end" },
-            ["]A"] = { query = "@parameter.inner", desc = "Next argument end" },
-            ["]R"] = { query = "@return.inner", desc = "Next return start" },
-          },
-          goto_previous_start = {
-            ["[k"] = { query = "@block.outer", desc = "Previous block start" },
-            ["[f"] = { query = "@function.outer", desc = "Previous function start" },
-            ["[a"] = { query = "@parameter.inner", desc = "Previous argument start" },
-            ["[r"] = { query = "@return.inner", desc = "Previous return start" },
-          },
-          goto_previous_end = {
-            ["[K"] = { query = "@block.outer", desc = "Previous block end" },
-            ["[F"] = { query = "@function.outer", desc = "Previous function end" },
-            ["[A"] = { query = "@parameter.inner", desc = "Previous argument end" },
-            ["[R"] = { query = "@return.inner", desc = "Previous return start" },
-          },
-        },
+        move = (function()
+          local goto_source = {
+            -- { key = "k", query = "@block.outer", desc = "block" },
+            { key = "f", query = "@function.outer", desc = "function" },
+            { key = "a", query = "@parameter.inner", desc = "argument" },
+            { key = "r", query = "@return.outer", desc = "return" },
+            { key = "if", query = "@conditional.outer", desc = "conditional" },
+            { key = "l", query = "@loop.outer", desc = "loog(while, for, repeat)" },
+            { key = "c", query = "@comment.outer", desc = "comment" },
+          }
+          local goto = { next = {}, prev = {} }
+          for _, v in ipairs(goto_source) do
+            goto.next["]" .. v.key] = { query = v.query, desc = "Next " .. v.desc }
+            goto.prev["[" .. v.key] = { query = v.query, desc = "Previous " .. v.desc }
+          end
+
+          return {
+            enable = true,
+            set_jumps = true,
+            goto_next_start = goto.next,
+            goto_previous_start = goto.prev,
+          }
+        end)(),
       },
     },
     config = function(_, opts)
