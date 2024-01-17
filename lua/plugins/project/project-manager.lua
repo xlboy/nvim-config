@@ -68,6 +68,7 @@ return {
   {
     -- "xlboy/workspace-scanner.nvim",
     dir = u.basic.os_pick("D:\\project\\nvim\\workspace-scanner.nvim", "~/Desktop/xlboy/workspace-scanner.nvim"),
+    event = "UIEnter",
     opts = {
       scanner = {
         source = u.basic.os_pick({
@@ -115,5 +116,9 @@ return {
         desc = "[workspace-scanner] Show Picker",
       },
     },
+    config = function(_, opts)
+      require("workspace-scanner").setup(opts)
+      require("workspace-scanner").show_picker()
+    end,
   },
 }
