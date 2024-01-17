@@ -28,7 +28,8 @@ return {
         move = (function()
           local goto_source = {
             -- { key = "k", query = "@block.outer", desc = "block" },
-            { key = "f", query = "@function.outer", desc = "function" },
+            { key = "fo", query = "@function.outer", desc = "function" },
+            { key = "fi", query = "@function.inner", desc = "function" },
             { key = "a", query = "@parameter.inner", desc = "argument" },
             { key = "r", query = "@return.outer", desc = "return" },
             { key = "if", query = "@conditional.outer", desc = "conditional" },

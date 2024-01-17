@@ -78,6 +78,7 @@ return {
       finder = { default = "ref", left_width = 0.3 },
       code_action = { extend_gitsigns = true },
       rename = {
+        enable = false,
         in_select = false,
         keys = {
           quit = { "q", "<ESC>" },
@@ -101,7 +102,7 @@ return {
       { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Show hover doc" },
       { "gkh", "<cmd>Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]" },
       { "gr", "<cmd>Lspsaga finder<CR>", desc = "Show lsp finder" },
-      { "<leader>lr", "<cmd>Lspsaga rename<CR>", desc = "Rename symbol" },
+      { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename symbol" },
       { "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Show line diagnostics" },
       { "<leader>l.", "<cmd>Lspsaga signature_help<CR>", desc = "Show signature help" },
     },

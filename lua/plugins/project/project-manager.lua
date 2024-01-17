@@ -67,7 +67,7 @@ return {
   },
   {
     -- "xlboy/workspace-scanner.nvim",
-    dir = config.IS_WIN and "D:\\project\\nvim\\workspace-scanner.nvim" or "~/Desktop/xlboy/workspace-scanner.nvim",
+    dir = u.basic.os_pick("D:\\project\\nvim\\workspace-scanner.nvim", "~/Desktop/xlboy/workspace-scanner.nvim"),
     opts = {
       scanner = {
         source = u.basic.os_pick({

@@ -46,6 +46,7 @@ return {
   },
   {
     "chrishrb/gx.nvim",
+    version = "0.4.0",
     event = "User BufRead",
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {
