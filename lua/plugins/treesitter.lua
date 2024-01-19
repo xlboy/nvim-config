@@ -34,7 +34,7 @@ return {
             { key = "r", query = "@return.outer", desc = "return" },
             { key = "if", query = "@conditional.outer", desc = "conditional" },
             { key = "l", query = "@loop.outer", desc = "loog(while, for, repeat)" },
-            { key = "c", query = "@comment.outer", desc = "comment" },
+            { key = "m", query = "@comment.outer", desc = "comment" },
           }
           local goto = { next = {}, prev = {} }
           for _, v in ipairs(goto_source) do

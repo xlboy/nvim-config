@@ -14,7 +14,7 @@ local config = {
     bg = g_config.colors.window.default.bg,
   },
   default_surround_char = g_config.symbols.rounded_corner,
-  min_width = 24,
+  min_width = 22,
 }
 
 return {
@@ -81,6 +81,10 @@ return {
           init = function(self)
             local filename = self.filename
             self.display_filename = filename == "" and "[No Name]" or u.buffer.get_unique_filename(self.filename, true)
+            -- 移除 display_filename 的后缀
+            if self.display_filename ~= "[No Name]" then
+              self.display_filename = vim.fn.fnamemodify(self.display_filename, ":t:r")
+            end
             local filename_length = string.len(self.display_filename)
             if filename_length < config.min_width then
               self.display_left_space = math.floor((config.min_width - filename_length) / 2)

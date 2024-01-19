@@ -68,7 +68,7 @@ return {
   {
     -- "xlboy/workspace-scanner.nvim",
     dir = u.basic.os_pick("D:\\project\\nvim\\workspace-scanner.nvim", "~/Desktop/xlboy/workspace-scanner.nvim"),
-    event = "UIEnter",
+    --- @type WS.Config
     opts = {
       scanner = {
         source = u.basic.os_pick({
@@ -84,19 +84,20 @@ return {
         }, {
           nvim = {
             my_config = { p_dir = "~/.config/nvim", __extra__ = { level = 9 } },
-            wezterm_config = { p_dir = "~/.config/nvim" },
+            wezterm_config = { p_dir = "~/.config/wezterm", __extra__ = { level = 9 } },
             __extra__ = { level = 1 },
             lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
+            data = "~/.local/share/nvim",
           },
-          li = { w_dir = "~/Desktop/lilith/", __extra__ = { level = 1 } },
+          -- li = { w_dir = "~/Desktop/lilith/" },
           xlboy = {
             { w_dir = "~/Desktop/xlboy/" },
             open_source = { w_dir = "~/Desktop/xlboy/__open-source__/" },
           },
         }),
       },
+      --- @type WS.Config.Picker
       picker = {
-        -- flat_opts = { separator = " 🌀 " },
         event = {
           on_select = function(entry)
             if is_valid_bufs() then resession.save_cwd() end
@@ -106,19 +107,50 @@ return {
             tint_refresh()
           end,
         },
+        tree_opts = {
+          keymaps = {
+            back = "<Left>",
+            forward = "<Right>",
+          },
+        },
       },
     },
     keys = {
-      { "<leader>fpr", "<cmd>lua require('workspace-scanner').refresh()<cr>", desc = "[workspace-scanner] Refresh" },
+      { "<leader>fpo", "<cmd>lua require('workspace-scanner').refresh()<cr>", desc = "[workspace-scanner] Refresh" },
+      {
+        "<leader>fpr",
+        function()
+          require("workspace-scanner").show_picker({
+            show_history_only = true,
+            telescope = {
+              opts = {
+                prompt_title = "Recent Projects (Flat)",
+                layout_config = { width = 90, height = 25 },
+              },
+            },
+            history = {
+              recent = { icon = false },
+            },
+          })
+        end,
+        desc = "[workspace-scanner] Show Recent",
+      },
       {
         "<leader>fpa",
-        "<cmd>lua require('workspace-scanner').show_picker()<cr>",
+        function()
+          require("workspace-scanner").show_picker({
+            mode = "tree",
+            show_history_only = false,
+            telescope = {
+              opts = {
+                prompt_title = "All Projects (Tree)",
+                layout_config = { width = 90, height = 25 },
+              },
+            },
+          })
+        end,
         desc = "[workspace-scanner] Show Picker",
       },
     },
-    config = function(_, opts)
-      require("workspace-scanner").setup(opts)
-      require("workspace-scanner").show_picker()
-    end,
   },
 }

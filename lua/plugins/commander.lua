@@ -102,7 +102,7 @@ return {
   {
     "FeiyouG/commander.nvim",
     dependencies = { "nvim-telescope/telescope.nvim", "prochri/telescope-all-recent.nvim" },
-    keys = { { "<leader>pp", ":Telescope commander<CR>", mode = { "n", "v" } } },
+    keys = { { "<leader>pp", "<cmd>Telescope commander<CR>", mode = { "n", "v" } } },
     config = function()
       require("commander").setup({
         components = { "CAT", "DESC" },

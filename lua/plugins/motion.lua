@@ -74,7 +74,8 @@ return {
     opts = { forward = "<C-u>", backward = "<C-y>" },
   },
   {
-    "xlboy/node-edge-toggler.nvim",
+    -- "xlboy/node-edge-toggler.nvim",
+    dir = "~/Desktop/xlboy/node-edge-toggler.nvim",
     keys = {
       { "%", "<cmd>lua require('node-edge-toggler').toggle()<CR>", desc = "Node start/end toggle" },
     },
