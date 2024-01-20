@@ -74,11 +74,11 @@ return {
     opts = { forward = "<C-u>", backward = "<C-y>" },
   },
   {
-    -- "xlboy/node-edge-toggler.nvim",
-    dir = "~/Desktop/xlboy/node-edge-toggler.nvim",
-    keys = {
-      { "%", "<cmd>lua require('node-edge-toggler').toggle()<CR>", desc = "Node start/end toggle" },
-    },
+    "xlboy/node-edge-toggler.nvim",
+    -- dir = "~/Desktop/xlboy/node-edge-toggler.nvim",
+    init = function()
+      vim.keymap.set({ "n", "v" }, "%", "<cmd>lua require('node-edge-toggler').toggle()<CR>")
+    end,
   },
 
   -- TODO: 好像有bug, 回头自己写一个

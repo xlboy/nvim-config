@@ -4,6 +4,18 @@ return {
   {
     "kazhala/close-buffers.nvim",
     dependencies = { "prochri/telescope-all-recent.nvim" },
+    init = function()
+      vim.api.nvim_create_autocmd({ "BufEnter" }, {
+        callback = function()
+          local bufs = u.buffer.get_bufs()
+
+          if #bufs == 2 then
+            local noname_buf = vim.tbl_filter(u.buffer.is_noname, bufs)[1]
+            if noname_buf then vim.api.nvim_buf_delete(noname_buf, { force = false }) end
+          end
+        end,
+      })
+    end,
     keys = function()
       local force = true
       local close_apis = {
@@ -94,7 +106,7 @@ return {
   -- { "axkirillov/hbac.nvim", opts = { threshold = 6 } },
   {
     "chrisgrieser/nvim-early-retirement",
-    opts = { retirementAgeMins = 10 },
+    opts = { retirementAgeMins = 6 },
     event = "User BufRead",
   },
 }

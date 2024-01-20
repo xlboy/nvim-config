@@ -81,9 +81,10 @@ return {
           init = function(self)
             local filename = self.filename
             self.display_filename = filename == "" and "[No Name]" or u.buffer.get_unique_filename(self.filename, true)
-            -- 移除 display_filename 的后缀
             if self.display_filename ~= "[No Name]" then
-              self.display_filename = vim.fn.fnamemodify(self.display_filename, ":t:r")
+              -- 通过字符串裁减的方式移除 display_filename 的后缀 (.*)
+              local filtered_filename = string.match(self.display_filename, "(.*)%..*")
+              if filtered_filename then self.display_filename = filtered_filename end
             end
             local filename_length = string.len(self.display_filename)
             if filename_length < config.min_width then

@@ -22,6 +22,9 @@ return {
       return {
         defaults = {
           path_display = { "truncate" },
+          -- path_display = {
+          --   shorten = { len = 1, exclude = { 1, -1 } },
+          -- },
           sorting_strategy = "ascending",
           layout_config = {
             horizontal = { prompt_position = "top", preview_width = 0.55 },
@@ -51,6 +54,7 @@ return {
           t_builtin.find_files({
             layout_config = config.mini_ts_layout_wh,
             previewer = false,
+            path_display = { "truncate" },
           })
         end,
         desc = "Telescope find files",

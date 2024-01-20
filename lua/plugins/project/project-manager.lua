@@ -72,12 +72,13 @@ return {
     opts = {
       scanner = {
         source = u.basic.os_pick({
-          li = { w_dir = "D:/project/li", __extra__ = { level = 3 } },
+          -- li = { w_dir = "D:/project/li", __extra__ = { level = 3 } },
           nvim = {
             my_config = { p_dir = "C:/Users/Administrator/AppData/Local/nvim", __extra__ = { level = 2 } },
             wezterm = "C:/Users/Administrator/.config/wezterm",
             lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
             { w_dir = "D:/project/nvim" },
+            data = vim.fn.stdpath("data"),
             __extra__ = { level = 1 },
           },
           cpp = { w_dir = "D:/project/cpp" },
@@ -98,7 +99,7 @@ return {
       },
       --- @type WS.Config.Picker
       picker = {
-        event = {
+        events = {
           on_select = function(entry)
             if is_valid_bufs() then resession.save_cwd() end
             require("close_buffers").delete({ type = "all" })
@@ -108,6 +109,11 @@ return {
           end,
         },
         tree_opts = {
+          workspace = {
+            history_recent = {
+              icon = false,
+            },
+          },
           keymaps = {
             back = "<Left>",
             forward = "<Right>",
@@ -145,6 +151,9 @@ return {
               opts = {
                 prompt_title = "All Projects (Tree)",
                 layout_config = { width = 90, height = 25 },
+                path_display = {
+                  shorten = { len = 1, exclude = { 1, -1 } },
+                },
               },
             },
           })
