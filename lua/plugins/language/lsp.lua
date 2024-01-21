@@ -128,6 +128,7 @@ return {
         keymaps = {
           hover_symbol = "gh",
           toggle_preview = "P",
+          close = { "q" },
         },
         symbols = { filter = { "Function", "Class", "Method" } },
       })

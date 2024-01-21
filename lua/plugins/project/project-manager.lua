@@ -82,6 +82,7 @@ return {
             __extra__ = { level = 1 },
           },
           cpp = { w_dir = "D:/project/cpp" },
+          web = { w_dir = "D:/project/web", __extra__ = { level = 2 } },
         }, {
           nvim = {
             my_config = { p_dir = "~/.config/nvim", __extra__ = { level = 9 } },
@@ -100,6 +101,7 @@ return {
       --- @type WS.Config.Picker
       picker = {
         events = {
+          --- @param entry WS.Picker.SelectedEntry
           on_select = function(entry)
             if is_valid_bufs() then resession.save_cwd() end
             require("close_buffers").delete({ type = "all" })
@@ -151,9 +153,6 @@ return {
               opts = {
                 prompt_title = "All Projects (Tree)",
                 layout_config = { width = 90, height = 25 },
-                path_display = {
-                  shorten = { len = 1, exclude = { 1, -1 } },
-                },
               },
             },
           })

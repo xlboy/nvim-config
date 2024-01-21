@@ -77,7 +77,12 @@ return {
     "xlboy/node-edge-toggler.nvim",
     -- dir = "~/Desktop/xlboy/node-edge-toggler.nvim",
     init = function()
-      vim.keymap.set({ "n", "v" }, "%", "<cmd>lua require('node-edge-toggler').toggle()<CR>")
+      local cmd = "<cmd>lua require('node-edge-toggler').toggle()<CR>"
+      vim.api.nvim_create_autocmd({ "BufEnter" }, {
+        callback = function(ev)
+          vim.api.nvim_buf_set_keymap(ev.buf, "n", "%", cmd, { noremap = true, silent = true })
+        end,
+      })
     end,
   },
 
