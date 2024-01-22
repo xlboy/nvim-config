@@ -90,8 +90,10 @@ return {
             __extra__ = { level = 1 },
             lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
             data = "~/.local/share/nvim",
+            -- },
+            --[[]]
           },
-          -- li = { w_dir = "~/Desktop/lilith/" },
+          li = { w_dir = "~/Desktop/lilith/" },
           xlboy = {
             { w_dir = "~/Desktop/xlboy/" },
             open_source = { w_dir = "~/Desktop/xlboy/__open-source__/" },
@@ -160,5 +162,11 @@ return {
         desc = "[workspace-scanner] Show Picker",
       },
     },
+  },
+  {
+    "notjedi/nvim-rooter.lua",
+    main = "nvim-rooter",
+    config = true,
+    event = "User BufRead",
   },
 }
