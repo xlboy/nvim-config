@@ -106,7 +106,7 @@ return {
   -- { "axkirillov/hbac.nvim", opts = { threshold = 6 } },
   {
     "chrisgrieser/nvim-early-retirement",
-    opts = { retirementAgeMins = 6 },
+    opts = { retirementAgeMins = 10 },
     event = "User BufRead",
   },
 }

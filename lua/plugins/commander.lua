@@ -96,6 +96,15 @@ local commands = {
     end,
     cat = CAT.WINDOW,
   },
+  {
+    -- 将当前 cwd 切换到当前文件所在目录
+    desc = "Change cwd to current file directory",
+    cmd = function()
+      local file_path = vim.api.nvim_buf_get_name(0)
+      local file_dir = vim.fn.fnamemodify(file_path, ":h")
+      vim.cmd("cd " .. file_dir)
+    end,
+  },
 }
 
 return {

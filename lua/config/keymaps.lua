@@ -77,6 +77,11 @@ set_mappings({
     ["<leader>gbl"] = { "<cmd>Telescope git_branches<CR>" },
     ["<leader>gfc"] = { "<cmd>Telescope git_status<CR>" },
     ["<leader>lazy"] = { "<cmd>Lazy<CR>" },
+    ["<leader>ucc"] = {
+      function()
+        vim.wo.cursorcolumn = not vim.wo.cursorcolumn
+      end,
+    },
   },
   v = {
     ["y"] = { '"+ygv<esc>' },

@@ -9,11 +9,12 @@ return {
       require("harpoon"):setup({
         default = {
           select = function(list_item, list, options)
-            local file_path = string.gsub(list_item.value, "^%s*(.-)%s*$", "%1")
-            if vim.startswith(file_path, ">") then return vim.notify("选错啦…") end
+            local file_rel_path = string.gsub(list_item.value, "^%s*(.-)%s*$", "%1")
+            if vim.startswith(file_rel_path, ">") then return vim.notify("选错啦…") end
 
             local file_pos = list_item.context
-            vim.cmd("buffer " .. file_path)
+            local full_path = vim.fn.expand(vim.fn.getcwd() .. "/" .. file_rel_path)
+            vim.cmd("edit " .. full_path)
             vim.api.nvim_win_set_cursor(0, { file_pos.row, file_pos.col })
           end,
         },
@@ -43,8 +44,11 @@ return {
     },
     config = function()
       require("bookmarks").setup({
-        keymap = { toggle = "<M-\\>" },
-        virt_pattern = { "*.lua", "*.ts", "*.tsx", "*.js", "*.jsx" },
+        keymap = {
+          toggle = "<M-\\>",
+          jump = "o",
+        },
+        virt_pattern = { "*.lua", "*.ts", "*.tsx", "*.js", "*.jsx", "*.md", "*.json" },
         fix_enable = true,
       })
       require("telescope").load_extension("bookmarks")

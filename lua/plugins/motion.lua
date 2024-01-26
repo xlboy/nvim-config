@@ -79,6 +79,7 @@ return {
     init = function()
       local cmd = "<cmd>lua require('node-edge-toggler').toggle()<CR>"
       vim.api.nvim_create_autocmd({ "BufEnter" }, {
+        pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.md", "*.json", "*.lua", "*.cpp", "*.c", "*.py", "*.java" },
         callback = function(ev)
           vim.api.nvim_buf_set_keymap(ev.buf, "n", "%", cmd, { noremap = true, silent = true })
         end,
