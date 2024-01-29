@@ -23,11 +23,12 @@ return {
           k = "<leader>cc",
           cb = function()
             local cur_buf = vim.api.nvim_get_current_buf()
+
             if u.buffer.is_modified(cur_buf) then
               local ok = vim.fn.confirm("Buffer is modified, close anyway?", "&Yes\n&No", 2)
-              if ok == 1 then vim.cmd("BDelete! this") end
+              if ok == 1 then vim.api.nvim_buf_delete(cur_buf, { force = force }) end
             else
-              vim.cmd("BDelete this")
+              vim.api.nvim_buf_delete(cur_buf, { force = force })
             end
           end,
         },

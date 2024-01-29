@@ -22,17 +22,17 @@ return {
         u.basic.feedkeys("/")
       end)
 
-      local ufo = require("ufo")
+      -- local ufo = require("ufo")
       local function handler()
         local bufnr = vim.api.nvim_get_current_buf()
         u.basic.feedkeys(":TZNarrow<CR>", "v")
 
         vim.defer_fn(function()
           if buf_ranges[bufnr] then
-            ufo.enable()
+            -- ufo.enable()
             buf_ranges[bufnr] = nil
           else
-            ufo.disable()
+            -- ufo.disable()
             local v_lines = u.basic.get_visible_lines()
             buf_ranges[bufnr] = { v_lines[1], v_lines[#v_lines] } -- start_line, end_line
           end
