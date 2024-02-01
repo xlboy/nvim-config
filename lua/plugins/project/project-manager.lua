@@ -66,8 +66,8 @@ return {
     },
   },
   {
-    -- "xlboy/workspace-scanner.nvim",
-    dir = u.basic.os_pick("D:\\project\\nvim\\workspace-scanner.nvim", "~/Desktop/xlboy/workspace-scanner.nvim"),
+    "xlboy/workspace-scanner.nvim",
+    -- dir = u.basic.os_pick("D:\\project\\nvim\\workspace-scanner.nvim", "~/Desktop/xlboy/workspace-scanner.nvim"),
     --- @type WS.Config
     opts = {
       scanner = {
@@ -164,6 +164,7 @@ return {
     },
   },
   {
+    enabled = false,
     "notjedi/nvim-rooter.lua",
     main = "nvim-rooter",
     config = true,

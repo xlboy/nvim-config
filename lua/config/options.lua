@@ -51,6 +51,7 @@ local options = {
     foldlevelstart = 99,
     foldenable = true,
     foldmethod = "indent",
+    foldtext = "",
   },
   g = {
     mapleader = " ", -- set leader key

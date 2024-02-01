@@ -32,4 +32,4 @@ end)();
       vim.api.nvim_del_autocmd(id)
     end,
   })
-end)();
+end)()

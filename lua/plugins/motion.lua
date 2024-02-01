@@ -86,6 +86,19 @@ return {
       })
     end,
   },
+  {
+    "rainbowhxch/accelerated-jk.nvim",
+    event = "User BufRead",
+    config = function()
+      require("accelerated-jk").setup({
+        acceleration_motions = { "w", "b", "W", "B" },
+        acceleration_limit = 70,
+        acceleration_table = { 4, 8, 15, 20, 30, 35, 40, 45, 50 },
+      })
+      vim.api.nvim_set_keymap("n", "j", "<Plug>(accelerated_jk_gj)", {})
+      vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
+    end,
+  },
 
   -- TODO: 好像有bug, 回头自己写一个
   -- {

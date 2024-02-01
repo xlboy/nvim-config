@@ -48,7 +48,7 @@ return {
           toggle = "<M-\\>",
           jump = "o",
         },
-        virt_pattern = { "*.lua", "*.ts", "*.tsx", "*.js", "*.jsx", "*.md", "*.json" },
+        virt_pattern = { "*.lua", "*.ts", "*.tsx", "*.js", "*.jsx", "*.md", "*.json", "*.cpp", "*.h", "*.hpp" },
         fix_enable = true,
       })
       require("telescope").load_extension("bookmarks")
