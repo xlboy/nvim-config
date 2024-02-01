@@ -97,6 +97,7 @@ return {
           xlboy = {
             { w_dir = "~/Desktop/xlboy/" },
             open_source = { w_dir = "~/Desktop/xlboy/__open-source__/" },
+            ["cs-cheat"] = { w_dir = "~/Desktop/xlboy/cs-cheat/" },
           },
         }),
       },

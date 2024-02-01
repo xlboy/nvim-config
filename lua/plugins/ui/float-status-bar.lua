@@ -68,6 +68,15 @@ local render = {
       return { "", guifg = config.colors.window.visible.bg }
     end,
   },
+  line_number = function(props)
+    local content_hl = helpers.get_content_hl(props)
+    local line_number = vim.api.nvim_win_get_cursor(props.win)[1]
+    local line_percent = math.floor(line_number / vim.api.nvim_buf_line_count(props.buf) * 100)
+    return {
+      { " | ", guifg = "grey" },
+      { string.format("L%s,P%s%%", line_number, line_percent), guifg = content_hl.comment, guibg = content_hl.bg },
+    }
+  end,
 }
 
 return {
@@ -105,6 +114,8 @@ return {
             render.file_icon(props),
             { " " },
             render.filename(props),
+            { " " },
+            render.line_number(props),
             { " " },
           },
           render.rounded_corner.right(props),

@@ -91,7 +91,7 @@ return {
     event = "User BufRead",
     config = function()
       require("accelerated-jk").setup({
-        acceleration_motions = { "w", "b", "W", "B" },
+        acceleration_motions = { "w", "b" },
         acceleration_limit = 70,
         acceleration_table = { 4, 8, 15, 20, 30, 35, 40, 45, 50 },
       })
