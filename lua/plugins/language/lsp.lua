@@ -219,7 +219,6 @@ return {
       vim.cmd([[highlight LspInlayHint guibg=NONE guifg=#5c6370]])
     end,
   },
-
   {
     "j-hui/fidget.nvim",
     event = "User BufRead",
@@ -230,7 +229,6 @@ return {
       },
     },
   },
-
   -- better diagnostics list and others
   {
     "folke/trouble.nvim",

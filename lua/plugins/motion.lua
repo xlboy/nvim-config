@@ -48,7 +48,7 @@ return {
     config = function()
       local n = require("neowords")
       local p = n.pattern_presets
-      local bigword = n.get_word_hops(p.any_word, p.number, p.hex_color)
+      local bigword = n.get_word_hops("\\v-@![-_[:lower:][:upper:][:digit:]]+")
       local string_group = n.get_word_hops('\\v"[^"]*"', "\\v'[^']*'", "\\v`[^`]*`")
       local symbol_group = n.get_word_hops("\\v[^[:alnum:]_\"'` ]")
 
@@ -88,7 +88,7 @@ return {
   },
   {
     "rainbowhxch/accelerated-jk.nvim",
-    event = "User BufRead",
+    event = "VeryLazy",
     config = function()
       require("accelerated-jk").setup({
         acceleration_motions = { "w", "b" },
