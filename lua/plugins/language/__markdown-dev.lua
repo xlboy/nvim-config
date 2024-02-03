@@ -5,8 +5,8 @@ return {
     "xlboy/nvim-treesitter",
     opts = function(_, opts)
       opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, {
-        "markdown",
-        "markdown_inline",
+        -- "markdown",
+        -- "markdown_inline",
       })
     end,
   },

@@ -175,9 +175,9 @@ return {
   {
     "ray-x/lsp_signature.nvim",
     commit = "fed2c8389c148ff1dfdcdca63c2b48d08a50dea0",
-    event = "User BufInsertEnter",
+    event = "User BufRead",
     opts = {
-      floating_window = false,
+      floating_window = true,
       hint_enable = true,
       transparency = 5,
       toggle_key = "<C-s>",
