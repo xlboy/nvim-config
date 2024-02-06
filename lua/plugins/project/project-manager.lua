@@ -165,10 +165,9 @@ return {
     },
   },
   {
-    enabled = false,
     "notjedi/nvim-rooter.lua",
     main = "nvim-rooter",
-    config = true,
-    event = "User BufRead",
+    cmd = { "Rooter" },
+    config = { manual = true },
   },
 }

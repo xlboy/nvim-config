@@ -21,4 +21,21 @@ return {
       end
     end,
   },
+  {
+    "AstroNvim/astrolsp",
+    ---@diagnostic disable: missing-fields
+    ---@type AstroLSPOpts
+    opts = {
+      config = {
+        clangd = {
+          -- settings = {
+          --   cmd = { "clangd", "--offset-encoding=utf-16" },
+          -- },
+          capabilities = {
+            offsetEncoding = "utf-8",
+          },
+        },
+      },
+    },
+  },
 }

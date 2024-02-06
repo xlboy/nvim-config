@@ -20,6 +20,22 @@ return {
     end,
   },
   {
+    "AstroNvim/astrolsp",
+    ---@diagnostic disable: missing-fields
+    ---@type AstroLSPOpts
+    opts = {
+      config = {
+        lua_ls = {
+          settings = {
+            Lua = {
+              hint = { enable = true, arrayIndex = "Disable" },
+            },
+          },
+        },
+      },
+    },
+  },
+  {
     "folke/neodev.nvim",
     ft = { "lua" },
     config = function()

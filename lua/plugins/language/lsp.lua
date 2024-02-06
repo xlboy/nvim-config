@@ -6,69 +6,53 @@ return {
     "neovim/nvim-lspconfig",
     event = "User BufRead",
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
-      { "williamboman/mason-lspconfig.nvim" },
+      {
+        "AstroNvim/astrolsp",
+        opts = function()
+          return {
+            capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            features = {
+              inlay_hints = true,
+            },
+            handlers = {
+              function(server, opts)
+                require("lspconfig")[server].setup(opts)
+              end,
+            },
+          }
+        end,
+      },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim", cmd = { "Mason", "MasonUninstall", "MasonInstall" }, config = true },
+        opts = function()
+          return {
+            handlers = {
+              function(server)
+                require("astrolsp").lsp_setup(server)
+              end,
+            },
+          }
+        end,
+      },
     },
     config = function()
-      -- Set correct icons in sign column
       local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl })
       end
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-      local on_attach = function(client, bufnr) end
-
-      require("mason-lspconfig").setup_handlers({
-        function(server_name)
-          local opts = {
-            inlay_hints = { enabled = true },
-            on_attach = on_attach,
-            capabilities = capabilities,
-          }
-
-          if server_name == "clangd" then opts.cmd = { "clangd", "--offset-encoding=utf-16" } end
-          if server_name == "tsserver" then
-            opts.settings = {
-              typescript = {
-                inlayHints = {
-                  includeInlayParameterNameHints = "all",
-                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                  includeInlayFunctionParameterTypeHints = true,
-                  includeInlayVariableTypeHints = false,
-                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-                  includeInlayPropertyDeclarationTypeHints = true,
-                  includeInlayFunctionLikeReturnTypeHints = true,
-                  includeInlayEnumMemberValueHints = true,
-                },
-              },
-              javascript = {
-                inlayHints = {
-                  includeInlayParameterNameHints = "all",
-                  includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-                  includeInlayFunctionParameterTypeHints = true,
-                  includeInlayVariableTypeHints = false,
-                  includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-                  includeInlayPropertyDeclarationTypeHints = true,
-                  includeInlayFunctionLikeReturnTypeHints = true,
-                  includeInlayEnumMemberValueHints = true,
-                },
-              },
-            }
-          end
-
-          require("lspconfig")[server_name].setup(opts)
-        end,
-      })
+      vim.tbl_map(require("astrolsp").lsp_setup, require("astrolsp").config.servers)
     end,
   },
   {
     "nvimtools/none-ls.nvim",
-    dependencies = {
-      { "jay-babu/mason-null-ls.nvim", cmd = { "NullLsInstall", "NullLsUninstall" } },
-    },
+    cmd = { "NullLsInstall", "NullLsUninstall", "NullLsLog", "NullLsInfo" },
+    dependencies = { { "jay-babu/mason-null-ls.nvim" } },
+    opts = function()
+      return { on_attach = require("astrolsp").on_attach }
+    end,
   },
   {
     "nvimdev/lspsaga.nvim",
@@ -90,15 +74,8 @@ return {
       { "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", desc = "Show code actions", mode = "v" },
       { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Jump to next diagnostic" },
       { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Jump to previous diagnostic" },
-      -- { "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" },
+      { "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" },
       -- { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Show hover doc" },
-      {
-        "gh",
-        function()
-          require("lspsaga.hover"):render_hover_doc()
-        end,
-        desc = "Show hover doc",
-      },
       { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Show hover doc" },
       { "gkh", "<cmd>Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]" },
       { "gr", "<cmd>Lspsaga finder<CR>", desc = "Show lsp finder" },
@@ -110,7 +87,7 @@ return {
   {
     "antosha417/nvim-lsp-file-operations",
     commit = "8e7223e138590c1bd9d86d3de810e65939d8b12f",
-    event = "User Startup30s", -- 启动 30s 后再加载
+    event = "User Startup30s",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("lsp-file-operations").setup()

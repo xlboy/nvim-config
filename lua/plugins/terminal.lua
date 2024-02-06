@@ -4,9 +4,9 @@ local terms = {}
 local set_keymap = function(bufnr)
   local maps = {
     [{ "n" }] = {
-      ["<leader>o"] = function()
-        require("terminal").open()
-      end,
+      -- ["<leader>o"] = function()
+      --   require("terminal").open()
+      -- end,
       ["<leader>cc"] = function()
         uv.kill(terms[bufnr], "sigkill")
         table.remove(terms, bufnr)
@@ -49,9 +49,12 @@ return {
   config = function()
     require("terminal").setup({
       on_term_opened = function(bufnr, pid)
-        vim.api.nvim_set_option_value("filetype", "terminal", { buf = bufnr })
-        set_keymap(bufnr)
-        terms[bufnr] = pid
+        -- 延时 300ms 设置 filetype 为 terminal
+        vim.defer_fn(function()
+          vim.api.nvim_set_option_value("filetype", "terminal", { buf = bufnr })
+          set_keymap(bufnr)
+          terms[bufnr] = pid
+        end, 300)
       end,
     })
   end,
