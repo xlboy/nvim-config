@@ -61,8 +61,8 @@ return {
               },
             },
           },
-        }
-      }
+        },
+      },
     },
   },
   {
@@ -82,23 +82,17 @@ return {
             code_lens = "all",
             tsserver_file_preferences = {
               includeInlayParameterNameHints = "all",
-              includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-              includeInlayFunctionParameterTypeHints = false,
-              includeInlayVariableTypeHints = false,
-              includeInlayVariableTypeHintsWhenTypeMatchesName = false,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-              includeCompletionsForModuleExports = true,
+              includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+              -- includeInlayFunctionParameterTypeHints = false,
+              -- includeInlayVariableTypeHints = false,
+              -- includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+              -- includeInlayPropertyDeclarationTypeHints = true,
+              -- includeInlayFunctionLikeReturnTypeHints = true,
+              -- includeInlayEnumMemberValueHints = true,
+              -- includeCompletionsForModuleExports = true,
               quotePreference = "auto",
             },
-            tsserver_format_options = {
-              allowIncompleteCompletions = false,
-              allowRenameOfImportPath = false,
-            },
-            tsserver_plugins = {
-              "@styled/typescript-styled-plugin",
-            },
+            tsserver_plugins = {},
             expose_as_code_action = "all",
           },
         },

@@ -12,10 +12,11 @@ return {
           return {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
             features = {
-              inlay_hints = true,
+              -- inlay_hints = true,
             },
             handlers = {
               function(server, opts)
+                -- opts.inlay_hints = { enabled = true }
                 require("lspconfig")[server].setup(opts)
               end,
             },
