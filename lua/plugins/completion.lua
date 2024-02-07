@@ -1,3 +1,6 @@
+local config = require("config.config")
+local u = require("utils")
+
 return {
   {
     "hrsh7th/nvim-cmp",
@@ -100,11 +103,17 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
-    ft = { "lua", "cpp" },
-    event = "FileType lua,cpp",
+    ft = u.basic.os_pick({ "lua", "cpp", "typescriptreact", "typescript" }, { "lua", "cpp" }),
+    -- event = "FileType lua,cpp",
     config = function()
       require("copilot").setup({
-        filetypes = { lua = true, cpp = true, ["*"] = false },
+        filetypes = {
+          lua = true,
+          cpp = true,
+          typescript = config.IS_WIN,
+          typescriptreact = config.IS_WIN,
+          ["*"] = false,
+        },
         panel = { enabled = true },
         suggestion = {
           enabled = true,
