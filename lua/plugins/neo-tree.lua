@@ -18,8 +18,8 @@ return {
         local new_ft = vim.bo.filetype
         if old_ft == "neo-tree" or old_ft == new_ft then
           vim.cmd("FocusAutoresize")
-          require("tint").disable()
-          require("tint").enable()
+          -- require("tint").disable()
+          -- require("tint").enable()
         end
       end,
       desc = "Neotree toggle",

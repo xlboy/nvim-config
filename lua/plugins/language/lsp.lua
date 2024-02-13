@@ -49,8 +49,12 @@ return {
   },
   {
     "nvimtools/none-ls.nvim",
-    cmd = { "NullLsInstall", "NullLsUninstall", "NullLsLog", "NullLsInfo" },
-    dependencies = { { "jay-babu/mason-null-ls.nvim" } },
+    dependencies = {
+      { "jay-babu/mason-null-ls.nvim" },
+      { "AstroNvim/astrolsp", opts = {} },
+    },
+    event = "User BufRead",
+    -- cmd = { "NullLsInstall", "NullLsUninstall", "NullLsLog", "NullLsInfo" },
     opts = function()
       return { on_attach = require("astrolsp").on_attach }
     end,
@@ -88,7 +92,7 @@ return {
   {
     "antosha417/nvim-lsp-file-operations",
     commit = "8e7223e138590c1bd9d86d3de810e65939d8b12f",
-    event = "User Startup30s",
+    event = "User BufRead",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("lsp-file-operations").setup()

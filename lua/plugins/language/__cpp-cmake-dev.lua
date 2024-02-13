@@ -28,12 +28,15 @@ return {
     opts = {
       config = {
         clangd = {
-          cmd = { "clangd", "--offset-encoding=utf-16" },
           -- settings = {
+          --   cmd = {
+          --     "clangd",
+          --     "--offset-encoding=utf-8",
+          --   },
           -- },
-          -- capabilities = {
-          --   offsetEncoding = "utf-8",
-          -- },
+          capabilities = {
+            offsetEncoding = "utf-8",
+          },
         },
       },
     },

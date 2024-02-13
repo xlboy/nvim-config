@@ -219,6 +219,21 @@ return {
         FileInfoBlock,
         components.buffer.surround.Right,
       },
+      on_click = {
+        callback = function(_, minwid, _, button)
+          if button == "m" then -- close on mouse middle click
+            vim.schedule(function()
+              vim.api.nvim_buf_delete(minwid, { force = false })
+            end)
+          else
+            vim.api.nvim_win_set_buf(0, minwid)
+          end
+        end,
+        minwid = function(self)
+          return self.bufnr
+        end,
+        name = "heirline_tabline_buffer_callback",
+      },
     })
 
     require("heirline").setup({
