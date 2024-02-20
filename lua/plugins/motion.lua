@@ -99,6 +99,22 @@ return {
       vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
     end,
   },
+  {
+    "smoka7/hop.nvim",
+    cmd = { "HopWord", "HopChar1", "HopChar2", "HopLine" },
+    keys = {
+      { "<leader>;j", "<cmd>HopLineStartAC<CR>", desc = "HopLineStartAC" },
+      { "<leader>;k", "<cmd>HopLineStartBC<CR>", desc = "HopLineStartCC" },
+      { "<leader>;l", "<cmd>HopLineStart<CR>", desc = "HopLineStart" },
+      { "<leader>;w", "<cmd>HopWordAC<CR>", desc = "HopWordAC" },
+      { "<leader>;b", "<cmd>HopWordBC<CR>", desc = "HopWordBC" },
+    },
+    config = function()
+      require("hop").setup()
+      vim.api.nvim_command("highlight HopNextKey1 cterm=bold gui=bold guifg=#ff007c")
+      vim.api.nvim_command("highlight HopNextKey2 cterm=bold gui=bold guifg=#ff007c")
+    end,
+  },
 
   -- TODO: 好像有bug, 回头自己写一个
   -- {
