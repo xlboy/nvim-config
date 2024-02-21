@@ -50,4 +50,35 @@ return {
       })
     end,
   },
+  -- {
+  --   "karb94/neoscroll.nvim",
+  --   event = "User BufRead",
+  --   opts = {
+  --     hide_cursor = true,
+  --     cursor_scrolls_alone = true,
+  --     respect_scrolloff = true
+  --   },
+  --   keys = function()
+  --     return {
+  --       { "<S-k>", "<cmd>lua require('neoscroll').scroll(-8, true, 30)<CR>" },
+  --       { "<S-j>", "<cmd>lua require('neoscroll').scroll(8, true, 30)<CR>" },
+  --     }
+  --   end,
+  -- },
+  -- {
+  --   "echasnovski/mini.animate",
+  --   event = "User BufRead",
+  --   config = function()
+  --     local time = 200
+  --     require("mini.animate").setup({
+  --       scroll = {
+  --         enable = true,
+  --         timing = function(_, n)
+  --           return time / n
+  --         end,
+  --       },
+  --       cursor = { enable = false },
+  --     })
+  --   end,
+  -- },
 }
