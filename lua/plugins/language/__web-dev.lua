@@ -40,7 +40,7 @@ return {
         -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
         -- memory limit in megabytes or "auto"(basically no limit)
         tsserver_max_memory = "auto",
-        code_lens = "all",
+        code_lens = "off",
         tsserver_file_preferences = {
           includeInlayParameterNameHints = "all",
           includeInlayParameterNameHintsWhenArgumentMatchesName = true,
