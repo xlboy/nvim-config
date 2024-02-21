@@ -50,7 +50,6 @@
   "monorepo.nvim": { "branch": "main", "commit": "256a302900d6af6e032f1f2bf4f2407bd4569fe8" },
   "neo-tree.nvim": { "branch": "v3.x", "commit": "f3941c57ec85d7bdb44fa53fd858fd80f159018f" },
   "neodev.nvim": { "branch": "main", "commit": "fdf6b3c58caf3ed1bfe40822d5dac340fc18c33b" },
-  "neoscroll.nvim": { "branch": "master", "commit": "6e3546751076890304428150e53bd59198a4505d" },
   "neowords.nvim": { "branch": "main", "commit": "042d437f2a9eedffde1ab71238c95ed177e45b59" },
   "nerdfont.vim": { "branch": "master", "commit": "e054fd135ee73db37cd5bf545e0ff9948ffec7bc" },
   "node-edge-toggler.nvim": { "branch": "master", "commit": "f65ad0d22c5e480a6da4cabd76c5ecf96ea39858" },
