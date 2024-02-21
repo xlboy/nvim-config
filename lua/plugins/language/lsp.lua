@@ -55,7 +55,7 @@ return {
       { "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", desc = "Show code actions", mode = "v" },
       { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Jump to next diagnostic" },
       { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Jump to previous diagnostic" },
-      { "gh", "<cmd>lua vim.lsp.buf.hover()<CR>" },
+      { "gh", vim.lsp.buf.hover },
       -- { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Show hover doc" },
       { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Show hover doc" },
       { "gkh", "<cmd>Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]" },
