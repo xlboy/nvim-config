@@ -5,59 +5,37 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = "User BufRead",
+    -- lazy = false,
     dependencies = {
-      {
-        "AstroNvim/astrolsp",
-        opts = function()
-          return {
-            capabilities = require("cmp_nvim_lsp").default_capabilities(),
-            features = {
-              -- inlay_hints = true,
-            },
-            handlers = {
-              function(server, opts)
-                -- opts.inlay_hints = { enabled = true }
-                require("lspconfig")[server].setup(opts)
-              end,
-            },
-          }
-        end,
-      },
-      {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = { "williamboman/mason.nvim", cmd = { "Mason", "MasonUninstall", "MasonInstall" }, config = true },
-        opts = function()
-          return {
-            handlers = {
-              function(server)
-                require("astrolsp").lsp_setup(server)
-              end,
-            },
-          }
-        end,
-      },
+      { "williamboman/mason.nvim", opts = {} },
+      { "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
     },
-    config = function()
+    init = function()
       local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
         vim.fn.sign_define(hl, { text = icon, texthl = hl })
       end
-
-      vim.tbl_map(require("astrolsp").lsp_setup, require("astrolsp").config.servers)
+    end,
+    config = function(_, opts)
+      local default_lsp_opts = {
+        inlay_hints = { enabled = true },
+        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      }
+      local lspconfig = require("lspconfig")
+      require("mason-lspconfig").setup_handlers({
+        function(server_name)
+          local merged_opts = vim.tbl_extend("force", default_lsp_opts, opts[server_name] or {})
+          lspconfig[server_name].setup(merged_opts)
+        end,
+      })
     end,
   },
   {
     "nvimtools/none-ls.nvim",
-    dependencies = {
-      { "jay-babu/mason-null-ls.nvim" },
-      { "AstroNvim/astrolsp", opts = {} },
-    },
-    event = "User BufRead",
-    -- cmd = { "NullLsInstall", "NullLsUninstall", "NullLsLog", "NullLsInfo" },
-    opts = function()
-      return { on_attach = require("astrolsp").on_attach }
-    end,
+    dependencies = { { "jay-babu/mason-null-ls.nvim" } },
+    cmd = { "NullLsInstall", "NullLsUninstall", "NullLsLog", "NullLsInfo" },
+    opts = {},
   },
   {
     "nvimdev/lspsaga.nvim",
@@ -69,9 +47,7 @@ return {
       rename = {
         enable = false,
         in_select = false,
-        keys = {
-          quit = { "q", "<ESC>" },
-        },
+        keys = { quit = { "q", "<ESC>" } },
       },
     },
     keys = {

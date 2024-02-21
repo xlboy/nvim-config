@@ -20,16 +20,14 @@ return {
     end,
   },
   {
-    "AstroNvim/astrolsp",
-    ---@diagnostic disable: missing-fields
-    ---@type AstroLSPOpts
+    "neovim/nvim-lspconfig",
     opts = {
-      config = {
-        lua_ls = {
-          settings = {
-            Lua = {
-              hint = { enable = true, arrayIndex = "Disable" },
-            },
+      lua_ls = {
+        settings = {
+          Lua = {
+            hint = { enable = true, arrayIndex = "Disable" },
+            -- 给 neodev.nvim 配置用的
+            completion = { callSnippet = "Replace" },
           },
         },
       },
@@ -41,13 +39,6 @@ return {
     config = function()
       u.lazy.on_load("mason-lspconfig.nvim", function()
         require("neodev").setup()
-        require("lspconfig").lua_ls.setup({
-          settings = {
-            Lua = {
-              completion = { callSnippet = "Replace" },
-            },
-          },
-        })
       end)
     end,
   },

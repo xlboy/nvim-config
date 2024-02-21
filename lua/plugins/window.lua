@@ -94,4 +94,9 @@ return {
       { "<leader>wnf", "<cmd>lua require('detour').Detour()<CR>" },
     },
   },
+  -- {
+  --   "stevearc/stickybuf.nvim",
+  --   lazy = false,
+  --   opts = {},
+  -- },
 }

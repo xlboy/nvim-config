@@ -19,7 +19,12 @@ return {
       local transparent = require("transparent")
       transparent.setup({
         extra_groups = { "MasonNormal", "NvimTreeNormal", "FoldColumn" },
-        -- exclude_groups = { "CursorLine" },
+        exclude_groups = {
+          "CursorLine",
+          "Cursor",
+          "lCursor",
+          "TermCursor",
+        },
       })
       local prefix = {
         "BufferLine",

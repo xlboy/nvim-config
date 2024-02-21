@@ -1,47 +1,44 @@
 return {
   {
-    "AstroNvim/astrolsp",
-    ---@type AstroLSPOpts
+    "neovim/nvim-lspconfig",
     opts = {
-      config = {
-        tailwindcss = {
-          settings = {
-            tailwindCSS = {
-              classAttributes = {
-                "class",
-                "className",
-                "classNames",
-                "ngClass",
-                "classList",
-              },
-              experimental = {
-                classRegex = {
-                  { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
-                  { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-                  {
-                    "tw`([^`]*)",
-                    'tw="([^"]*)',
-                    'tw={"([^"}]*)',
-                    "tw\\.\\w+`([^`]*)",
-                    "tw\\(.*?\\)`([^`]*)",
-                  },
+      tailwindcss = {
+        settings = {
+          tailwindCSS = {
+            classAttributes = {
+              "class",
+              "className",
+              "classNames",
+              "ngClass",
+              "classList",
+            },
+            experimental = {
+              classRegex = {
+                { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+                { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+                {
+                  "tw`([^`]*)",
+                  'tw="([^"]*)',
+                  'tw={"([^"}]*)',
+                  "tw\\.\\w+`([^`]*)",
+                  "tw\\(.*?\\)`([^`]*)",
                 },
               },
-              includeLanguages = {
-                typescript = "javascript",
-                typescriptreact = "javascript",
-              },
-              emmetCompletions = false,
-              validate = true,
-              lint = {
-                cssConflict = "warning",
-                invalidApply = "error",
-                invalidConfigPath = "error",
-                invalidScreen = "error",
-                invalidTailwindDirective = "error",
-                invalidVariant = "error",
-                recommendedVariantOrder = "warning",
-              },
+            },
+            includeLanguages = {
+              typescript = "javascript",
+              typescriptreact = "javascript",
+            },
+            emmetCompletions = false,
+            validate = true,
+            lint = {
+              cssConflict = "warning",
+              invalidApply = "error",
+              invalidConfigPath = "error",
+              invalidScreen = "error",
+              invalidTailwindDirective = "error",
+              invalidVariant = "error",
+              recommendedVariantOrder = "warning",
             },
           },
         },

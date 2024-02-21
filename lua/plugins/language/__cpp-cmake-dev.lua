@@ -22,21 +22,12 @@ return {
     end,
   },
   {
-    "AstroNvim/astrolsp",
-    ---@diagnostic disable: missing-fields
-    ---@type AstroLSPOpts
+    "neovim/nvim-lspconfig",
     opts = {
-      config = {
-        clangd = {
-          -- settings = {
-          --   cmd = {
-          --     "clangd",
-          --     "--offset-encoding=utf-8",
-          --   },
-          -- },
-          capabilities = {
-            offsetEncoding = "utf-8",
-          },
+      clangd = {
+        cmd = {
+          "clangd",
+          "--offset-encoding=utf-16",
         },
       },
     },

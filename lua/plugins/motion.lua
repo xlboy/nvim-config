@@ -12,12 +12,12 @@ return {
       },
     },
     keys = {
-      {
-        "s",
-        mode = { "n", "v", "o" },
-        "<cmd>lua require('flash').jump({ search = { multi_window = false } })<CR>",
-        desc = "Flash",
-      },
+      -- {
+      --   "s",
+      --   mode = { "n", "v", "o" },
+      --   "<cmd>lua require('flash').jump({ search = { multi_window = false } })<CR>",
+      --   desc = "Flash",
+      -- },
       { "<leader>ssv", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "Flash treesitter_search" },
       { "<leader>sv", "<cmd>lua require('flash').treesitter()<CR>", desc = "Flash treesitter" },
     },
@@ -86,28 +86,28 @@ return {
       })
     end,
   },
-  {
-    "rainbowhxch/accelerated-jk.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("accelerated-jk").setup({
-        acceleration_motions = { "w", "b" },
-        acceleration_limit = 70,
-        acceleration_table = { 4, 8, 15, 20, 30, 35, 40, 45, 50 },
-      })
-      vim.api.nvim_set_keymap("n", "j", "<Plug>(accelerated_jk_gj)", {})
-      vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
-    end,
-  },
+  -- {
+  --   "rainbowhxch/accelerated-jk.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("accelerated-jk").setup({
+  --       acceleration_motions = { "w", "b" },
+  --       acceleration_limit = 80,
+  --       acceleration_table = { 3, 6, 10, 25, 40, 60, 100, 150 },
+  --     })
+  --     vim.api.nvim_set_keymap("n", "j", "<Plug>(accelerated_jk_gj)", {})
+  --     vim.api.nvim_set_keymap("n", "k", "<Plug>(accelerated_jk_gk)", {})
+  --   end,
+  -- },
   {
     "smoka7/hop.nvim",
     cmd = { "HopWord", "HopChar1", "HopChar2", "HopLine" },
     keys = {
-      { "<leader>;j", "<cmd>HopLineStartAC<CR>", desc = "HopLineStartAC" },
-      { "<leader>;k", "<cmd>HopLineStartBC<CR>", desc = "HopLineStartCC" },
-      { "<leader>;l", "<cmd>HopLineStart<CR>", desc = "HopLineStart" },
-      { "<leader>;w", "<cmd>HopWordAC<CR>", desc = "HopWordAC" },
-      { "<leader>;b", "<cmd>HopWordBC<CR>", desc = "HopWordBC" },
+      { "<leader>;j", "<cmd>HopLineStartAC<CR>", mode = { "n", "v" }, desc = "HopLineStartAC" },
+      { "<leader>;k", "<cmd>HopLineStartBC<CR>", mode = { "n", "v" }, desc = "HopLineStartCC" },
+      { "<leader>;l", "<cmd>HopLineStart<CR>", mode = { "n", "v" }, desc = "HopLineStart" },
+      { "<leader>;w", "<cmd>HopWordAC<CR>", mode = { "n", "v" }, desc = "HopWordAC" },
+      { "<leader>;b", "<cmd>HopWordBC<CR>", mode = { "n", "v" }, desc = "HopWordBC" },
     },
     config = function()
       require("hop").setup()
