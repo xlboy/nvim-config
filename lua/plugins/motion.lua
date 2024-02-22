@@ -103,26 +103,28 @@ return {
     "smoka7/hop.nvim",
     cmd = { "HopWord", "HopChar1", "HopChar2", "HopLine" },
     keys = {
-      { "<leader>;j", "<cmd>HopLineStartAC<CR>", mode = { "n", "v" }, desc = "HopLineStartAC" },
-      { "<leader>;k", "<cmd>HopLineStartBC<CR>", mode = { "n", "v" }, desc = "HopLineStartCC" },
-      { "<leader>;w", "<cmd>HopWordAC<CR>", mode = { "n", "v" }, desc = "HopWordAC" },
-      { "<leader>;b", "<cmd>HopWordBC<CR>", mode = { "n", "v" }, desc = "HopWordBC" },
-      {
-        "<leader>;l",
-        function()
-          require("hop").hint_words({ current_line_only = true, direction = 2 })
-        end,
-        mode = { "n", "v" },
-        desc = "HopWord L(Only CurrentLine)",
-      },
-      {
-        "<leader>;h",
-        function()
-          require("hop").hint_words({ current_line_only = true, direction = 1 })
-        end,
-        mode = { "n", "v" },
-        desc = "HopWord H(Only CurrentLine)",
-      },
+      { "s", "<cmd>HopWord<CR>", mode = { "n", "v" } },
+      { ";l", "<cmd>HopLineStart<CR>", mode = { "n", "v" } },
+      -- { "<leader>;j", "<cmd>HopLineStartAC<CR>", mode = { "n", "v" }, desc = "HopLineStartAC" },
+      -- { "<leader>;k", "<cmd>HopLineStartBC<CR>", mode = { "n", "v" }, desc = "HopLineStartCC" },
+      -- { "<leader>;w", "<cmd>HopWordAC<CR>", mode = { "n", "v" }, desc = "HopWordAC" },
+      -- { "<leader>;b", "<cmd>HopWordBC<CR>", mode = { "n", "v" }, desc = "HopWordBC" },
+      -- {
+      --   "<leader>;l",
+      --   function()
+      --     require("hop").hint_words({ current_line_only = true, direction = 2 })
+      --   end,
+      --   mode = { "n", "v" },
+      --   desc = "HopWord L(Only CurrentLine)",
+      -- },
+      -- {
+      --   "<leader>;h",
+      --   function()
+      --     require("hop").hint_words({ current_line_only = true, direction = 1 })
+      --   end,
+      --   mode = { "n", "v" },
+      --   desc = "HopWord H(Only CurrentLine)",
+      -- },
     },
     config = function()
       require("hop").setup()

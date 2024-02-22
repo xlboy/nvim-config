@@ -107,7 +107,7 @@ return {
           --- @param entry WS.Picker.SelectedEntry
           on_select = function(entry)
             if is_valid_bufs() then resession.save_cwd() end
-            require("close_buffers").delete({ type = "all" })
+            u.basic.feedkeys("<leader>ca<CR>")
             vim.cmd("cd " .. entry.source.dir)
             resession.load_cwd()
             tint_refresh()

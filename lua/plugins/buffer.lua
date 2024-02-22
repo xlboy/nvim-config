@@ -1,9 +1,14 @@
 local u = require("utils")
 
+local apis = {}
+
 return {
   {
-    "kazhala/close-buffers.nvim",
-    dependencies = { "prochri/telescope-all-recent.nvim" },
+    -- "kazhala/close-buffers.nvim",
+    "famiu/bufdelete.nvim",
+    dependencies = {
+      "prochri/telescope-all-recent.nvim",
+    },
     init = function()
       vim.api.nvim_create_autocmd({ "BufEnter" }, {
         callback = function()
@@ -17,29 +22,58 @@ return {
       })
     end,
     keys = function()
+      local bufd = require("bufdelete")
       local force = true
+
+      local handle_delete = function(buf, force)
+        if u.buffer.is_modified(buf) then
+          local ok = vim.fn.confirm("Buffer is modified, close anyway?", "&Yes\n&No", 2)
+          if ok == 1 then bufd.bufdelete(buf, force) end
+        else
+          bufd.bufdelete(buf, force)
+        end
+      end
+
       local close_apis = {
         ["Current"] = {
           k = "<leader>cc",
           cb = function()
             local cur_buf = vim.api.nvim_get_current_buf()
-
-            if u.buffer.is_modified(cur_buf) then
-              local ok = vim.fn.confirm("Buffer is modified, close anyway?", "&Yes\n&No", 2)
-              if ok == 1 then vim.api.nvim_buf_delete(cur_buf, { force = force }) end
-            else
-              vim.api.nvim_buf_delete(cur_buf, { force = force })
+            handle_delete(cur_buf, force)
+          end,
+        },
+        ["All"] = {
+          k = "<leader>ca",
+          cb = function()
+            for _, buf in ipairs(u.buffer.get_bufs()) do
+              handle_delete(buf, force)
             end
           end,
         },
-        ["All"] = { k = "<leader>ca", cb = "<cmd>BDelete all<CR>" },
-        ["Other"] = { k = "<leader>co", cb = "<cmd>BDelete other<CR>" },
-        ["Nameless"] = { k = "<leader>cn", cb = "<cmd>BDelete! nameless<CR>" },
+        ["Other"] = {
+          k = "<leader>co",
+          cb = function()
+            local cur_buf = vim.api.nvim_get_current_buf()
+
+            for _, buf in ipairs(u.buffer.get_bufs()) do
+              if buf ~= cur_buf then handle_delete(buf, force) end
+            end
+          end,
+        },
         ["Suffix"] = {
           k = "<leader>cs",
           cb = function()
             local suffix = vim.fn.input("Suffix: ")
-            if suffix ~= "" then vim.cmd("BDelete regex=.*[.]" .. suffix) end
+            if suffix ~= "" then
+              local to_delete = vim.tbl_filter(function(buf)
+                local filename = vim.api.nvim_buf_get_name(buf)
+                return string.find(filename, ".*[.]" .. suffix) ~= nil
+              end, u.buffer.get_bufs())
+
+              for _, buf in ipairs(to_delete) do
+                handle_delete(buf, force)
+              end
+            end
           end,
         },
         ["Glob Pattern Buffer"] = {
@@ -49,7 +83,20 @@ return {
             if pattern ~= "" then vim.cmd("BDelete glob=" .. pattern) end
           end,
         },
-        ["Non CWD"] = { k = "<leader>cd", cb = u.buffer.delete_non_cwd },
+        ["Non CWD"] = {
+          k = "<leader>cd",
+          cb = function()
+            local to_delete = vim.tbl_filter(function(buf)
+              local filename = vim.api.nvim_buf_get_name(buf)
+              local cwd = vim.fn.getcwd()
+              return not vim.startswith(filename, cwd)
+            end, u.buffer.get_bufs())
+
+            for _, buf in ipairs(to_delete) do
+              handle_delete(buf, force)
+            end
+          end,
+        },
         ["Git Unchanged"] = {
           k = "<leader>cu",
           cb = function()
@@ -60,7 +107,7 @@ return {
             end, u.buffer.get_bufs())
 
             for _, buf in ipairs(to_delete) do
-              vim.api.nvim_buf_delete(buf, { force = force })
+              handle_delete(buf, force)
             end
           end,
         },
@@ -73,7 +120,7 @@ return {
             end, u.buffer.get_bufs())
 
             for _, buf in ipairs(to_delete) do
-              vim.api.nvim_buf_delete(buf, { force = force })
+              handle_delete(buf, force)
             end
           end,
         },

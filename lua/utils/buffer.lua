@@ -98,17 +98,7 @@ function M.is_modified(bufnr)
   return vim.api.nvim_get_option_value("modified", { buf = bufnr })
 end
 
-function M.delete_non_cwd(force)
-  force = force or true
-  local to_delete = vim.tbl_filter(function(buf)
-    local filename = vim.api.nvim_buf_get_name(buf)
-    local cwd = vim.fn.getcwd()
-    return not vim.startswith(filename, cwd)
-  end, M.get_bufs())
-
-  for _, buf in ipairs(to_delete) do
-    vim.api.nvim_buf_delete(buf, { force = force })
-  end
-end
+function M.delete_all(
+) end
 
 return M
