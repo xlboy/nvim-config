@@ -21,7 +21,6 @@ return {
         "cssls",
         -- "tsserver",
         "jsonls",
-        "tailwindcss",
       })
     end,
   },
@@ -33,23 +32,20 @@ return {
   },
   {
     "pmizio/typescript-tools.nvim",
+    enabled = true,
     ft = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-    opts = {
-      settings = {
-        separate_diagnostic_server = true,
-        -- this value is passed to: https://nodejs.org/api/cli.html#--max-old-space-sizesize-in-megabytes
-        -- memory limit in megabytes or "auto"(basically no limit)
-        tsserver_max_memory = "auto",
-        code_lens = "off",
-        tsserver_file_preferences = {
-          includeInlayParameterNameHints = "all",
-          includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-          quotePreference = "auto",
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+      require("typescript-tools").setup({
+        settings = {
+          separate_diagnostic_server = false,
+          tsserver_file_preferences = {
+            includeCompletionsForModuleExports = true,
+            quotePreference = "auto",
+          },
         },
-        tsserver_plugins = {},
-        expose_as_code_action = "all",
-      },
-    },
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",

@@ -41,24 +41,33 @@ return {
       vim.g.wordmotion_prefix = ";"
     end,
   },
+  -- {
+  --   "backdround/neowords.nvim",
+  --   commit = "042d437f2a9eedffde1ab71238c95ed177e45b59",
+  --   event = "User BufRead",
+  --   config = function()
+  --     local n = require("neowords")
+  --     local p = n.pattern_presets
+  --     local bigword = n.get_word_hops("\\v-@![-_[:lower:][:upper:][:digit:]]+")
+  --     local string_group = n.get_word_hops('\\v"[^"]*"', "\\v'[^']*'", "\\v`[^`]*`")
+  --     local symbol_group = n.get_word_hops("\\v[^[:alnum:]_\"'` ]")
+  --
+  --     vim.keymap.set({ "n", "x", "o" }, "W", bigword.forward_start)
+  --     vim.keymap.set({ "n", "x", "o" }, "B", bigword.backward_start)
+  --     vim.keymap.set({ "n", "x", "o" }, "e", string_group.forward_start)
+  --     vim.keymap.set({ "n", "x", "o" }, "E", string_group.backward_start)
+  --     vim.keymap.set({ "n", "x", "o" }, "q", symbol_group.forward_start)
+  --     vim.keymap.set({ "n", "x", "o" }, "Q", symbol_group.backward_start)
+  --   end,
+  -- },
   {
-    "backdround/neowords.nvim",
-    commit = "042d437f2a9eedffde1ab71238c95ed177e45b59",
-    event = "User BufRead",
-    config = function()
-      local n = require("neowords")
-      local p = n.pattern_presets
-      local bigword = n.get_word_hops("\\v-@![-_[:lower:][:upper:][:digit:]]+")
-      local string_group = n.get_word_hops('\\v"[^"]*"', "\\v'[^']*'", "\\v`[^`]*`")
-      local symbol_group = n.get_word_hops("\\v[^[:alnum:]_\"'` ]")
-
-      vim.keymap.set({ "n", "x", "o" }, "W", bigword.forward_start)
-      vim.keymap.set({ "n", "x", "o" }, "B", bigword.backward_start)
-      vim.keymap.set({ "n", "x", "o" }, "e", string_group.forward_start)
-      vim.keymap.set({ "n", "x", "o" }, "E", string_group.backward_start)
-      vim.keymap.set({ "n", "x", "o" }, "q", symbol_group.forward_start)
-      vim.keymap.set({ "n", "x", "o" }, "Q", symbol_group.backward_start)
-    end,
+    "xlboy/nvim-spider",
+    event = "BufRead",
+    opts = { skipInsignificantPunctuation = true },
+    keys = {
+      { "W", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "x" } },
+      { "B", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "x" } },
+    },
   },
   {
     "gsuuon/tshjkl.nvim",
