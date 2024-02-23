@@ -110,10 +110,16 @@ return {
   -- },
   {
     "smoka7/hop.nvim",
-    cmd = { "HopWord", "HopChar1", "HopChar2", "HopLine" },
     keys = {
       { "s", "<cmd>HopWord<CR>", mode = { "n", "v" } },
       { ";l", "<cmd>HopLineStart<CR>", mode = { "n", "v" } },
+      {
+        ";f",
+        function()
+          require("hop").hint_words({ current_line_only = true })
+        end,
+        mode = { "n", "v" },
+      },
       -- { "<leader>;j", "<cmd>HopLineStartAC<CR>", mode = { "n", "v" }, desc = "HopLineStartAC" },
       -- { "<leader>;k", "<cmd>HopLineStartBC<CR>", mode = { "n", "v" }, desc = "HopLineStartCC" },
       -- { "<leader>;w", "<cmd>HopWordAC<CR>", mode = { "n", "v" }, desc = "HopWordAC" },

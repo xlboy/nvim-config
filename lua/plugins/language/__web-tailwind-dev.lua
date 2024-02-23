@@ -84,12 +84,12 @@ return {
         { desc = "Tailwind Fold Toggle", cmd = ":TailwindFoldToggle<CR>" },
       })
 
-      vim.api.nvim_create_autocmd("WinEnter", {
-        callback = function()
-          vim.cmd("TailwindFoldEnable")
-        end,
-        desc = "Tailwind Fold Enable",
-      })
+      -- vim.api.nvim_create_autocmd("WinEnter", {
+      --   callback = function()
+      --     vim.cmd("TailwindFoldEnable")
+      --   end,
+      --   desc = "Tailwind Fold Enable",
+      -- })
     end,
   },
 }
