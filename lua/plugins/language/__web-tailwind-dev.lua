@@ -10,6 +10,7 @@ return {
             classAttributes = {
               "class",
               "className",
+              "rootClassName",
               "classNames",
               "ngClass",
               "classList",
@@ -77,7 +78,7 @@ return {
     ft = { "html", "typescriptreact" },
     config = function()
       vim.cmd("set conceallevel=2")
-      require("tailwind-fold").setup()
+      require("tailwind-fold").setup({ enabled = false })
 
       ---@diagnostic disable-next-line: missing-parameter
       require("commander").add({

@@ -4,9 +4,9 @@ local apis = {}
 
 return {
   {
-    -- "kazhala/close-buffers.nvim",
-    "famiu/bufdelete.nvim",
+    "kazhala/close-buffers.nvim",
     dependencies = {
+      "famiu/bufdelete.nvim",
       "prochri/telescope-all-recent.nvim",
     },
     init = function()
@@ -25,12 +25,19 @@ return {
       local bufd = require("bufdelete")
       local force = true
 
-      local handle_delete = function(buf, force)
+      local handle_delete = function(buf, force, use_native)
+        local del = function()
+          if use_native then
+            vim.api.nvim_buf_delete(buf, { force = force })
+          else
+            bufd.bufdelete(buf, force)
+          end
+        end
         if u.buffer.is_modified(buf) then
           local ok = vim.fn.confirm("Buffer is modified, close anyway?", "&Yes\n&No", 2)
-          if ok == 1 then bufd.bufdelete(buf, force) end
+          if ok == 1 then del() end
         else
-          bufd.bufdelete(buf, force)
+          del()
         end
       end
 
@@ -39,14 +46,18 @@ return {
           k = "<leader>cc",
           cb = function()
             local cur_buf = vim.api.nvim_get_current_buf()
-            handle_delete(cur_buf, force)
+            if u.buffer.is_noname(cur_buf) then
+              handle_delete(cur_buf, force, true)
+            else
+              handle_delete(cur_buf, force)
+            end
           end,
         },
         ["All"] = {
           k = "<leader>ca",
           cb = function()
             for _, buf in ipairs(u.buffer.get_bufs()) do
-              handle_delete(buf, force)
+              handle_delete(buf, force, true)
             end
           end,
         },
@@ -56,7 +67,7 @@ return {
             local cur_buf = vim.api.nvim_get_current_buf()
 
             for _, buf in ipairs(u.buffer.get_bufs()) do
-              if buf ~= cur_buf then handle_delete(buf, force) end
+              if buf ~= cur_buf then handle_delete(buf, force, true) end
             end
           end,
         },
@@ -71,7 +82,7 @@ return {
               end, u.buffer.get_bufs())
 
               for _, buf in ipairs(to_delete) do
-                handle_delete(buf, force)
+                handle_delete(buf, force, true)
               end
             end
           end,
