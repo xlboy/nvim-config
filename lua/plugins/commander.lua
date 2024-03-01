@@ -62,7 +62,7 @@ local commands = {
   { desc = "Restart lsp server", cmd = "<cmd>LspRestart<CR>", cat = CAT.LSP },
   {
     desc = "Swap ternary",
-    cmd = ':require("swap-ternary").swap()<CR>',
+    cmd = '<cmd>lua require("swap-ternary").swap()<CR>',
     cat = CAT.LSP,
   },
   {

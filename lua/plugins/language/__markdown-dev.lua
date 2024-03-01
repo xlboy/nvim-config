@@ -26,4 +26,9 @@ return {
     ft = "markdown",
   },
   { "AckslD/nvim-FeMaco.lua", main = "femaco", ft = { "markdown" }, config = true },
+  {
+    "Myzel394/easytables.nvim",
+    ft = "markdown",
+    opts = {}
+  },
 }

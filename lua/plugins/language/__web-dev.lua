@@ -47,6 +47,10 @@ return {
       })
     end,
   },
+  -- {
+  --   "dmmulroy/ts-error-translator.nvim",
+  --   event = "User BufRead",
+  -- },
   {
     "neovim/nvim-lspconfig",
     opts = {
