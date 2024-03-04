@@ -51,6 +51,17 @@ return {
     end,
   },
   -- {
+  --   "rasulomaroff/reactive.nvim",
+  --   event = "User BufRead",
+  --   opts = {
+  --     builtin = {
+  --       cursorline = true,
+  --       cursor = true,
+  --       modemsg = true,
+  --     },
+  --   },
+  -- },
+  -- {
   --   "karb94/neoscroll.nvim",
   --   event = "User BufRead",
   --   opts = {

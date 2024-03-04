@@ -18,6 +18,8 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
     { import = "plugins.language" },
+    { import = "plugins.language.pack" },
+    { import = "plugins.language.lsp" },
     { import = "plugins.ui" },
     { import = "plugins.project" },
   },

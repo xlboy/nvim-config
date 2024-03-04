@@ -1,70 +1,4 @@
-local u = require("utils")
-local config = require("config.config")
-
 return {
-  {
-    "neovim/nvim-lspconfig",
-    event = "User BufRead",
-    -- lazy = false,
-    dependencies = {
-      { "williamboman/mason.nvim", opts = {} },
-      { "williamboman/mason-lspconfig.nvim", opts = { automatic_installation = true } },
-    },
-    init = function()
-      local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = "󰋽 " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl })
-      end
-    end,
-    config = function(_, opts)
-      local default_lsp_opts = {
-        inlay_hints = { enabled = true },
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
-      }
-      local lspconfig = require("lspconfig")
-      require("mason-lspconfig").setup_handlers({
-        function(server_name)
-          local merged_opts = vim.tbl_extend("force", default_lsp_opts, opts[server_name] or {})
-          lspconfig[server_name].setup(merged_opts)
-        end,
-      })
-    end,
-  },
-  {
-    "nvimtools/none-ls.nvim",
-    dependencies = { { "jay-babu/mason-null-ls.nvim" } },
-    cmd = { "NullLsInstall", "NullLsUninstall", "NullLsLog", "NullLsInfo" },
-    opts = {},
-  },
-  {
-    "nvimdev/lspsaga.nvim",
-    opts = {
-      symbol_in_winbar = { enable = false },
-      lightbulb = { virtual_text = false },
-      finder = { default = "ref", left_width = 0.3 },
-      code_action = { extend_gitsigns = true },
-      rename = {
-        enable = false,
-        in_select = false,
-        keys = { quit = { "q", "<ESC>" } },
-      },
-    },
-    keys = {
-      { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Show code actions" },
-      { "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", desc = "Show code actions", mode = "v" },
-      { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Jump to next diagnostic" },
-      { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Jump to previous diagnostic" },
-      { "gh", vim.lsp.buf.hover },
-      -- { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Show hover doc" },
-      { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Show hover doc" },
-      { "gkh", "<cmd>Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]" },
-      { "gr", "<cmd>Lspsaga finder<CR>", desc = "Show lsp finder" },
-      { "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", desc = "Rename symbol" },
-      { "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Show line diagnostics" },
-      { "<leader>l.", "<cmd>Lspsaga signature_help<CR>", desc = "Show signature help" },
-    },
-  },
   {
     "antosha417/nvim-lsp-file-operations",
     commit = "8e7223e138590c1bd9d86d3de810e65939d8b12f",
@@ -178,17 +112,6 @@ return {
     end,
   },
   {
-    "j-hui/fidget.nvim",
-    event = "User BufRead",
-    opts = {
-      notification = { window = { winblend = 0 } },
-      integration = {
-        ["nvim-tree"] = { enable = true },
-      },
-    },
-  },
-  -- better diagnostics list and others
-  {
     "folke/trouble.nvim",
     cmd = { "TroubleToggle", "Trouble" },
     opts = {
@@ -226,23 +149,4 @@ return {
       },
     },
   },
-
-  -- {
-  --   "ErichDonGubler/lsp_lines.nvim",
-  --   event = "BufEnter",
-  --   init = function()
-  --     vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
-  --   end,
-  --   config = true,
-  --   keys = {
-  --     {
-  --       "<leader>ldt",
-  --       function()
-  --         local new_virtual_lines = not vim.diagnostic.config().virtual_lines
-  --         vim.diagnostic.config({ virtual_lines = new_virtual_lines, virtual_text = not new_virtual_lines })
-  --       end,
-  --       desc = "[Lsp] Toogle Diagnostic Mode (line/text)",
-  --     },
-  --   },
-  -- },
 }
