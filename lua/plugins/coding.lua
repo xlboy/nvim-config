@@ -27,7 +27,7 @@ return {
 
           vim.lsp.buf_request(
             0,
-            "textDocument/prepareRename",
+            "textDocument/rename",
             vim.lsp.util.make_position_params(),
             function(err, result)
               local can_rename = result ~= nil
