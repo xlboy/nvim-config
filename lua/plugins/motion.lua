@@ -120,26 +120,6 @@ return {
         end,
         mode = { "n", "v" },
       },
-      -- { "<leader>;j", "<cmd>HopLineStartAC<CR>", mode = { "n", "v" }, desc = "HopLineStartAC" },
-      -- { "<leader>;k", "<cmd>HopLineStartBC<CR>", mode = { "n", "v" }, desc = "HopLineStartCC" },
-      -- { "<leader>;w", "<cmd>HopWordAC<CR>", mode = { "n", "v" }, desc = "HopWordAC" },
-      -- { "<leader>;b", "<cmd>HopWordBC<CR>", mode = { "n", "v" }, desc = "HopWordBC" },
-      -- {
-      --   "<leader>;l",
-      --   function()
-      --     require("hop").hint_words({ current_line_only = true, direction = 2 })
-      --   end,
-      --   mode = { "n", "v" },
-      --   desc = "HopWord L(Only CurrentLine)",
-      -- },
-      -- {
-      --   "<leader>;h",
-      --   function()
-      --     require("hop").hint_words({ current_line_only = true, direction = 1 })
-      --   end,
-      --   mode = { "n", "v" },
-      --   desc = "HopWord H(Only CurrentLine)",
-      -- },
     },
     config = function()
       require("hop").setup()
@@ -147,7 +127,31 @@ return {
       vim.api.nvim_command("highlight HopNextKey2 cterm=bold gui=bold guifg=#ff007c")
     end,
   },
-
+  {
+    "bloznelis/before.nvim",
+    keys = {
+      { "<C-o>", "<cmd>lua require('before').jump_to_last_edit()<CR>", mode = { "n" } },
+      { "<C-i>", "<cmd>lua require('before').jump_to_next_edit()<CR>", mode = { "n" } },
+    },
+    opts = { history_size = 100 },
+  },
+  -- { "boltlessengineer/smart-tab.nvim", opts = {} },
+  -- {
+  --   "abecodes/tabout.nvim",
+  --   dependencies = { "hrsh7th/nvim-cmp" },
+  --   event = "User BufRead",
+  --   opts = {
+  --     act_as_tab = false,
+  --   },
+  -- },
+  {
+    "AgusDOLARD/backout.nvim",
+    opts = {},
+    keys = {
+      { "<C-b><C-b>", "<cmd>lua require('backout').back()<cr>", mode = { "i", "n" } },
+      { "<C-b><C-o>", "<cmd>lua require('backout').out()<cr>", mode = { "i", "n" } },
+    },
+  },
   -- TODO: 好像有bug, 回头自己写一个
   -- {
   --   "DarkKronicle/recall.nvim",

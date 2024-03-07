@@ -19,27 +19,33 @@ return {
       opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "lua_ls" })
     end,
   },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      lua_ls = {
-        settings = {
-          Lua = {
-            hint = { enable = true, arrayIndex = "Disable" },
-            -- 给 neodev.nvim 配置用的
-            completion = { callSnippet = "Replace" },
-          },
-        },
-      },
-    },
-  },
+  -- {
+  --   "neovim/nvim-lspconfig",
+  --   opts = {
+  --     lua_ls = {
+  --       settings = {
+  --         Lua = {
+  --           hint = { enable = true, arrayIndex = "Disable" },
+  --           -- 给 neodev.nvim 配置用的
+  --           completion = { callSnippet = "Replace" },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "folke/neodev.nvim",
     ft = { "lua" },
+    dependencies = { "neovim/nvim-lspconfig" },
     config = function()
-      u.lazy.on_load("mason-lspconfig.nvim", function()
-        require("neodev").setup()
-      end)
+      require("neodev").setup()
+      require("lspconfig").lua_ls.setup({
+        settings = {
+          Lua = {
+            completion = { callSnippet = "Replace" },
+          },
+        },
+      })
     end,
   },
   {
