@@ -1,6 +1,3 @@
-require("config")
-require("scripts")
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -14,15 +11,27 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
-require("lazy").setup({
+local in_vscode = vim.g.vscode
+local spec = {}
+if in_vscode then
+  require("vscode")
   spec = {
-    { import = "plugins" },
-    { import = "plugins.language" },
-    { import = "plugins.language.pack" },
-    { import = "plugins.language.lsp" },
-    { import = "plugins.ui" },
-    { import = "plugins.project" },
-  },
+     import = "vscode.plugins" 
+  }
+else
+  require("terminal")
+  spec = {
+    { import = "terminal.plugins" },
+    { import = "terminal.plugins.language" },
+    { import = "terminal.plugins.language.pack" },
+    { import = "terminal.plugins.language.lsp" },
+    { import = "terminal.plugins.ui" },
+    { import = "terminal.plugins.project" },
+  }
+end
+
+require("lazy").setup({
+  spec = spec,
   defaults = { lazy = true },
   checker = { enabled = true },
   performance = {
