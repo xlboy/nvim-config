@@ -41,6 +41,16 @@ local vsc = {
       silent = true,
     })
   end,
+
+  lsp = function()
+    set("n", "<leader>lr", "<Cmd>call VSCodeNotify('editor.action.rename')<CR>", {})
+    set("n", "gr", "<Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>", {})
+    set("n", "gz", "<Cmd>call VSCodeNotify('editor.action.referenceSearch.trigger')<CR>", {})
+    set("n", "gd", "<Cmd>call VSCodeNotify('editor.action.revealDefinition')<CR>", {})
+    set("n", "]d", "<Cmd>call VSCodeNotify('editor.action.marker.next')<CR>", {})
+    set("n", "[d", "<Cmd>call VSCodeNotify('editor.action.marker.prev')<CR>", {})
+    set("n", "<C-y>", "<Cmd>call VSCodeNotify('editor.action.triggerSuggest')<CR>", {})
+  end,
 }
 
 function default()
@@ -56,9 +66,21 @@ function default()
   set("n", "<S-j>", "8j", {})
   set("n", "<S-u>", "20k", {})
   set("n", "<S-d>", "20j", {})
-  
-  set('n', "<leader><leader>", "<Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>", {})
-  set('n', "<leader>pp", "<Cmd>call VSCodeNotify('workbench.action.showCommands')<CR>", {})
+
+  set("n", "u", "<Cmd>call VSCodeNotify('undo')<CR>", {})
+  set("n", "<C-r>", "<Cmd>call VSCodeNotify('redo')<CR>", {})
+
+  set("n", "<leader><leader>", "<Cmd>call VSCodeNotify('workbench.action.quickOpen')<CR>", {})
+  set("n", "<leader>pp", "<Cmd>call VSCodeNotify('workbench.action.showCommands')<CR>", {})
+  set("n", "<leader>ltt", "<Cmd>call VSCodeNotify('ts-type-hidden.toogle')<CR>", {})
+  set("n", "<leader>/", "<Cmd>call VSCodeNotify('search.action.openEditor')<CR>", {})
+  set("n", "<leader>sr", "<Cmd>call VSCodeNotify('workbench.view.search')<CR>", {})
+
+  set("n", "<S-w>", "<cmd>lua require('spider').motion('w')<CR>", {})
+  set("n", "<S-b>", "<cmd>lua require('spider').motion('b')<CR>", {})
+
+  set("n", "<C-o>", "<cmd>call VSCodeNotify('workbench.action.navigateBack')<CR>", {})
+  set("n", "<C-i>", "<cmd>call VSCodeNotify('workbench.action.navigateForward')<CR>", {})
 
   -- set("v", "y", '"+ygv<esc>', {})
   -- set("x", "y", '"+ygv<esc>', {})
@@ -77,4 +99,5 @@ end
 vsc.fold()
 vsc.window()
 vsc.base()
+vsc.lsp()
 default()

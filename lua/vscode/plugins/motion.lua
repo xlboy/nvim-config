@@ -18,7 +18,7 @@ return {
       --   "<cmd>lua require('flash').jump({ search = { multi_window = false } })<CR>",
       --   desc = "Flash",
       -- },
-      { "<leader>ssv", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "Flash treesitter_search" },
+      { "<leader>sv", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "Flash treesitter_search" },
       { "<leader>sv", "<cmd>lua require('flash').treesitter()<CR>", desc = "Flash treesitter" },
     },
   },
@@ -43,16 +43,13 @@ return {
   },
   {
     "xlboy/nvim-spider",
-    event = "BufRead",
+    lazy = false,
     opts = { skipInsignificantPunctuation = true },
-    keys = {
-      { "W", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "x" } },
-      { "B", "<cmd>lua require('spider').motion('b')<CR>", mode = { "n", "x" } },
-    },
   },
   {
     "gsuuon/tshjkl.nvim",
-    keys = { { "<leader>ct", desc = "Toggle tshjkl" } },
+    lazy = false,
+    -- keys = { { "<leader>ct", desc = "Toggle tshjkl" } },
     opts = {
       select_current_node = false,
       keymaps = { toggle = "<leader>ct" },
@@ -88,14 +85,6 @@ return {
       vim.api.nvim_command("highlight HopNextKey1 cterm=bold gui=bold guifg=#ff007c")
       vim.api.nvim_command("highlight HopNextKey2 cterm=bold gui=bold guifg=#ff007c")
     end,
-  },
-  {
-    "AgusDOLARD/backout.nvim",
-    opts = {},
-    keys = {
-      { "<C-b><C-b>", "<cmd>lua require('backout').back()<cr>", mode = { "i", "n" } },
-      { "<C-b><C-o>", "<cmd>lua require('backout').out()<cr>", mode = { "i", "n" } },
-    },
   },
   {
     "RRethy/vim-illuminate",

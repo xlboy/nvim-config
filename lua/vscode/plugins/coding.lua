@@ -25,17 +25,12 @@ return {
             return
           end
 
-          vim.lsp.buf_request(
-            0,
-            "textDocument/rename",
-            vim.lsp.util.make_position_params(),
-            function(err, result)
-              local can_rename = result ~= nil
-              local fn_name = can_rename and "normal_mode_lsp_change" or "normal_mode_quick_change"
-              t_opts.prompt_title = string.format(t_opts.prompt_title, can_rename and "LSP" or "Quick")
-              t_extensions.textcase[fn_name](t_opts)
-            end
-          )
+          vim.lsp.buf_request(0, "textDocument/rename", vim.lsp.util.make_position_params(), function(err, result)
+            local can_rename = result ~= nil
+            local fn_name = can_rename and "normal_mode_lsp_change" or "normal_mode_quick_change"
+            t_opts.prompt_title = string.format(t_opts.prompt_title, can_rename and "LSP" or "Quick")
+            t_extensions.textcase[fn_name](t_opts)
+          end)
         end,
         desc = "[Text Case] Smart Open",
         mode = { "n", "v" },
@@ -182,7 +177,21 @@ return {
     "echasnovski/mini.move",
     event = "User BufRead",
     config = function()
-      require("mini.move").setup()
+      require("mini.move").setup({
+        mappings = {
+          -- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+          left = ",a",
+          right = ",d",
+          down = ",s",
+          up = ",w",
+
+          -- Move current line in Normal mode
+          line_left = ",a",
+          line_right = ",d",
+          line_down = ",s",
+          line_up = ",w",
+        },
+      })
     end,
   },
   {
