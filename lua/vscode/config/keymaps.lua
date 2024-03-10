@@ -33,6 +33,18 @@ local vsc = {
     set("n", "<leader>kh", "<Cmd>call VSCodeNotify('workbench.action.focusLeftGroup')<CR>", {
       noremap = true,
     })
+
+    set("n", "<C-w>", "<Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>", {
+      noremap = true,
+    })
+
+    set("n", "<C-w>", "<Cmd>call VSCodeNotify('workbench.action.closeActiveEditor')<CR>", {
+      noremap = true,
+    })
+
+    set("n", "<C-f>", "<Cmd>call VSCodeNotify('actions.find')<CR>", {
+      noremap = true,
+    })
   end,
   base = function()
     set("n", "<leader>cf", "<Cmd>call VSCodeNotify('editor.action.formatDocument')<CR>", {})
