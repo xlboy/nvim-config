@@ -164,6 +164,7 @@ return {
   -- 自动关闭不用的 buffer
   -- { "axkirillov/hbac.nvim", opts = { threshold = 6 } },
   {
+    enabled = false,
     "chrisgrieser/nvim-early-retirement",
     opts = { retirementAgeMins = 10 },
     event = "User BufRead",

@@ -127,14 +127,14 @@ return {
       vim.api.nvim_command("highlight HopNextKey2 cterm=bold gui=bold guifg=#ff007c")
     end,
   },
-  {
-    "bloznelis/before.nvim",
-    keys = {
-      { "<C-o>", "<cmd>lua require('before').jump_to_last_edit()<CR>", mode = { "n" } },
-      { "<C-i>", "<cmd>lua require('before').jump_to_next_edit()<CR>", mode = { "n" } },
-    },
-    opts = { history_size = 100 },
-  },
+  -- {
+  --   "bloznelis/before.nvim",
+  --   keys = {
+  --     { "<C-o>", "<cmd>lua require('before').jump_to_last_edit()<CR>", mode = { "n" } },
+  --     { "<C-i>", "<cmd>lua require('before').jump_to_next_edit()<CR>", mode = { "n" } },
+  --   },
+  --   opts = { history_size = 100 },
+  -- },
   -- { "boltlessengineer/smart-tab.nvim", opts = {} },
   -- {
   --   "abecodes/tabout.nvim",
