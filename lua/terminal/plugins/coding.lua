@@ -268,7 +268,11 @@ return {
   },
   {
     "chrisgrieser/nvim-recorder",
-    opts = {},
+    opts = {
+      mapping = {
+        switchSlot = "<C-e>",
+      },
+    },
     event = "User BufRead",
   },
 }
