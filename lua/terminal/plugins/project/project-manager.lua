@@ -91,7 +91,7 @@ return {
             lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
             data = "~/.local/share/nvim",
           },
-          li = { w_dir = "~/Desktop/li/" },
+          lilith = { w_dir = "~/Desktop/lilith/" },
           xlboy = {
             { w_dir = "~/Desktop/xlboy/" },
             open_source = { w_dir = "~/Desktop/xlboy/__open-source__/" },

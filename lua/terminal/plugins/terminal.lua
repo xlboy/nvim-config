@@ -45,21 +45,33 @@ local set_keymap = function(bufnr)
 end
 
 return {
-  "niuiic/terminal.nvim",
-  config = function()
-    require("terminal").setup({
-      on_term_opened = function(bufnr, pid)
-        -- 延时 300ms 设置 filetype 为 terminal
-        vim.defer_fn(function()
-          vim.api.nvim_set_option_value("filetype", "terminal", { buf = bufnr })
-          set_keymap(bufnr)
-          terms[bufnr] = pid
-        end, 300)
-      end,
-    })
-  end,
-  keys = {
-    { "<leader>tm", desc = "[Terminal] ..." },
-    { "<leader>tmo", ':lua require("terminal").open()<CR>', desc = "[Terminal] open" },
+  {
+    "niuiic/terminal.nvim",
+    enabled = false,
+    config = function()
+      require("terminal").setup({
+        on_term_opened = function(bufnr, pid)
+          -- 延时 300ms 设置 filetype 为 terminal
+          vim.defer_fn(function()
+            vim.api.nvim_set_option_value("filetype", "terminal", { buf = bufnr })
+            set_keymap(bufnr)
+            terms[bufnr] = pid
+          end, 300)
+        end,
+      })
+    end,
+    keys = {
+      { "<leader>tm", desc = "[Terminal] ..." },
+      { "<leader>tmo", ':lua require("terminal").open()<CR>', desc = "[Terminal] open" },
+    },
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    opts = {},
+    event = "User BufRead",
+    keys = {
+      -- { "<leader>tm", desc = "[Terminal] ..." },
+      -- { "<leader>tmo", 'ToggleTerm', desc = "[Terminal] open" },
+    },
   },
 }

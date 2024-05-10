@@ -51,11 +51,7 @@ return {
       {
         "<leader>ff",
         function()
-          t_builtin.find_files({
-            layout_config = config.mini_ts_layout_wh,
-            previewer = false,
-            path_display = { "truncate" },
-          })
+          t_builtin.find_files({ layout_config = config.mini_ts_layout_wh, previewer = false, path_display = { "truncate" } })
         end,
         desc = "Telescope find files",
       },

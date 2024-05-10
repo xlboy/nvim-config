@@ -1,4 +1,5 @@
 local config = require("terminal.config.config")
+local u = require("terminal.utils")
 
 return {
   {
@@ -81,8 +82,31 @@ return {
   {
     "uga-rosa/ccc.nvim",
     cmd = { "CccPick", "CccConvert" },
+    ft = { "typescriptreact" },
     opts = { highlighter = { auto_enable = true, lsp = true } },
   },
+  (function()
+    local colors =
+      { "#0c0d0e", "#e5c07b", "#7FFFD4", "#8A2BE2", "#FF4500", "#008000", "#0000FF", "#FFC0CB", "#FFF9E3", "#7d5c34" }
+    local highlight_colors = {}
+    for index, color in pairs(colors) do
+      highlight_colors["color_" .. index - 1] = { color, "smart" }
+    end
+
+    return {
+      "pocco81/high-str.nvim",
+      event = "User BufRead",
+      opts = {
+        verbosity = 0,
+        saving_path = "/tmp/highstr/",
+        highlight_colors = highlight_colors,
+      },
+      keys = {
+        { "<leader>hha", ":<c-u>HSHighlight ", mode = "v", desc = "[high-str] add" },
+        { "<leader>hhd", ":<c-u>HSRmHighlight<CR>", mode = "n", desc = "[high-str] delete" },
+      },
+    }
+  end)(),
   -- 光标动画
   --[[ { "danilamihailov/beacon.nvim", event = "BufRead" } ]]
 }

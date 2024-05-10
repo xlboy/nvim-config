@@ -106,6 +106,29 @@ function default()
   set("v", "'c", '"0c', {})
   set("v", "<S-w>", "3w", {})
   set("v", "<S-b>", "3b", {})
+
+  local vscode = require("vscode-neovim")
+  local function mapMove(key, direction)
+    vim.keymap.set("n", key, function()
+      local count = vim.v.count
+      local v = 1
+      local style = "wrappedLine"
+      if count > 0 then
+        v = count
+        style = "line"
+      end
+      vscode.action("cursorMove", {
+        args = {
+          to = direction,
+          by = style,
+          value = v,
+        },
+      })
+    end, options)
+  end
+
+  mapMove("k", "up")
+  mapMove("j", "down")
 end
 
 vsc.fold()

@@ -107,6 +107,7 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
+    enabled = false,
     ft = u.basic.os_pick({ "lua", "cpp", "typescriptreact", "typescript" }, { "lua", "cpp" }),
     -- event = "FileType lua,cpp",
     config = function()
