@@ -1,26 +1,7 @@
 return {
   {
-    "kevinhwang91/nvim-hlslens",
-    event = "CmdlineEnter",
-    dependencies = { "anuvyklack/keymap-amend.nvim" },
-    keys = {
-      { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]] },
-      { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]] },
-      { "*", [[*<Cmd>lua require('hlslens').start()<CR>]] },
-      { "#", [[#<Cmd>lua require('hlslens').start()<CR>]] },
-      { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]] },
-      { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]] },
-    },
-    config = function()
-      require("hlslens").setup()
-      require("keymap-amend")("n", "<Esc>", function(original)
-        if vim.v.hlsearch then vim.cmd("nohlsearch") end
-        original()
-      end)
-    end,
-  },
-  {
     "nvim-pack/nvim-spectre",
+    enabled = true,
     opts = {
       mapping = { ["send_to_qf"] = { map = "<leader>o" } },
     },
@@ -42,6 +23,7 @@ return {
   },
   {
     "cshuaimin/ssr.nvim",
+    enabled = true,
     keys = {
       {
         "<leader>sR",
@@ -67,4 +49,13 @@ return {
       },
     },
   },
+  -- {
+  --   "MagicDuck/grug-far.nvim",
+  --   config = function()
+  --     require("grug-far").setup()
+  --   end,
+  --   keys = {
+  --     { "<leader>sr", ":GrugFar<CR>", desc = "[grug-far] Search and replace", mode = { "n", "x" } },
+  --   },
+  -- },
 }

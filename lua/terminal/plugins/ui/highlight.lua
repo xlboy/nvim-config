@@ -3,6 +3,26 @@ local u = require("terminal.utils")
 
 return {
   {
+    "kevinhwang91/nvim-hlslens",
+    event = "CmdlineEnter",
+    dependencies = { "anuvyklack/keymap-amend.nvim" },
+    keys = {
+      { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]] },
+      { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]] },
+      { "*", [[*<Cmd>lua require('hlslens').start()<CR>]] },
+      { "#", [[#<Cmd>lua require('hlslens').start()<CR>]] },
+      { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]] },
+      { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]] },
+    },
+    config = function()
+      require("hlslens").setup()
+      require("keymap-amend")("n", "<Esc>", function(original)
+        if vim.v.hlsearch then vim.cmd("nohlsearch") end
+        original()
+      end)
+    end,
+  },
+  {
     "utilyre/sentiment.nvim",
     event = "User BufRead",
     opts = {
