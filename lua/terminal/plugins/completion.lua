@@ -104,36 +104,4 @@ return {
     end,
     dependencies = { "romgrk/fzy-lua-native", "lambdalisue/nerdfont.vim" },
   },
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    enabled = false,
-    ft = u.basic.os_pick({ "lua", "cpp", "typescriptreact", "typescript" }, { "lua", "cpp" }),
-    -- event = "FileType lua,cpp",
-    config = function()
-      require("copilot").setup({
-        filetypes = {
-          lua = true,
-          cpp = true,
-          typescript = config.IS_WIN,
-          typescriptreact = config.IS_WIN,
-          ["*"] = false,
-        },
-        panel = { enabled = true },
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          debounce = 75,
-          keymap = {
-            accept = "<C-a>",
-            accept_word = false,
-            accept_line = false,
-            next = "<C-n>",
-            prev = "<C-p>",
-            dismiss = "<C-]>",
-          },
-        },
-      })
-    end,
-  },
 }

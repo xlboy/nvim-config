@@ -5,9 +5,7 @@ return {
   {
     "xlboy/nvim-treesitter",
     opts = function(_, opts)
-      if config.IS_WIN then
-        opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "c", "cpp", "cmake" })
-      end
+      opts.ensure_installed = u.basic.append_arrays(opts.ensure_installed, { "c", "cpp", "cmake" })
     end,
   },
   {

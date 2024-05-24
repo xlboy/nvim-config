@@ -74,6 +74,15 @@ function default()
   set("n", "<leader>all", "ggVG", {})
   set("n", "<S-h>", "^", {})
   set("n", "<S-l>", "$", {})
+
+  -- 设置快捷键的回调为函数
+  -- vim.keymap.set("n", "<S-k>", function()
+  --   for i = 1, 8, 1 do
+  --     -- 执行 8 次 k
+  --     -- vim.cmd("normal! k")
+  --   end
+  -- end, {})
+
   set("n", "<S-k>", "8k", {})
   set("n", "<S-j>", "8j", {})
   set("n", "<S-u>", "20k", {})
