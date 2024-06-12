@@ -11,8 +11,8 @@ return {
         filetypes = {
           lua = true,
           cpp = true,
-          typescript = config.IS_WIN,
-          typescriptreact = config.IS_WIN,
+          -- typescript = config.IS_WIN,
+          -- typescriptreact = config.IS_WIN,
           ["*"] = false,
         },
         panel = { enabled = true },

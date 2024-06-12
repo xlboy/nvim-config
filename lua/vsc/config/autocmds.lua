@@ -1,4 +1,4 @@
-local config = require("vscode.config.config")
+local config = require("vsc.config.config")
 
 vim.defer_fn(function()
   vim.api.nvim_exec_autocmds("User", { pattern = "Startup30s", modeline = false })

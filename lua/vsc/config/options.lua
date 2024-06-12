@@ -1,4 +1,4 @@
-local u = require("vscode.utils")
+local u = require("vsc.utils")
 
 vim.opt.viewoptions:remove("curdir") -- disable saving current directory with views
 vim.opt.shortmess:append({ s = true, I = true }) -- disable search count wrap and startup messages

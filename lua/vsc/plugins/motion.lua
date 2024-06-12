@@ -1,4 +1,4 @@
-local u = require("vscode.utils")
+local u = require("vsc.utils")
 
 return {
   {

@@ -1,5 +1,5 @@
 -- local t_extensions = require("telescope").extensions
--- local u = require("vscode.utils")
+-- local u = require("vsc.utils")
 
 return {
   -- {

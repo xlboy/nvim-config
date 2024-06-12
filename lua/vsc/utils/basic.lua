@@ -1,4 +1,4 @@
-local config = require("vscode.config.config")
+local config = require("vsc.config.config")
 local M = {}
 
 function M.os_pick(winVal, macVal)

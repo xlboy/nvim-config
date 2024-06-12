@@ -1,5 +1,5 @@
-local u = require("vscode.utils")
-local config = require("vscode.config.config")
+local u = require("vsc.utils")
+local config = require("vsc.config.config")
 
 return {
   {

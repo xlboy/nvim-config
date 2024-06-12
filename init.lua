@@ -14,9 +14,9 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 local in_vscode = vim.g.vscode
 local spec = {}
 if in_vscode then
-  require("vscode")
+  require("vsc")
   spec = {
-     import = "vscode.plugins" 
+     import = "vsc.plugins" 
   }
 else
   require("terminal")

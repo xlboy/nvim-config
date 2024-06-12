@@ -1,4 +1,4 @@
-local basic = require("vscode.utils.basic")
+local basic = require("vsc.utils.basic")
 
 local M = {}
 

@@ -66,27 +66,14 @@ local vsc = {
 }
 
 function default()
+  local vscode = require("vscode-neovim")
+
   set("n", "'d", '"0d', {})
   set("n", "'c", '"0c', {})
   set("n", "<S-w>", "3w", {})
   set("n", "<S-b>", "3b", {})
   set("n", "<leader>jo", "<CMD>join<CR>", {})
   set("n", "<leader>all", "ggVG", {})
-  set("n", "<S-h>", "^", {})
-  set("n", "<S-l>", "$", {})
-
-  -- 设置快捷键的回调为函数
-  -- vim.keymap.set("n", "<S-k>", function()
-  --   for i = 1, 8, 1 do
-  --     -- 执行 8 次 k
-  --     -- vim.cmd("normal! k")
-  --   end
-  -- end, {})
-
-  set("n", "<S-k>", "8k", {})
-  set("n", "<S-j>", "8j", {})
-  set("n", "<S-u>", "20k", {})
-  set("n", "<S-d>", "20j", {})
 
   set("n", "u", "<Cmd>call VSCodeNotify('undo')<CR>", {})
   set("n", "<C-r>", "<Cmd>call VSCodeNotify('redo')<CR>", {})
@@ -107,16 +94,38 @@ function default()
   -- set("x", "y", '"+ygv<esc>', {})
   set("v", "<S-h>", "^", {})
   set("v", "<S-l>", "$", {})
-  set("v", "<S-k>", "8k", {})
-  set("v", "<S-j>", "8j", {})
-  set("v", "<S-u>", "20k", {})
-  set("v", "<S-d>", "20j", {})
+  set("n", "<S-h>", "^", {})
+  set("n", "<S-l>", "$", {})
+
   set("v", "'d", '"0d', {})
   set("v", "'c", '"0c', {})
   set("v", "<S-w>", "3w", {})
   set("v", "<S-b>", "3b", {})
 
-  local vscode = require("vscode-neovim")
+  vim.keymap.set({ "n", "v", "x" }, "<S-k>", function()
+    vscode.action("cursorMove", {
+      args = { to = "up", by = "wrappedLine", value = 8 },
+    })
+  end)
+
+  vim.keymap.set({ "n", "v", "x" }, "<S-j>", function()
+    vscode.action("cursorMove", {
+      args = { to = "down", by = "wrappedLine", value = 8 },
+    })
+  end)
+
+  vim.keymap.set({ "n", "v", "x" }, "<S-u>", function()
+    vscode.action("cursorMove", {
+      args = { to = "up", by = "wrappedLine", value = 20 },
+    })
+  end)
+
+  vim.keymap.set({ "n", "v", "x" }, "<S-d>", function()
+    vscode.action("cursorMove", {
+      args = { to = "down", by = "wrappedLine", value = 20 },
+    })
+  end)
+
   local function mapMove(key, direction)
     vim.keymap.set("n", key, function()
       local count = vim.v.count
@@ -133,7 +142,7 @@ function default()
           value = v,
         },
       })
-    end, options)
+    end)
   end
 
   mapMove("k", "up")
