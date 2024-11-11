@@ -83,25 +83,25 @@ return {
       },
     },
   },
-  {
-    "xlboy/function-picker.nvim",
-    lazy = true,
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    keys = {
-      {
-        "<leader>fns",
-        function()
-          require("function-picker").show({
-            deep = {
-              mode = "flat",
-              tree_contour_opts = { indent = 2 },
-              flat_opts = { space_character = " 🌀 " },
-            },
-          })
-        end,
-      },
-    },
-  },
+  -- {
+  --   "xlboy/function-picker.nvim",
+  --   lazy = true,
+  --   dependencies = { "nvim-telescope/telescope.nvim" },
+  --   keys = {
+  --     {
+  --       "<leader>fns",
+  --       function()
+  --         require("function-picker").show({
+  --           deep = {
+  --             mode = "flat",
+  --             tree_contour_opts = { indent = 2 },
+  --             flat_opts = { space_character = " 🌀 " },
+  --           },
+  --         })
+  --       end,
+  --     },
+  --   },
+  -- },
   {
     "prochri/telescope-all-recent.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },
