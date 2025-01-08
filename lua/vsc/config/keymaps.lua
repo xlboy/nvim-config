@@ -5,9 +5,11 @@ local vsc = {
     set("n", "zR", "<Cmd>call VSCodeNotify('editor.unfoldAll')<CR>", {})
     set("n", "zM", "<Cmd>call VSCodeNotify('editor.foldAll')<CR>", {})
     set("n", "zoo", "<Cmd>call VSCodeNotify('editor.unfold')<CR>", {})
+    set("n", "zon", "<Cmd>call VSCodeNotify('editor.unfoldRecursively')<CR>", {})
     set("n", "<CR>", "<Cmd>call VSCodeNotify('editor.unfold')<CR>", {})
     set("n", "zO", "<Cmd>call VSCodeNotify('editor.unfoldRecursively')<CR>", {})
     set("n", "zcc", "<Cmd>call VSCodeNotify('editor.fold')<CR>", {})
+    set("n", "zcn", "<Cmd>call VSCodeNotify('editor.foldRecursively')<CR>", {})
     set("n", "zca", "<Cmd>call VSCodeNotify('editor.foldRecursively')<CR>", {})
 
     set("n", "z1", "<Cmd>call VSCodeNotify('editor.foldLevel1')<CR>", {})
