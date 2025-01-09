@@ -267,6 +267,7 @@ return {
     },
   },
   {
+    enabled = false,
     "chrisgrieser/nvim-recorder",
     opts = {
       mapping = {

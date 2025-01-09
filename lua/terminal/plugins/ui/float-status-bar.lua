@@ -106,15 +106,15 @@ return {
 
         local diagnostics = render.diagnostics(props)
         local separator = { " | ", guifg = "grey" }
-        local recorder_text = require("recorder").displaySlots() .. require("recorder").recordingStatus()
+        -- local recorder_text = require("recorder").displaySlots() .. require("recorder").recordingStatus()
 
         return {
           render.rounded_corner.left(props),
           {
             guibg = content_hl.bg,
             guifg = content_hl.fg,
-            { recorder_text, guifg = "#ff9e64" },
-            recorder_text ~= "" and separator or {},
+            -- { recorder_text, guifg = "#ff9e64" },
+            -- recorder_text ~= "" and separator or {},
             render.line_number(props),
             separator,
             diagnostics,

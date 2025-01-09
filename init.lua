@@ -36,7 +36,7 @@ end
 require("lazy").setup({
   spec = spec,
   defaults = { lazy = true },
-  checker = { enabled = true },
+  checker = { enabled = false },
   performance = {
     rtp = {
       disabled_plugins = { "gzip", "tarPlugin", "tohtml", "zipPlugin", "tutor" },
