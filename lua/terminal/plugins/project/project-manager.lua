@@ -13,8 +13,8 @@ local resession = {
 }
 
 local function tint_refresh()
-  -- require("tint").disable()
-  -- require("tint").enable()
+  require("tint").disable()
+  require("tint").enable()
 end
 
 local function is_valid_bufs()
@@ -60,7 +60,7 @@ return {
         "<leader>..",
         function()
           resession.load_cwd()
-          tint_refresh()
+          -- tint_refresh()
         end,
       },
     },
@@ -108,7 +108,7 @@ return {
             u.basic.feedkeys("<leader>ca<CR>")
             vim.cmd("cd " .. entry.source.dir)
             resession.load_cwd()
-            tint_refresh()
+            -- tint_refresh()
           end,
         },
         tree_opts = {

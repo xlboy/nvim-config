@@ -19,7 +19,7 @@ return {
       --   desc = "Flash",
       -- },
       { "<leader>sv", "<cmd>lua require('flash').treesitter_search()<CR>", desc = "Flash treesitter_search" },
-      { "<leader>sv", "<cmd>lua require('flash').treesitter()<CR>", desc = "Flash treesitter" },
+      { "<leader>sv", "<cmd>lua require('flash').treesitter()<CR>",        desc = "Flash treesitter" },
     },
   },
   {
@@ -70,7 +70,7 @@ return {
   {
     "smoka7/hop.nvim",
     keys = {
-      { "s", "<cmd>HopWord<CR>", mode = { "n", "v" } },
+      { "s",  "<cmd>HopWord<CR>",      mode = { "n", "v" } },
       { ";l", "<cmd>HopLineStart<CR>", mode = { "n", "v" } },
       {
         ";f",
@@ -92,7 +92,7 @@ return {
     opts = {
       delay = 200,
       large_file_cutoff = 2000,
-      large_file_overrides = { providers = { "treesitter", "regex" } },
+      large_file_overrides = { providers = { "lsp", "treesitter", "regex" } },
     },
     config = function(_, opts)
       require("illuminate").configure(opts)
