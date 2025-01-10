@@ -21,6 +21,7 @@ return {
         "cssls",
         -- "tsserver",
         "jsonls",
+        "vtsls"
       })
     end,
   },

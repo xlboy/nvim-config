@@ -13,46 +13,35 @@ return {
       },
     },
     keys = {
-      { "<leader>la", "<cmd>Lspsaga code_action<CR>", desc = "Show code actions" },
-      { "<leader>la", "<cmd><C-U>Lspsaga range_code_action<CR>", desc = "Show code actions", mode = "v" },
-      { "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Jump to next diagnostic" },
-      { "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Jump to previous diagnostic" },
-      { "gh", vim.lsp.buf.hover },
+      { "<leader>la",    "<cmd>Lspsaga code_action<CR>",            desc = "Show code actions" },
+      { "<leader>la",    "<cmd><C-U>Lspsaga range_code_action<CR>", desc = "Show code actions",          mode = "v" },
+      { "]d",            "<cmd>Lspsaga diagnostic_jump_next<CR>",   desc = "Jump to next diagnostic" },
+      { "[d",            "<cmd>Lspsaga diagnostic_jump_prev<CR>",   desc = "Jump to previous diagnostic" },
       -- { "gh", "<cmd>Lspsaga hover_doc<CR>", desc = "Show hover doc" },
-      { "<C-LeftMouse>", "<cmd>Lspsaga goto_definition<CR>", desc = "Show hover doc" },
-      { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Show hover doc" },
-      { "gkh", "<cmd>Lspsaga hover_doc ++keep<CR>", desc = "Show hover doc [keep]" },
-      { "gr", "<cmd>Lspsaga finder<CR>", desc = "Show lsp finder" },
-      { "<leader>lr", vim.lsp.buf.rename, desc = "Rename symbol" },
-      { "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Show line diagnostics" },
-      { "<leader>l.", "<cmd>Lspsaga signature_help<CR>", desc = "Show signature help" },
+      { "<C-LeftMouse>", "<cmd>Lspsaga goto_definition<CR>",        desc = "Show hover doc" },
+      { "gd",            "<cmd>Lspsaga goto_definition<CR>",        desc = "Show hover doc" },
+      { "gkh",           "<cmd>Lspsaga hover_doc ++keep<CR>",       desc = "Show hover doc [keep]" },
+      -- { "gr",            "<cmd>Lspsaga finder<CR>",                 desc = "Show lsp finder" },
+      { "<leader>lr",    vim.lsp.buf.rename,                        desc = "Rename symbol" },
+      { "gl",            "<cmd>Lspsaga show_line_diagnostics<CR>",  desc = "Show line diagnostics" },
+      { "<leader>l.",    "<cmd>Lspsaga signature_help<CR>",         desc = "Show signature help" },
     },
   },
-  -- {
-  --   "ray-x/navigator.lua",
-  --   -- event = "User BufRead",
-  --   dependencies = { { "ray-x/guihua.lua", build = "cd lua/fzy && make" } },
-  --   config = function()
-  --     require("navigator").setup({
-  --       lsp_signature_help = false,
-  --       default_mapping = false,
-  --     })
-  --   end,
-  --   keys = function()
-  --     return {
-  --       -- { "gr", require("navigator.reference").reference },
-  --     }
-  --   end,
-  -- },
   {
-    "j-hui/fidget.nvim",
+    "ray-x/navigator.lua",
     event = "User BufRead",
-    opts = {
-      notification = { window = { winblend = 0 } },
-      integration = {
-        ["nvim-tree"] = { enable = true },
-      },
-    },
+    dependencies = { { "ray-x/guihua.lua", build = "cd lua/fzy && make" } },
+    config = function()
+      require("navigator").setup({
+        lsp_signature_help = false,
+        default_mapping = false,
+      })
+    end,
+    keys = function()
+      return {
+        { "gr", require("navigator.reference").reference },
+      }
+    end,
   },
 
   -- {

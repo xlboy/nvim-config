@@ -12,7 +12,12 @@ return {
     },
     init = function()
       local done = false
-      local banned_messages = { "No information available", "[LSP] No client with id 1" }
+      local banned_messages = {
+        "No information available",
+        "[LSP] No client with id 1",
+        "position_encoding param is required in vim.lsp.util.make_position_params. Defaulting to position encoding of the first client.",
+        "position_encoding param is required in vim.lsp.util.make_range_params. Defaulting to position encoding of the first client."
+      }
       ---@diagnostic disable-next-line: duplicate-set-field
       vim.notify = function(msg, ...)
         local notify = require("notify")

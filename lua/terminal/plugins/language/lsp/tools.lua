@@ -112,6 +112,55 @@ return {
     end,
   },
   {
+    enabled = true,
+    "j-hui/fidget.nvim",
+    event = "User BufRead",
+    opts = {
+      notification = { window = { winblend = 0 } },
+      integration = {
+        ["nvim-tree"] = { enable = true },
+      },
+    },
+  },
+  {
+    "lewis6991/hover.nvim",
+    event = "User BufRead",
+    config = function()
+      require("hover").setup({
+        init = function()
+          require("hover.providers.lsp")
+          -- require("hover.providers.gh_user")
+          require("hover.providers.fold_preview")
+          -- require("hover.providers.diagnostic")
+          -- require("hover.providers.man")
+          -- require("hover.providers.dictionary")
+        end,
+        preview_opts = {
+          border = "single",
+        },
+        preview_window = true,
+        title = true,
+        mouse_providers = {
+          "LSP",
+        },
+        mouse_delay = 300,
+      })
+
+      vim.keymap.set("n", "gh", function()
+        local api = vim.api
+        local hover_win = vim.b.hover_preview
+        if hover_win and api.nvim_win_is_valid(hover_win) then
+          api.nvim_set_current_win(hover_win)
+        else
+          require("hover").hover()
+        end
+      end, { desc = "hover.nvim" })
+
+      vim.keymap.set("n", "gH", require("hover").hover_select, { desc = "hover.nvim (select)" })
+      -- vim.keymap.set('n', '<MouseMove>', require('hover').hover_mouse, { desc = "hover.nvim (mouse)" })
+    end,
+  },
+  {
     "folke/trouble.nvim",
     enabled = false,
     cmd = { "TroubleToggle", "Trouble" },
@@ -122,7 +171,7 @@ return {
       },
     },
     keys = {
-      { "<leader>ldc", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>ldc", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "Document Diagnostics (Trouble)" },
       { "<leader>lda", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
       {
         "[q",

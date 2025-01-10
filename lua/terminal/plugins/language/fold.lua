@@ -1,7 +1,7 @@
 return {
   {
     "kevinhwang91/nvim-ufo",
-    enabled = true,
+    enabled = false,
     event = "User BufRead",
     dependencies = {
       { "kevinhwang91/promise-async" },
@@ -17,16 +17,16 @@ return {
         end
 
         return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
-          or function(bufnr)
-            return require("ufo")
-              .getFolds(bufnr, "lsp")
-              :catch(function(err)
-                return handleFallbackException(bufnr, err, "treesitter")
-              end)
-              :catch(function(err)
-                return handleFallbackException(bufnr, err, "indent")
-              end)
-          end
+            or function(bufnr)
+              return require("ufo")
+                  .getFolds(bufnr, "lsp")
+                  :catch(function(err)
+                    return handleFallbackException(bufnr, err, "treesitter")
+                  end)
+                  :catch(function(err)
+                    return handleFallbackException(bufnr, err, "indent")
+                  end)
+            end
       end,
 
       fold_virt_text_handler = function(virtText, lnum, endLnum, width, truncate)
@@ -58,13 +58,23 @@ return {
       end,
     },
   },
+  -- 折叠嵌套
   {
     "jghauser/fold-cycle.nvim",
     keys = {
-      { "zcc", "<cmd>normal! zc<CR>", desc = "[Fold] Close" },
-      { "zoo", "<cmd>normal! zo<CR>", desc = "[Fold] Open" },
+      { "zcc", "<cmd>normal! zc<CR>",                            desc = "[Fold] Close" },
+      { "zoo", "<cmd>normal! zo<CR>",                            desc = "[Fold] Open" },
       { "zcn", "<cmd>lua require('fold-cycle').close_all()<CR>", desc = "[Fold] Nested Close" },
-      { "zon", "<cmd>lua require('fold-cycle').open_all()<CR>", desc = "[Fold] Nested Open" },
+      { "zon", "<cmd>lua require('fold-cycle').open_all()<CR>",  desc = "[Fold] Nested Open" },
     },
   },
+  -- 按 h/l 即可触发折叠（当前是关闭状态）；支持 折叠 session 功能
+  {
+    enabled = false,
+    "chrisgrieser/nvim-origami",
+    event = "VeryLazy",
+    opts = {
+      setupFoldKeymaps = false
+    },
+  }
 }

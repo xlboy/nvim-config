@@ -83,7 +83,7 @@ return {
   event = "User BufRead",
   config = function()
     require("incline").setup({
-      debounce_threshold = { falling = u.basic.os_pick(80, 150), rising = u.basic.os_pick(80, 150) },
+      debounce_threshold = { falling = u.basic.os_pick(80, 300), rising = u.basic.os_pick(80, 300) },
       highlight = {
         groups = {
           InclineNormal = { guibg = "None", guifg = config.colors.window.active.fg },
