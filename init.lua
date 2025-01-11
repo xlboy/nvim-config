@@ -5,7 +5,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -19,7 +19,7 @@ local spec = {}
 if in_vscode then
   require("vsc")
   spec = {
-     import = "vsc.plugins" 
+    import = "vsc.plugins"
   }
 else
   require("terminal")
@@ -42,4 +42,5 @@ require("lazy").setup({
       disabled_plugins = { "gzip", "tarPlugin", "tohtml", "zipPlugin", "tutor" },
     },
   },
+  concurrency = 15
 })

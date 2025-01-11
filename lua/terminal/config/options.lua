@@ -50,14 +50,15 @@ local options = {
     foldcolumn = "1",
     foldlevel = 99,
     foldlevelstart = 99,
-    foldenable = false,
-    foldmethod = "manual",
+    foldenable = true,
+    foldmethod = "indent",
+    foldtext = "",
     mousemoveevent = true,
   },
   g = {
     mapleader = " ",      -- set leader key
     maplocalleader = ",", -- set default local leader key
-    sqlite_clib_path = u.basic.os_pick("C:/Program Files (x86)/sqlite/sqlite3.dll", nil),
+    sqlite_clib_path = u.basic.os_pick("C:/Program Files (x86)/sqlite/sqlite3.dll", "/usr/local/lib/libsqlite3.dylib"),
   },
   t = vim.t.bufs and vim.t.bufs or { bufs = vim.api.nvim_list_bufs() }, -- initialize buffers for the current tab
 }

@@ -1,7 +1,7 @@
 return {
   {
     "kevinhwang91/nvim-ufo",
-    enabled = true,
+    enabled = false,
     event = "VeryLazy",
     dependencies = { { "kevinhwang91/promise-async" } },
     opts = {
@@ -68,6 +68,7 @@ return {
   },
   -- 按 h/l 即可触发折叠（当前是关闭状态）；支持 折叠 session 功能
   {
+    enabled = true,
     "chrisgrieser/nvim-origami",
     event = "VeryLazy",
     opts = { setupFoldKeymaps = false },

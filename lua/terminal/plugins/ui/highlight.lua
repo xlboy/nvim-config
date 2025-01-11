@@ -96,6 +96,7 @@ return {
   {
     "NvChad/nvim-colorizer.lua",
     event = "User BufRead",
+    enabled = false,
     cmd = { "ColorizerToggle", "ColorizerAttachToBuffer", "ColorizerDetachFromBuffer", "ColorizerReloadAllBuffers" },
     opts = { user_default_options = { tailwind = true } },
   },

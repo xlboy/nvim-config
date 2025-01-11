@@ -6,6 +6,7 @@ return {
   {
     "xlboy/vscode-opener.nvim",
     dependencies = { "prochri/telescope-all-recent.nvim" },
+    opts = { via = "cursor" },
     keys = {
       {
         "<leader>vsc",
@@ -60,25 +61,25 @@ return {
       handler_options = { search_engine = "google" },
     },
   },
-  -- {
-  --   "gbprod/yanky.nvim",
-  --   dependencies = { "kkharji/sqlite.lua" },
-  --   config = function()
-  --     require("yanky").setup({
-  --       ring = { storage = "sqlite", ignore_registers = { "0" } },
-  --       highlight = { on_put = true, on_yank = true, timer = 150 },
-  --       system_clipboard = { sync_with_ring = false },
-  --     })
-  --   end,
-  --   keys = {
-  --     {
-  --       "<leader>tsy",
-  --       function()
-  --         t_extensions.yank_history.yank_history({})
-  --       end,
-  --       desc = "Open Yank History",
-  --     },
-  --     { "y", "<Plug>(YankyYank)", mode = { "n", "x", "v" }, desc = "Yank text" },
-  --   },
-  -- },
+  {
+    "gbprod/yanky.nvim",
+    dependencies = { "kkharji/sqlite.lua" },
+    config = function()
+      require("yanky").setup({
+        ring = { storage = "sqlite", ignore_registers = { "0" } },
+        highlight = { on_put = true, on_yank = true, timer = 150 },
+        system_clipboard = { sync_with_ring = false },
+      })
+    end,
+    keys = {
+      {
+        "<leader>tsy",
+        function()
+          t_extensions.yank_history.yank_history({})
+        end,
+        desc = "Open Yank History",
+      },
+      { "y", "<Plug>(YankyYank)", mode = { "n", "x", "v" }, desc = "Yank text" },
+    },
+  },
 }

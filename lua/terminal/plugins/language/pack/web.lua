@@ -75,6 +75,9 @@ return {
           },
         },
       },
+      vtsls = {
+        autoUseWorkspaceTsdk = true
+      }
     },
   },
 }
