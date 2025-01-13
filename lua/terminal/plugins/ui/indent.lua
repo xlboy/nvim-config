@@ -1,7 +1,7 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
   main = "ibl",
-  version = "~3.5.1",
+  version = "~3.8.6",
   event = "User BufRead",
   config = function()
     vim.cmd("highlight XlboyIndentScope guifg=#7bdfd0")
@@ -11,6 +11,7 @@ return {
         show_start = false,
         show_end = false,
         highlight = "XlboyIndentScope",
+        include = { node_type = { ["*"] = { "*" } } }
       },
       exclude = {
         buftypes = { "nofile", "terminal" },

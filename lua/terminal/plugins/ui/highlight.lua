@@ -7,10 +7,10 @@ return {
     event = "CmdlineEnter",
     dependencies = { "anuvyklack/keymap-amend.nvim" },
     keys = {
-      { "n", [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]] },
-      { "N", [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]] },
-      { "*", [[*<Cmd>lua require('hlslens').start()<CR>]] },
-      { "#", [[#<Cmd>lua require('hlslens').start()<CR>]] },
+      { "n",  [[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]] },
+      { "N",  [[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]] },
+      { "*",  [[*<Cmd>lua require('hlslens').start()<CR>]] },
+      { "#",  [[#<Cmd>lua require('hlslens').start()<CR>]] },
       { "g*", [[g*<Cmd>lua require('hlslens').start()<CR>]] },
       { "g#", [[g#<Cmd>lua require('hlslens').start()<CR>]] },
     },
@@ -48,7 +48,7 @@ return {
     opts = {
       delay = 200,
       large_file_cutoff = 2000,
-      large_file_overrides = { providers = { "lsp" } },
+      large_file_overrides = { providers = { "lsp", "treesitter", "regex" } },
     },
     config = function(_, opts)
       require("illuminate").configure(opts)
@@ -70,16 +70,12 @@ return {
         end,
       })
     end,
-    keys = {
-      { "]]", desc = "Next Reference" },
-      { "[[", desc = "Prev Reference" },
-    },
   },
 
   -- 非 focus 的窗口进行置灰
   {
     "levouh/tint.nvim",
-    enabled = false,
+    enabled = true,
     lazy = false,
     priority = 10, -- make sure to load this before all the other start plugins
     opts = {
@@ -106,9 +102,10 @@ return {
     ft = { "typescriptreact" },
     opts = { highlighter = { auto_enable = true, lsp = true } },
   },
+  -- 对指定字符进行高亮
   (function()
     local colors =
-      { "#0c0d0e", "#e5c07b", "#7FFFD4", "#8A2BE2", "#FF4500", "#008000", "#0000FF", "#FFC0CB", "#FFF9E3", "#7d5c34" }
+    { "#0c0d0e", "#e5c07b", "#7FFFD4", "#8A2BE2", "#FF4500", "#008000", "#0000FF", "#FFC0CB", "#FFF9E3", "#7d5c34" }
     local highlight_colors = {}
     for index, color in pairs(colors) do
       highlight_colors["color_" .. index - 1] = { color, "smart" }
@@ -123,11 +120,31 @@ return {
         highlight_colors = highlight_colors,
       },
       keys = {
-        { "<leader>hha", ":<c-u>HSHighlight ", mode = "v", desc = "[high-str] add" },
+        { "<leader>hha", ":<c-u>HSHighlight ",      mode = "v", desc = "[high-str] add" },
         { "<leader>hhd", ":<c-u>HSRmHighlight<CR>", mode = "n", desc = "[high-str] delete" },
       },
     }
   end)(),
   -- 光标动画
   --[[ { "danilamihailov/beacon.nvim", event = "BufRead" } ]]
+
+  -- 彩虹括号
+  {
+    "HiPhish/rainbow-delimiters.nvim",
+    event = "User BufRead",
+    config = function()
+      require('rainbow-delimiters.setup').setup({
+        highlight = {
+          'RainbowDelimiterRed',
+          'RainbowDelimiterYellow',
+          'RainbowDelimiterBlue',
+          'RainbowDelimiterCyan',
+          'RainbowDelimiterRed',
+          'RainbowDelimiterViolet',
+          'RainbowDelimiterOrange',
+          'RainbowDelimiterGreen',
+        },
+      })
+    end
+  }
 }

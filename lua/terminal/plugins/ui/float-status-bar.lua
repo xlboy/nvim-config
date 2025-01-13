@@ -16,7 +16,7 @@ local render = {
     if is_modified then filename_content.guifg = config.colors.modified.fg end
 
     local filepath = vim.api.nvim_buf_get_name(props.buf)
-    local filename = vim.fn.fnamemodify(filepath, ":t")
+    local filename = vim.fn.fnamemodify(filepath, ":t:r")
     local relative_path = vim.fn.fnamemodify(filepath, ":~:." .. vim.fn.getcwd() .. ":.")
 
     table.insert(filename_content, filename)
@@ -83,7 +83,7 @@ return {
   event = "User BufRead",
   config = function()
     require("incline").setup({
-      debounce_threshold = { falling = u.basic.os_pick(80, 300), rising = u.basic.os_pick(80, 300) },
+      debounce_threshold = { falling = u.basic.os_pick(80, 500), rising = u.basic.os_pick(80, 500) },
       highlight = {
         groups = {
           InclineNormal = { guibg = "None", guifg = config.colors.window.active.fg },
@@ -115,8 +115,8 @@ return {
             guifg = content_hl.fg,
             -- { recorder_text, guifg = "#ff9e64" },
             -- recorder_text ~= "" and separator or {},
-            render.line_number(props),
-            separator,
+            props.focused and render.line_number(props) or {},
+            props.focused and separator or {},
             diagnostics,
             #diagnostics == 0 and {} or separator,
             render.file_icon(props),
