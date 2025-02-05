@@ -13,8 +13,8 @@ local resession = {
 }
 
 local function tint_refresh()
-  require("tint").disable()
-  require("tint").enable()
+  -- require("tint").disable()
+  -- require("tint").enable()
 end
 
 local function is_valid_bufs()

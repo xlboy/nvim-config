@@ -75,7 +75,7 @@ return {
   -- 非 focus 的窗口进行置灰
   {
     "levouh/tint.nvim",
-    enabled = true,
+    enabled = false,
     lazy = false,
     priority = 10, -- make sure to load this before all the other start plugins
     opts = {
