@@ -30,7 +30,6 @@
   "foldnav.nvim": { "branch": "main", "commit": "43ce7078cd4ebcf932f27569669b09f031680b06" },
   "fzy-lua-native": { "branch": "master", "commit": "9d720745d5c2fb563c0d86c17d77612a3519c506" },
   "gitsigns.nvim": { "branch": "main", "commit": "2ff0c29f2a6b1247d96cc59535d53e5589fb50b6" },
-  "guihua.lua": { "branch": "master", "commit": "d783191eaa75215beae0c80319fcce5e6b3beeda" },
   "gx.nvim": { "branch": "main", "commit": "38d776a0b35b9daee5020bf3336564571dc785af" },
   "harpoon": { "branch": "harpoon2", "commit": "a84ab829eaf3678b586609888ef52f7779102263" },
   "heirline.nvim": { "branch": "master", "commit": "cc359b628266cb9a84b2d71c883f2b99e16473a0" },

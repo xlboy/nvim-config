@@ -33,8 +33,8 @@ return {
   },
   {
     "pmizio/typescript-tools.nvim",
-    enabled = false,
-    ft = { "javascript", "javascriptreact", "javascript.jsx", "typescriptreact", "typescript.tsx" },
+    enabled = true,
+    ft = { "javascript", "javascriptreact", "javascript.jsx" },
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
       require("typescript-tools").setup({
