@@ -86,16 +86,15 @@ return {
         }, {
           nvim = {
             my_config = { p_dir = "~/.config/nvim", __extra__ = { level = 9 } },
-            wezterm_config = { p_dir = "~/.config/wezterm", __extra__ = { level = 9 } },
+            -- wezterm_config = { p_dir = "~/.config/wezterm", __extra__ = { level = 9 } },
             __extra__ = { level = 1 },
             lazy = { w_dir = vim.fn.stdpath("data") .. "/lazy" },
             data = "~/.local/share/nvim",
           },
-          lilith = { w_dir = "~/Desktop/lilith/" },
+          lilith = { w_dir = "~/projects/lilith/" },
           xlboy = {
-            { w_dir = "~/Desktop/xlboy/" },
-            open_source = { w_dir = "~/Desktop/xlboy/__open-source__/" },
-            ["cs-cheat"] = { w_dir = "~/Desktop/xlboy/cs-cheat/" },
+            { w_dir = "~/projects/xlboy/" },
+            open_source = { w_dir = "~/projects/open-source/" },
           },
         }),
       },
