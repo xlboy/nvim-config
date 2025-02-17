@@ -72,6 +72,17 @@ return {
     end,
   },
 
+  -- {
+  --   "sphamba/smear-cursor.nvim",
+  --   lazy = false,
+  --   opts = {
+  --     stiffness = 1,             -- 0.6      [0, 1]
+  --     trailing_stiffness = 0.8,    -- 0.3      [0, 1]
+  --     distance_stop_animating = 0.9, -- 0.1      > 0
+  --     legacy_computing_symbols_support = true,
+  --   },
+  -- },
+
   -- 非 focus 的窗口进行置灰
   {
     "levouh/tint.nvim",
